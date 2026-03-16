@@ -1,0 +1,47 @@
+.hero-plan-container .hero-plan-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-plan {
+  position: relative;
+  padding: 40px 24px;
+  min-height: 300px;
+}
+
+.hero-plan h1,
+.hero-plan h2,
+.hero-plan h3,
+.hero-plan h4,
+.hero-plan h5,
+.hero-plan h6,
+.hero-plan p {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--background-color);
+}
+
+.hero-plan.no-image * {
+  color: var(--text-color);
+}
+
+.hero-plan picture {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+.hero-plan img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media (width >= 900px) {
+  .hero-plan {
+    padding: 40px 32px;
+  }
+}

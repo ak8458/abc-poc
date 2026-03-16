@@ -1,0 +1,40 @@
+{
+  "variantName": "columns-features",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-16T16:09:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php",
+    "originPage": "insurance plan detail page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "grey",
+    "density": "spacious",
+    "purpose": "feature-list",
+    "imagePattern": "large",
+    "structure": "checklist + circular image"
+  },
+  "contentPattern": {
+    "structure": "heading + checklist items + download link | circular image",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "feature list with image sections",
+      "benefits overview with visual element",
+      "plan features with checklist format"
+    ],
+    "notSuitableFor": [
+      "text-only two-column layouts",
+      "image gallery columns",
+      "comparison layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/plans/personal/individual/blue-choice-plan"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-16T16:09:00.000Z"
+  }
+}

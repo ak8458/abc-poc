@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-plan",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-16T16:09:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php",
+    "originPage": "insurance plan detail page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "grey",
+    "density": "spacious",
+    "purpose": "plan-options",
+    "imagePattern": "noimg",
+    "structure": "3 cards with heading + description + CTA"
+  },
+  "contentPattern": {
+    "structure": "heading + description + CTA button per card",
+    "buttonCount": 3,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "alternative plan/product option cards",
+      "related content cards with CTAs",
+      "text-only feature cards on grey background"
+    ],
+    "notSuitableFor": [
+      "image-heavy product cards",
+      "team member or testimonial cards",
+      "cards with complex layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/plans/personal/individual/blue-choice-plan"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-16T16:09:00.000Z"
+  }
+}

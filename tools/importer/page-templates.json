@@ -1,0 +1,85 @@
+{
+  "templates": [
+    {
+      "name": "individual-plan-page",
+      "urls": [
+        "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php"
+      ],
+      "description": "Individual insurance plan detail page with plan features, coverage details, and pricing information",
+      "blocks": [
+        {
+          "name": "hero-plan",
+          "instances": [
+            ".hero-banner-grid"
+          ]
+        },
+        {
+          "name": "tabs-coverage",
+          "instances": [
+            ".seg-control"
+          ]
+        },
+        {
+          "name": "columns-features",
+          "instances": [
+            ".row.grey-callout"
+          ]
+        },
+        {
+          "name": "table-coverage",
+          "instances": [
+            "#extended-health",
+            "#optional-dental",
+            "#prescription-drug"
+          ]
+        },
+        {
+          "name": "cards-plan",
+          "instances": [
+            ".card-group-3"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1-hero",
+          "name": "Hero Banner",
+          "selector": ".hero-banner-grid",
+          "style": null,
+          "blocks": [
+            "hero-plan"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2-plan-overview",
+          "name": "Plan Overview Content",
+          "selector": ".seg-control",
+          "style": null,
+          "blocks": [
+            "tabs-coverage",
+            "columns-features",
+            "table-coverage"
+          ],
+          "defaultContent": [
+            "#overview h2",
+            "#overview p"
+          ]
+        },
+        {
+          "id": "section-3-other-plans",
+          "name": "Explore Other Plans",
+          "selector": ".container-fluid.bkg-grey",
+          "style": "grey",
+          "blocks": [
+            "cards-plan"
+          ],
+          "defaultContent": [
+            ".bkg-grey .col-12 h2",
+            ".bkg-grey .col-12 p"
+          ]
+        }
+      ]
+    }
+  ]
+}
