@@ -1,6 +1,8 @@
 footer {
-  background-color: var(--light-color);
+  background-color: #fff;
   font-size: var(--body-font-size-xs);
+  color: var(--brand-dark);
+  border-top: 1px solid #e0e0e0;
 }
 
 footer .footer > div {
@@ -13,8 +15,35 @@ footer .footer p {
   margin: 0;
 }
 
+footer .footer a:any-link {
+  color: var(--brand-primary);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  text-decoration: underline;
+}
+
+footer .footer h2,
+footer .footer h3 {
+  color: var(--brand-dark);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+}
+
+footer .footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+footer .footer ul li {
+  margin-bottom: 8px;
+}
+
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 56px 32px 24px;
   }
 }

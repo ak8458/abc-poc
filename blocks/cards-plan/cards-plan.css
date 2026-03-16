@@ -3,17 +3,42 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
 .cards-plan > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .cards-plan .cards-plan-card-body {
-  margin: 16px;
+  padding: 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-plan .cards-plan-card-body h3 {
+  margin-top: 0;
+  font-family: var(--body-font-family);
+  font-weight: 500;
+  color: var(--brand-dark);
+}
+
+.cards-plan .cards-plan-card-body p {
+  flex: 1;
+}
+
+.cards-plan .cards-plan-card-body a:any-link {
+  color: var(--brand-primary);
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .cards-plan .cards-plan-card-image {

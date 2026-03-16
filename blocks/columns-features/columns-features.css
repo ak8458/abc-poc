@@ -1,10 +1,17 @@
 .columns-features > div {
   display: flex;
   flex-direction: column;
+  background-color: var(--brand-grey);
+  border-radius: 8px;
+  padding: 32px;
+  gap: 24px;
 }
 
 .columns-features img {
   width: 100%;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .columns-features > div > div {
@@ -13,21 +20,37 @@
 
 .columns-features > div > .columns-features-img-col {
   order: 0;
+  max-width: 200px;
+  margin: 0 auto;
 }
 
 .columns-features > div > .columns-features-img-col img {
   display: block;
 }
 
+.columns-features ul {
+  padding-left: 20px;
+}
+
+.columns-features ul li {
+  margin-bottom: 8px;
+}
+
 @media (width >= 900px) {
   .columns-features > div {
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    gap: 48px;
+    padding: 48px;
   }
 
   .columns-features > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns-features > div > .columns-features-img-col {
+    flex: 0 0 250px;
+    max-width: 250px;
   }
 }
