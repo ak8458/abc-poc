@@ -8,7 +8,7 @@ footer {
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 24px;
 }
 
 footer .footer p {
@@ -25,25 +25,71 @@ footer .footer a:hover {
   text-decoration: underline;
 }
 
-footer .footer h2,
 footer .footer h3 {
   color: var(--brand-dark);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   font-weight: 700;
+  margin-top: 0;
 }
 
 footer .footer ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 footer .footer ul li {
   margin-bottom: 8px;
 }
 
+footer .footer img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+/* Land acknowledgement section */
+footer .footer > div:nth-child(3) {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 24px;
+}
+
+footer .footer > div:nth-child(3) p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Copyright section */
+footer .footer > div:last-child {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+footer .footer > div:last-child p {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #666;
+}
+
+@media (width >= 600px) {
+  footer .footer > div:first-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
 @media (width >= 900px) {
   footer .footer > div {
+    padding: 24px 32px;
+  }
+
+  footer .footer > div:first-child {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr 0.8fr;
+    gap: 32px;
     padding: 56px 32px 24px;
   }
 }
