@@ -1,5 +1,50 @@
 // eslint-disable-next-line import/no-unresolved
-import { toClassName } from '../../scripts/aem.js';
+import { toClassName, loadBlock, decorateBlock } from '../../scripts/aem.js';
+
+/**
+ * Convert block tables nested inside tab panels into proper block elements.
+ * Block tables have a thead with a single th containing the block name.
+ */
+function decorateNestedBlocks(panel) {
+  panel.querySelectorAll(':scope table').forEach((table) => {
+    const th = table.querySelector('thead th');
+    if (!th) return;
+
+    const blockName = toClassName(th.textContent.trim());
+    if (!blockName) return;
+
+    // Create block div structure from table body rows
+    const blockDiv = document.createElement('div');
+    blockDiv.className = `${blockName} block`;
+    blockDiv.dataset.blockName = blockName;
+    blockDiv.dataset.blockStatus = 'initialized';
+
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      const row = document.createElement('div');
+      [...tr.children].forEach((td) => {
+        const cell = document.createElement('div');
+        cell.append(...td.childNodes);
+        row.append(cell);
+      });
+      blockDiv.append(row);
+    });
+
+    // Wrap in standard block wrapper/container structure
+    const wrapper = document.createElement('div');
+    wrapper.className = `${blockName}-wrapper`;
+    wrapper.append(blockDiv);
+
+    const container = document.createElement('div');
+    container.className = `${blockName}-container`;
+    container.append(wrapper);
+
+    table.replaceWith(container);
+
+    // Decorate and load the nested block
+    decorateBlock(blockDiv);
+    loadBlock(blockDiv);
+  });
+}
 
 export default async function decorate(block) {
   // build tablist
@@ -46,4 +91,9 @@ export default async function decorate(block) {
   });
 
   block.prepend(tablist);
+
+  // Decorate nested block tables inside tab panels
+  block.querySelectorAll('.tabs-coverage-panel').forEach((panel) => {
+    decorateNestedBlocks(panel);
+  });
 }

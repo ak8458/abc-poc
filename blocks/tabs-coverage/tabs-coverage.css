@@ -49,6 +49,11 @@
   display: none;
 }
 
+/* Hide standalone decorative icons (small SVGs in paragraphs) */
+.tabs-coverage .tabs-coverage-panel > div > p > picture:only-child {
+  display: none;
+}
+
 @media (width >= 600px) {
   .tabs-coverage .tabs-coverage-list button {
     font-size: var(--body-font-size-m);

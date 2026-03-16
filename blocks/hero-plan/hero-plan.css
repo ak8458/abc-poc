@@ -5,64 +5,99 @@
 
 .hero-plan {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  min-height: 400px;
+  overflow: hidden;
 }
 
-.hero-plan h1,
-.hero-plan h2,
-.hero-plan h3,
-.hero-plan h4,
-.hero-plan h5,
-.hero-plan h6,
-.hero-plan p {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+/* Background image - mobile: positioned behind content */
+.hero-plan .hero-plan-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-plan .hero-plan-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Content overlay on mobile */
+.hero-plan > div:not(.hero-plan-bg) {
+  position: relative;
+  z-index: 1;
+  padding: 40px 24px;
 }
 
 .hero-plan h1 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--heading-font-size-xl);
   font-weight: 500;
   margin-bottom: 16px;
+  color: var(--brand-dark);
 }
 
 .hero-plan p {
   font-size: var(--body-font-size-m);
   line-height: 1.7;
+  color: var(--brand-dark);
 }
 
 .hero-plan a.button:any-link {
   background-color: var(--brand-primary);
   color: #fff;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-weight: 600;
 }
 
 .hero-plan a.button:hover {
   background-color: var(--link-hover-color);
 }
 
-.hero-plan.no-image * {
-  color: var(--text-color);
-}
-
-.hero-plan picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
-
-.hero-plan img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
+/* Desktop: two-column grid layout (text left, image right) */
 @media (width >= 900px) {
   .hero-plan {
-    padding: 60px 32px;
-    min-height: 400px;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    min-height: 700px;
+    align-items: stretch;
+  }
+
+  /* Background image fills the right column */
+  .hero-plan .hero-plan-bg {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Gradient overlay from left (white fade into image) */
+  .hero-plan .hero-plan-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      rgb(255 255 255 / 80%) 0%,
+      rgb(255 255 255 / 60%) 8%,
+      rgb(255 255 255 / 30%) 16%,
+      rgb(0 0 0 / 0%) 24%
+    );
+  }
+
+  /* Content on the left */
+  .hero-plan > div:not(.hero-plan-bg) {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 48px;
+    z-index: 2;
+  }
+
+  .hero-plan h1 {
+    font-size: var(--heading-font-size-xxl);
   }
 }

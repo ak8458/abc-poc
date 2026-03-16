@@ -20,9 +20,35 @@
  * Target: hero block with image row + content row
  */
 export default function parse(element, { document }) {
-  // Extract hero image - try multiple selectors for live page variations
-  const heroImg = element.querySelector('.grid-banner-img img, .blue-choice-result img, .grid-banner-img picture img')
+  // Extract hero image - try img element first, then CSS background-image
+  let heroImg = element.querySelector('.grid-banner-img img, .blue-choice-result img, .grid-banner-img picture img')
     || element.querySelector(':scope > div:not(.grid-banner-content) img');
+
+  // If no img element found, check for CSS background-image on the banner div
+  if (!heroImg) {
+    const bgDiv = element.querySelector('.grid-banner-img, [class*="grid-banner-img"]');
+    if (bgDiv) {
+      const style = bgDiv.getAttribute('style') || '';
+      const bgMatch = style.match(/url\(["']?([^"')]+)["']?\)/);
+      if (bgMatch) {
+        heroImg = document.createElement('img');
+        heroImg.src = bgMatch[1];
+        heroImg.alt = '';
+      }
+    }
+    // Fallback: check class-based known hero images
+    if (!heroImg) {
+      const bgDiv2 = element.querySelector('[class*="result"][class*="grid-banner"]');
+      if (bgDiv2) {
+        const cls = bgDiv2.className || '';
+        if (cls.includes('blue-choice')) {
+          heroImg = document.createElement('img');
+          heroImg.src = 'https://www.ab.bluecross.ca/images/hero-banners/blue-choice_md.webp';
+          heroImg.alt = 'Couple laughing outdoors';
+        }
+      }
+    }
+  }
 
   // Extract heading
   const heading = element.querySelector('h1, .banner-h1, h2');

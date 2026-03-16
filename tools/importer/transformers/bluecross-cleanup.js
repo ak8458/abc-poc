@@ -44,6 +44,16 @@ export default function transform(hookName, element, payload) {
       'noscript',
     ]);
 
+    // Remove tracking pixel images (Twitter, analytics, etc.)
+    element.querySelectorAll('img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (src.includes('t.co/') || src.includes('analytics.twitter.com')
+        || src.includes('rlcdn.com') || src.includes('adsct')
+        || src.includes('pixel') || src.includes('beacon')) {
+        img.remove();
+      }
+    });
+
     // Clean tracking attributes
     element.querySelectorAll('*').forEach((el) => {
       el.removeAttribute('onclick');

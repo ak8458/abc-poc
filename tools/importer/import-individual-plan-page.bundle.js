@@ -42,7 +42,30 @@ var CustomImportScript = (() => {
 
   // tools/importer/parsers/hero-plan.js
   function parse(element, { document }) {
-    const heroImg = element.querySelector(".grid-banner-img img, .blue-choice-result img, .grid-banner-img picture img") || element.querySelector(":scope > div:not(.grid-banner-content) img");
+    let heroImg = element.querySelector(".grid-banner-img img, .blue-choice-result img, .grid-banner-img picture img") || element.querySelector(":scope > div:not(.grid-banner-content) img");
+    if (!heroImg) {
+      const bgDiv = element.querySelector('.grid-banner-img, [class*="grid-banner-img"]');
+      if (bgDiv) {
+        const style = bgDiv.getAttribute("style") || "";
+        const bgMatch = style.match(/url\(["']?([^"')]+)["']?\)/);
+        if (bgMatch) {
+          heroImg = document.createElement("img");
+          heroImg.src = bgMatch[1];
+          heroImg.alt = "";
+        }
+      }
+      if (!heroImg) {
+        const bgDiv2 = element.querySelector('[class*="result"][class*="grid-banner"]');
+        if (bgDiv2) {
+          const cls = bgDiv2.className || "";
+          if (cls.includes("blue-choice")) {
+            heroImg = document.createElement("img");
+            heroImg.src = "https://www.ab.bluecross.ca/images/hero-banners/blue-choice_md.webp";
+            heroImg.alt = "Couple laughing outdoors";
+          }
+        }
+      }
+    }
     const heading = element.querySelector("h1, .banner-h1, h2");
     const contentArea = element.querySelector(".grid-banner-content") || element;
     const descriptionP = contentArea.querySelector("p.margin-t-16, p:not(.banner-heading):not(.margin-b-0)");
@@ -188,6 +211,12 @@ var CustomImportScript = (() => {
         "link",
         "noscript"
       ]);
+      element.querySelectorAll("img").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        if (src.includes("t.co/") || src.includes("analytics.twitter.com") || src.includes("rlcdn.com") || src.includes("adsct") || src.includes("pixel") || src.includes("beacon")) {
+          img.remove();
+        }
+      });
       element.querySelectorAll("*").forEach((el) => {
         el.removeAttribute("onclick");
         el.removeAttribute("data-track");
