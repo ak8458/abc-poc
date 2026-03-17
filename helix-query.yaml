@@ -1,0 +1,20 @@
+indices:
+  site:
+    include:
+      - /**
+    exclude:
+      - /nav
+      - /footer
+      - /search
+      - /drafts/**
+    target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "content")
