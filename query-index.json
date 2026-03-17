@@ -1,0 +1,25 @@
+{
+  "total": 3,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "path": "/",
+      "title": "Congrats, you are ready to go!",
+      "description": "Your forked repo is set up as an AEM Project and you are ready to start developing.",
+      "image": ""
+    },
+    {
+      "path": "/plans/personal/individual/blue-choice-plan",
+      "title": "Comprehensive coverage with Blue Choice",
+      "description": "A medically underwritten plan that offers comprehensive coverage for individuals and families.",
+      "image": ""
+    },
+    {
+      "path": "/plans/personal/individual/extended-health",
+      "title": "Extended Health Plan",
+      "description": "Extended health coverage plan for personal and individual needs.",
+      "image": ""
+    }
+  ]
+}
