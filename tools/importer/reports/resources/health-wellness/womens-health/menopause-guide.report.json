@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php",
+  "path": "resources/health-wellness/womens-health/menopause-guide",
+  "timestamp": "2026-03-17T00:07:41.433Z",
+  "title": "Menopause guide | Alberta Blue Cross®",
+  "template": "health-wellness-article",
+  "blocks": [
+    "hero-guide",
+    "columns",
+    "cards-guide"
+  ]
+}

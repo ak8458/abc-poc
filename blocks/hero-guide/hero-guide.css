@@ -1,0 +1,66 @@
+.hero-guide-container .hero-guide-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-guide > div {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.hero-guide .hero-guide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-guide .hero-guide-content p:first-child {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--link-color);
+  margin-bottom: 8px;
+}
+
+.hero-guide .hero-guide-content h1 {
+  font-size: var(--heading-font-size-xl);
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+.hero-guide .hero-guide-image {
+  line-height: 0;
+}
+
+.hero-guide .hero-guide-image picture,
+.hero-guide .hero-guide-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (width >= 900px) {
+  .hero-guide > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+    padding: 48px 32px;
+  }
+
+  .hero-guide .hero-guide-content {
+    flex: 1;
+  }
+
+  .hero-guide .hero-guide-image {
+    flex: 1;
+  }
+
+  .hero-guide .hero-guide-content h1 {
+    font-size: var(--heading-font-size-xxl);
+  }
+}

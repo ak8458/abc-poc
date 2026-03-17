@@ -1,0 +1,73 @@
+{
+  "templates": [
+    {
+      "name": "health-wellness-article",
+      "urls": [
+        "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php"
+      ],
+      "description": "Health and wellness article page with informational content about health topics",
+      "blocks": [
+        {
+          "name": "hero-guide",
+          "instances": [
+            ".banner-container .hero-banner-grid"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            "main > .container-fluid > .container > .row"
+          ]
+        },
+        {
+          "name": "cards-guide",
+          "instances": [
+            ".menopause-grid"
+          ]
+        },
+        {
+          "name": "section-metadata",
+          "instances": [
+            ".guide-section-gray"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Banner",
+          "selector": "main > section:first-of-type",
+          "style": null,
+          "blocks": [
+            "hero-guide"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Introduction Content",
+          "selector": "main > .container-fluid",
+          "style": null,
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "Guide Sections Cards",
+          "selector": ".guide-section-gray",
+          "style": "grey",
+          "blocks": [
+            "cards-guide",
+            "section-metadata"
+          ],
+          "defaultContent": [
+            ".guide-section-gray > .container > h2",
+            ".guide-section-gray > .container > p.margin-t-32"
+          ]
+        }
+      ]
+    }
+  ]
+}
