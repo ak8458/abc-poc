@@ -93,8 +93,25 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/cards-guide.js
+  // tools/importer/parsers/columns-stats.js
   function parse3(element, { document }) {
+    const cols = element.querySelectorAll('.col-12.col-md-4, [class*="col-md-4"]');
+    if (cols.length === 0) return;
+    const row = [];
+    cols.forEach((col) => {
+      const cellContent = [];
+      const paragraphs = col.querySelectorAll("p");
+      paragraphs.forEach((p) => cellContent.push(p));
+      row.push(cellContent);
+    });
+    if (row.length === 0) return;
+    const cells = [row];
+    const block = WebImporter.Blocks.createBlock(document, { name: "columns", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/cards-guide.js
+  function parse4(element, { document }) {
     const cards = element.querySelectorAll(".menopause-card");
     const cells = [];
     cards.forEach((card) => {
@@ -108,6 +125,29 @@ var CustomImportScript = (() => {
       }
     });
     const block = WebImporter.Blocks.createBlock(document, { name: "cards-guide", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/quote.js
+  function parse5(element, { document }) {
+    const cell = [];
+    const statNumber = element.querySelector(".stat-number");
+    if (statNumber) {
+      const h2 = document.createElement("h2");
+      h2.textContent = statNumber.textContent.trim();
+      cell.push(h2);
+    }
+    const statText = element.querySelector(".stat-text");
+    if (statText) {
+      cell.push(statText);
+    }
+    if (!statNumber && !statText) {
+      const paragraphs = element.querySelectorAll("p");
+      paragraphs.forEach((p) => cell.push(p));
+    }
+    if (cell.length === 0) return;
+    const cells = [[cell]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "quote", cells });
     element.replaceWith(block);
   }
 
@@ -168,13 +208,16 @@ var CustomImportScript = (() => {
   var parsers = {
     "hero-guide": parse,
     "columns": parse2,
-    "cards-guide": parse3
+    "columns-stats": parse3,
+    "cards-guide": parse4,
+    "quote": parse5
   };
   var PAGE_TEMPLATE = {
     name: "health-wellness-article",
     description: "Health and wellness article page with informational content about health topics",
     urls: [
-      "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php"
+      "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php",
+      "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/cost-of-overlooking-menopause.php"
     ],
     blocks: [
       {
@@ -183,11 +226,19 @@ var CustomImportScript = (() => {
       },
       {
         name: "columns",
-        instances: ["main > .container-fluid > .container > .row"]
+        instances: ["main > .container-fluid > .container > .row:has(.col-lg-7)"]
+      },
+      {
+        name: "columns-stats",
+        instances: ["section#impact-economy > .row"]
       },
       {
         name: "cards-guide",
-        instances: [".menopause-grid"]
+        instances: [".menopause-grid", "section#understanding-barriers > .row"]
+      },
+      {
+        name: "quote",
+        instances: [".stat-callout", ".info-box"]
       }
     ],
     sections: [
@@ -214,6 +265,14 @@ var CustomImportScript = (() => {
         style: "grey",
         blocks: ["cards-guide"],
         defaultContent: [".guide-section-gray > .container > h2", ".guide-section-gray > .container > p.margin-t-32"]
+      },
+      {
+        id: "section-4",
+        name: "Research Sources",
+        selector: ".research-sources",
+        style: null,
+        blocks: [],
+        defaultContent: [".research-sources > .container > h3", ".research-sources > .container > ol"]
       }
     ]
   };

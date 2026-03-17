@@ -3,7 +3,8 @@
     {
       "name": "health-wellness-article",
       "urls": [
-        "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php"
+        "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/menopause-guide.php",
+        "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/cost-of-overlooking-menopause.php"
       ],
       "description": "Health and wellness article page with informational content about health topics",
       "blocks": [
@@ -16,13 +17,27 @@
         {
           "name": "columns",
           "instances": [
-            "main > .container-fluid > .container > .row"
+            "main > .container-fluid > .container > .row:has(.col-lg-7)"
+          ]
+        },
+        {
+          "name": "columns-stats",
+          "instances": [
+            "section#impact-economy > .row"
           ]
         },
         {
           "name": "cards-guide",
           "instances": [
-            ".menopause-grid"
+            ".menopause-grid",
+            "section#understanding-barriers > .row"
+          ]
+        },
+        {
+          "name": "quote",
+          "instances": [
+            ".stat-callout",
+            ".info-box"
           ]
         },
         {
@@ -65,6 +80,17 @@
           "defaultContent": [
             ".guide-section-gray > .container > h2",
             ".guide-section-gray > .container > p.margin-t-32"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Research Sources",
+          "selector": ".research-sources",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".research-sources > .container > h3",
+            ".research-sources > .container > ol"
           ]
         }
       ]

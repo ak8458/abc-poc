@@ -1,0 +1,23 @@
+.quote {
+  margin: 24px 0;
+}
+
+.quote .quote-content {
+  border-left: 4px solid var(--link-color, #00aeef);
+  background-color: #f0f9fd;
+  padding: 24px 32px;
+  border-radius: 0 8px 8px 0;
+}
+
+.quote .quote-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.quote .quote-content h2,
+.quote .quote-content h3 {
+  margin: 0 0 8px;
+  color: var(--link-color, #00aeef);
+  font-size: var(--heading-font-size-xl, 2.5rem);
+  line-height: 1.2;
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/cost-of-overlooking-menopause.php",
+  "path": "resources/health-wellness/womens-health/cost-of-overlooking-menopause",
+  "timestamp": "2026-03-17T21:16:17.612Z",
+  "title": "Cost of overlooking menopause | Alberta Blue Cross®",
+  "template": "health-wellness-article",
+  "blocks": [
+    "columns-stats",
+    "cards-guide",
+    "cards-guide",
+    "quote",
+    "quote"
+  ]
+}

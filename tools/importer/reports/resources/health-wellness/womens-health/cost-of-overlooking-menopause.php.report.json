@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "url": "https://www.ab.bluecross.ca/resources/health-wellness/womens-health/cost-of-overlooking-menopause.php",
+  "path": "resources/health-wellness/womens-health/cost-of-overlooking-menopause.php",
+  "timestamp": "2026-03-17T21:00:59.706Z",
+  "error": "CustomImportScript.default not found after 10s. The bundled script may not have loaded correctly. Check browser console for errors.",
+  "errorStack": "Error: CustomImportScript.default not found after 10s. The bundled script may not have loaded correctly. Check browser console for errors.\n    at processUrl (file:///home/node/.claude/plugins/cache/excat-marketplace/excat/2.1.1/skills/excat-content-import/scripts/run-bulk-import.js:293:13)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async main (file:///home/node/.claude/plugins/cache/excat-marketplace/excat/2.1.1/skills/excat-content-import/scripts/run-bulk-import.js:457:22)"
+}
