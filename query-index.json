@@ -1,5 +1,5 @@
 {
-  "total": 3,
+  "total": 7,
   "offset": 0,
   "limit": 100,
   "data": [
@@ -19,6 +19,30 @@
       "path": "/plans/personal/individual/extended-health",
       "title": "Extended Health Plan",
       "description": "Extended health coverage plan for personal and individual needs.",
+      "image": ""
+    },
+    {
+      "path": "/resources/benefits-guide",
+      "title": "Benefits Guide",
+      "description": "A comprehensive guide to understanding your health plan benefits and coverage options.",
+      "image": ""
+    },
+    {
+      "path": "/resources/faq",
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions about plans, coverage, enrollment, and claims.",
+      "image": ""
+    },
+    {
+      "path": "/resources/forms/enrollment",
+      "title": "Enrollment Forms",
+      "description": "Download and submit enrollment forms for individual and family health plans.",
+      "image": ""
+    },
+    {
+      "path": "/resources/glossary",
+      "title": "Health Insurance Glossary",
+      "description": "Definitions of common health insurance terms including deductible, copay, premium, and coverage.",
       "image": ""
     }
   ]
