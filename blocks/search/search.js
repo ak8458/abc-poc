@@ -19,13 +19,16 @@ async function fetchIndex() {
 
 /**
  * Filters index entries by matching query terms against title, description, and path.
+ * Optionally restricts results to a specific path scope.
  * @param {Array} index The full query index
  * @param {string} query The search query
+ * @param {string} [scope] Optional path prefix to restrict results (e.g., '/resources')
  * @returns {Array} Filtered results
  */
-function filterResults(index, query) {
+function filterResults(index, query, scope) {
   const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
   return index.filter((entry) => {
+    if (scope && !(entry.path || '').startsWith(scope)) return false;
     const text = `${entry.title || ''} ${entry.description || ''} ${entry.path || ''}`.toLowerCase();
     return terms.every((term) => text.includes(term));
   });
@@ -97,7 +100,7 @@ function renderResults(results, container) {
  * @param {string} query The search query
  * @param {Element} container The results container
  */
-async function performSearch(query, container) {
+async function performSearch(query, container, scope) {
   container.textContent = '';
 
   const loading = document.createElement('p');
@@ -106,7 +109,7 @@ async function performSearch(query, container) {
   container.append(loading);
 
   const index = await fetchIndex();
-  const results = filterResults(index, query);
+  const results = filterResults(index, query, scope);
   renderResults(results, container);
 }
 
@@ -115,7 +118,9 @@ async function performSearch(query, container) {
  * @param {Element} block The search block element
  */
 export default async function decorate(block) {
-  const placeholder = block.textContent.trim() || 'Search...';
+  const rows = [...block.children];
+  const placeholder = rows[0]?.textContent.trim() || 'Search...';
+  const scope = rows[1]?.textContent.trim() || '';
 
   block.textContent = '';
 
@@ -166,6 +171,6 @@ export default async function decorate(block) {
   const urlQuery = params.get('q');
   if (urlQuery) {
     input.value = urlQuery;
-    await performSearch(urlQuery, resultsContainer);
+    await performSearch(urlQuery, resultsContainer, scope);
   }
 }
