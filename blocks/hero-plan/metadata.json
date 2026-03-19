@@ -1,0 +1,40 @@
+{
+  "variantName": "hero-plan",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-03-16T16:09:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php",
+    "originPage": "insurance plan detail page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "plan-detail-hero",
+    "imagePattern": "large",
+    "structure": "heading + description + CTA + contact card + image"
+  },
+  "contentPattern": {
+    "structure": "heading + description + CTA + contact card + image",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "insurance plan detail pages",
+      "product detail pages with side image",
+      "service pages with CTA and contact info"
+    ],
+    "notSuitableFor": [
+      "simple text-only hero banners",
+      "full-width background image heroes",
+      "minimal landing page heroes"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/plans/personal/individual/blue-choice-plan"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-16T16:09:00.000Z"
+  }
+}

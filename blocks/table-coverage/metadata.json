@@ -1,0 +1,40 @@
+{
+  "variantName": "table-coverage",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-03-16T16:09:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php",
+    "originPage": "insurance plan detail page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "coverage-comparison",
+    "imagePattern": "noimg",
+    "structure": "multi-column data table with header row"
+  },
+  "contentPattern": {
+    "structure": "header row + data rows with coverage levels",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "insurance coverage comparison tables",
+      "plan benefit level comparison",
+      "feature comparison tables"
+    ],
+    "notSuitableFor": [
+      "simple key-value data",
+      "pricing tables with CTAs",
+      "image-heavy content tables"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/plans/personal/individual/blue-choice-plan"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-16T16:09:00.000Z"
+  }
+}

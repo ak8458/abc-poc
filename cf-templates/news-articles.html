@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{properties.elements.title.value}}</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <article>
+          <header>
+            <h1>{{properties.elements.title.value}}</h1>
+            {{#properties.elements.year.value}}
+            <p><time datetime="{{properties.elements.year.value}}-01-01">{{properties.elements.year.value}}</time></p>
+            {{/properties.elements.year.value}}
+          </header>
+          {{#properties.elements.description.value}}
+          <div>
+            <p>{{{properties.elements.description.value}}}</p>
+          </div>
+          {{/properties.elements.description.value}}
+        </article>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

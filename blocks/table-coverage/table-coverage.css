@@ -1,0 +1,56 @@
+.table-coverage.block {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-coverage.block table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-s);
+}
+
+.table-coverage.block table thead tr {
+  background-color: var(--brand-dark);
+  color: #fff;
+}
+
+.table-coverage.block table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-coverage.block table tbody tr:nth-child(even) {
+  background-color: var(--brand-grey);
+}
+
+.table-coverage.block table th {
+  font-weight: 700;
+  text-align: left;
+}
+
+.table-coverage.block table th,
+.table-coverage.block table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.table-coverage table th p,
+.table-coverage table td p {
+  margin: 0;
+}
+
+.table-coverage table td p + p {
+  margin-top: 0.25em;
+}
+
+.table-coverage.block h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--brand-dark);
+}
+
+@media (width >= 900px) {
+  .table-coverage.block table {
+    font-size: var(--body-font-size-m);
+  }
+}

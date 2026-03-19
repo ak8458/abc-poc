@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.ab.bluecross.ca/plans/personal/individual/blue-choice-plan.php",
+  "path": "plans/personal/individual/blue-choice-plan",
+  "timestamp": "2026-03-16T21:32:47.267Z",
+  "title": "Blue Choice®—Personal plans | Alberta Blue Cross®",
+  "template": "individual-plan-page",
+  "blocks": [
+    "hero-plan",
+    "tabs-coverage",
+    "columns-features",
+    "table-coverage",
+    "table-coverage",
+    "table-coverage",
+    "cards-plan"
+  ]
+}
