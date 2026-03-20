@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.ab.bluecross.ca/plans/personal/individual/blue-assured-plan.php",
+  "path": "plans/personal/individual/blue-assured-plan",
+  "timestamp": "2026-03-20T18:41:05.181Z",
+  "title": "Blue Assured®—Personal plans | Alberta Blue Cross®",
+  "template": "individual-plan-page",
+  "blocks": [
+    "hero",
+    "tabs",
+    "columns",
+    "cards"
+  ]
+}

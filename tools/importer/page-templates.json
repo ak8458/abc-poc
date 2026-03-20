@@ -1,0 +1,80 @@
+{
+  "templates": [
+    {
+      "name": "individual-plan-page",
+      "urls": [
+        "https://www.ab.bluecross.ca/plans/personal/individual/blue-assured-plan.php"
+      ],
+      "description": "Individual health plan detail page with hero, plan features, coverage details, and call-to-action sections",
+      "sections": [
+        {
+          "id": "section-hero",
+          "name": "Hero Banner",
+          "selector": "main > section:nth-child(2)",
+          "style": null,
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-plan-details",
+          "name": "Plan Details Tabs",
+          "selector": "main > section:nth-child(3)",
+          "style": null,
+          "blocks": [
+            "tabs",
+            "columns"
+          ],
+          "defaultContent": [
+            "main > section:nth-child(3) .content-panel h2",
+            "main > section:nth-child(3) .content-panel p",
+            "main > section:nth-child(3) .content-panel ul",
+            "main > section:nth-child(3) .plan-btns a"
+          ]
+        },
+        {
+          "id": "section-other-plans",
+          "name": "Explore Other Plan Options",
+          "selector": "main > section:nth-child(4)",
+          "style": "grey",
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            ".container-fluid.bkg-grey h2",
+            ".container-fluid.bkg-grey > .container > .row:first-child p"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".banner-container"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            ".tab-wrapper"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".plan-blue-callout"
+          ],
+          "section": "plan-details"
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".card-group-3"
+          ],
+          "section": "other-plans"
+        }
+      ]
+    }
+  ]
+}
