@@ -1,0 +1,14 @@
+@token = test
+
+curl --request POST \
+  --url https://json2html.adobeaem.workers.dev/config/ak8458/abc-poc/main \
+  --header "Authorization: token {{token}}" \
+  --header "Content-Type: application/json" \
+  --data '[
+    {
+        "path": "/news-room/",
+        "endpoint": "https://da-sc.adobeaem.workers.dev/live/ak8458/abc-poc/data/news-room/{{id}}",
+        "regex": "/[^/]+$/",
+        "template": "/cf-templates/news-articles.html"
+    }
+  ]'
