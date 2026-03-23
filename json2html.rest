@@ -1,5 +1,11 @@
 @token = test
 
+### Get current json2html config (latest stored for org/site/branch)
+curl --request GET \
+  --url https://json2html.adobeaem.workers.dev/config/ak8458/abc-poc/main \
+  --header "Authorization: token {{token}}"
+
+### Update json2html config (replaces full config with request body)
 curl --request POST \
   --url https://json2html.adobeaem.workers.dev/config/ak8458/abc-poc/main \
   --header "Authorization: token {{token}}" \
@@ -7,7 +13,7 @@ curl --request POST \
   --data '[
     {
         "path": "/news-room/",
-        "endpoint": "https://da-sc.adobeaem.workers.dev/live/ak8458/abc-poc/data/news-room/{{id}}",
+        "endpoint": "https://da-sc.adobeaem.workers.dev/live/ak8458/abc-poc/data/news-room/{{id}}.json",
         "regex": "/[^/]+$/",
         "template": "/cf-templates/news-articles.html"
     }
