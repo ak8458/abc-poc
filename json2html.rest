@@ -17,12 +17,56 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --data '[
     {
-        "path": "/news-room/",
-        "endpoint": "https://da-sc.adobeaem.workers.dev/live/ak8458/abc-poc/data/news-room/{{id}}",
+        "path": "/test/",
+        "endpoint": "https://da-sc.adobeaem.workers.dev//live/ak8458/abc-poc/data/news-room/{{id}}.json?cb=20260323",
         "regex": "/[^/]+$/",
         "template": "/cf-templates/news-articles.html",
         "headers": {
             "Accept": "application/json"
         }
+    },
+    {
+        "path": "/news-room/news-articles/",
+        "endpoint": "https://author-p186702-e1965200.adobeaemcloud.com/api/assets/ABC/news-room/news-articles/{{id}}.json",
+        "regex": "/[^/]+$/",
+        "template": "/cf-templates/cf-news-articles.html",
+        "relativeURLPrefix": "https://publish-p186702-e1965200.adobeaemcloud.com",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "forwardHeaders": [
+            "Authorization"
+        ]
     }
   ]'
+
+### Get current public.json config
+curl --request GET \
+  --url https://admin.hlx.page/config/ak8458/sites/abc-poc/public.json \
+  --header "x-auth-token: {{token}}"
+
+### Update public.json – path mapping + CF overlay for news articles
+curl --request POST \
+  --url https://admin.hlx.page/config/ak8458/sites/abc-poc/public.json \
+  --header "x-auth-token: {{token}}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "paths": {
+      "mappings": [
+        "/content/dam/ABC/news-room/news-articles/:/news-room/news-articles/"
+      ],
+      "includes": [
+        "/content/dam/ABC/news-room/"
+      ]
+    },
+    "xwalk": {
+      "content-fragment-overlay": {
+        "/content/dam/ABC/news-room/news-articles/**": {
+          "includes": [
+            "/conf/abc-test/settings/dam/cfm/models/news-articles"
+          ]
+        }
+      }
+    }
+  }'
+
