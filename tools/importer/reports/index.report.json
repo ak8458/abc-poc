@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.ab.bluecross.ca/index.php",
+  "path": "index",
+  "timestamp": "2026-03-25T23:35:05.180Z",
+  "title": "Health benefits and insurance | Alberta Blue Cross®",
+  "template": "homepage",
+  "blocks": [
+    "hero-homepage",
+    "cards-news",
+    "tabs-plans",
+    "columns-resource"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "tabs-plans",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-03-25T22:32:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/index.php",
+    "originPage": "Alberta Blue Cross homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "plan-tabs",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "tab-label + rich-text-content",
+    "buttonCount": 4,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product plan comparisons",
+      "service category tabs",
+      "multi-section information pages"
+    ],
+    "notSuitableFor": [
+      "image-heavy gallery tabs",
+      "simple 2-tab content"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-25T22:32:00.000Z"
+  }
+}

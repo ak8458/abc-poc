@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-25T22:32:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.ab.bluecross.ca/index.php",
+    "originPage": "Alberta Blue Cross homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "news-cards",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + paragraph + link",
+    "buttonCount": 0,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "news article listings",
+      "blog post grids",
+      "announcement cards with images"
+    ],
+    "notSuitableFor": [
+      "product cards",
+      "feature highlight cards without images",
+      "team member cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-25T22:32:00.000Z"
+  }
+}
