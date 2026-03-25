@@ -1,0 +1,81 @@
+.tabs-plans .tabs-plans-list {
+  display: flex;
+  gap: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tabs-plans .tabs-plans-list button {
+  flex: 1 0 auto;
+  margin: 0;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 16px 24px;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.tabs-plans .tabs-plans-list button:hover {
+  background-color: var(--accent-hover-color);
+}
+
+.tabs-plans .tabs-plans-list button[aria-selected='true'] {
+  background-color: var(--background-color);
+  color: var(--dark-color);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.tabs-plans p {
+  line-height: 1.7;
+}
+
+.tabs-plans .tabs-plans-list button p {
+  margin: 0;
+}
+
+.tabs-plans .tabs-plans-panel {
+  margin-top: 0;
+  padding: 32px 24px;
+  border: none;
+  overflow: auto;
+}
+
+.tabs-plans .tabs-plans-panel[aria-hidden='true'] {
+  display: none;
+}
+
+.tabs-plans .tabs-plans-panel h3 {
+  margin-top: 0;
+  font-size: var(--heading-font-size-l);
+  color: var(--dark-color);
+}
+
+.tabs-plans .tabs-plans-panel h4 {
+  font-size: var(--heading-font-size-m);
+  color: var(--dark-color);
+  margin-top: 1.5em;
+}
+
+@media (width >= 600px) {
+  .tabs-plans .tabs-plans-list button {
+    font-size: var(--body-font-size-m);
+    padding: 16px 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .tabs-plans .tabs-plans-panel {
+    padding: 32px;
+  }
+}

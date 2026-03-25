@@ -3,7 +3,7 @@
 
 /**
  * Transformer: Alberta Blue Cross cleanup.
- * Selectors from captured DOM of menopause-guide.php.
+ * Selectors from captured DOM of menopause-guide.php and index.php.
  */
 const H = { before: 'beforeTransform', after: 'afterTransform' };
 
@@ -12,6 +12,7 @@ export default function transform(hookName, element, payload) {
     // Remove info banner and cookie/tracking elements (from captured DOM)
     WebImporter.DOMUtils.remove(element, [
       '.info-banner-covid',
+      '.home-search',
     ]);
   }
   if (hookName === H.after) {
@@ -25,6 +26,7 @@ export default function transform(hookName, element, payload) {
       'iframe',
       'link',
       'noscript',
+      '.ds-styles',
     ]);
   }
 }

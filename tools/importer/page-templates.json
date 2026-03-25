@@ -94,6 +94,77 @@
           ]
         }
       ]
+    },
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.ab.bluecross.ca/index.php"
+      ],
+      "description": "Alberta Blue Cross homepage with hero, feature cards, and promotional content",
+      "blocks": [
+        {
+          "name": "hero-homepage",
+          "instances": [".banner-container .hero-banner-grid"]
+        },
+        {
+          "name": "cards-news",
+          "instances": [".row.same-height"]
+        },
+        {
+          "name": "tabs-plans",
+          "instances": [".tabbed#homeTabs"]
+        },
+        {
+          "name": "columns-resource",
+          "instances": [".resource-grid"]
+        },
+        {
+          "name": "section-metadata",
+          "instances": ["section.bkg-grey"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Banner",
+          "selector": ".banner-container",
+          "style": null,
+          "blocks": ["hero-homepage"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Search Bar",
+          "selector": ".home-search.abc-card",
+          "style": null,
+          "blocks": [],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "Latest News and Featured Topics",
+          "selector": "section.margin-t-56",
+          "style": null,
+          "blocks": ["cards-news"],
+          "defaultContent": [".col-lg-8 > h2", ".col-lg-4"]
+        },
+        {
+          "id": "section-4",
+          "name": "How Alberta Blue Cross Can Help",
+          "selector": "section:has(.tabbed)",
+          "style": null,
+          "blocks": ["tabs-plans"],
+          "defaultContent": [".container > .row > .col-12 > h2"]
+        },
+        {
+          "id": "section-5",
+          "name": "Wellbeing Resources",
+          "selector": "section.bkg-grey",
+          "style": "grey",
+          "blocks": ["columns-resource", "section-metadata"],
+          "defaultContent": ["section.bkg-grey .container > h2"]
+        }
+      ]
     }
   ]
 }
