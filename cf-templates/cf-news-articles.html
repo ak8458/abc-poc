@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{properties.elements.title.value}}</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <h1>{{properties.elements.title.value}}</h1>
+        {{#properties.elements.year.value}}
+        <p><strong>Published: {{properties.elements.year.value}}</strong></p>
+        {{/properties.elements.year.value}}
+      </div>
+      <div>
+        {{#properties.elements.description.value}}
+        <p>{{{properties.elements.description.value}}}</p>
+        {{/properties.elements.description.value}}
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

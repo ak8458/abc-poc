@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{data.title}}</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <h1>{{data.title}}</h1>
+        {{#data.releaseType}}
+        <p><strong>{{data.releaseType}}</strong></p>
+        {{/data.releaseType}}
+        {{#data.publishDate}}
+        <p><time datetime="{{data.publishDate}}">{{data.publishDate}}</time></p>
+        {{/data.publishDate}}
+      </div>
+      <div>
+        {{#data.mainContent}}
+        <p>{{{data.mainContent}}}</p>
+        {{/data.mainContent}}
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
