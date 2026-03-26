@@ -2,16 +2,37 @@
 import { toClassName, loadBlock, decorateBlock } from '../../scripts/aem.js';
 
 /**
+ * Reads an authored nested block table definition.
+ * Nested block tables arrive as raw HTML inside tab panels, so the block name
+ * is stored in the first row's only cell and the remaining rows contain content.
+ * @param {HTMLTableElement} table
+ * @returns {{ blockName: string, contentRows: HTMLTableRowElement[] } | null}
+ */
+function readNestedBlock(table) {
+  const rows = [...table.rows];
+  if (rows.length < 2) return null;
+
+  const [headerRow, ...contentRows] = rows;
+  if (headerRow.cells.length !== 1) return null;
+
+  const blockName = toClassName(headerRow.cells[0].textContent.trim());
+  if (!blockName || contentRows.length === 0) return null;
+
+  return { blockName, contentRows };
+}
+
+/**
  * Convert block tables nested inside tab panels into proper block elements.
- * Block tables have a thead with a single th containing the block name.
+ * @param {Element} panel
  */
 function decorateNestedBlocks(panel) {
   panel.querySelectorAll(':scope table').forEach((table) => {
-    const th = table.querySelector('thead th');
-    if (!th) return;
+    if (!table.isConnected) return;
 
-    const blockName = toClassName(th.textContent.trim());
-    if (!blockName) return;
+    const nestedBlock = readNestedBlock(table);
+    if (!nestedBlock) return;
+
+    const { blockName, contentRows } = nestedBlock;
 
     // Create block div structure from table body rows
     const blockDiv = document.createElement('div');
@@ -19,7 +40,7 @@ function decorateNestedBlocks(panel) {
     blockDiv.dataset.blockName = blockName;
     blockDiv.dataset.blockStatus = 'initialized';
 
-    table.querySelectorAll('tbody tr').forEach((tr) => {
+    contentRows.forEach((tr) => {
       const row = document.createElement('div');
       [...tr.children].forEach((td) => {
         const cell = document.createElement('div');
