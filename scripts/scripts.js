@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -126,6 +127,14 @@ export function decorateMain(main) {
   decorateButtons(main);
 }
 
+async function loadTheme() {
+  const theme = getMetadata('theme');
+  if (theme) {
+    const themeCSS = `${window.hlx.codeBasePath}/styles/themes/${theme}.css`;
+    await loadCSS(themeCSS);
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -133,6 +142,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  loadTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
