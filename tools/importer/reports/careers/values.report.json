@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.careers.ab.bluecross.ca/values.php",
+  "path": "careers/values",
+  "timestamp": "2026-04-01T22:56:42.637Z",
+  "title": "Values | Alberta Blue Cross®",
+  "template": "careers-content-page",
+  "blocks": [
+    "hero",
+    "columns",
+    "columns",
+    "columns"
+  ]
+}

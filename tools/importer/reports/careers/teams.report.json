@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "url": "https://www.careers.ab.bluecross.ca/teams.php",
+  "path": "careers/teams",
+  "timestamp": "2026-04-01T22:56:57.803Z",
+  "title": "Teams | Alberta Blue Cross®",
+  "template": "careers-content-page",
+  "blocks": [
+    "hero",
+    "columns"
+  ]
+}
