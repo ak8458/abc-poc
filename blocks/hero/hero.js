@@ -3,21 +3,29 @@ export default function decorate(block) {
   content.className = 'hero-content';
 
   [...block.children].forEach((row) => {
-    const pic = row.querySelector('picture');
-    if (pic) {
-      // Move picture to be a direct child of the block (background)
-      block.append(pic);
-    }
-    // Move all non-picture content into hero-content wrapper
     [...row.children].forEach((col) => {
-      if (!col.querySelector('picture') && col.children.length > 0) {
-        [...col.children].forEach((child) => content.append(child));
-      } else if (!col.querySelector('picture') && col.textContent.trim()) {
-        content.append(col);
+      const pic = col.querySelector('picture');
+      if (pic) {
+        // Move picture to be a direct child of the block (background)
+        // Remove the wrapping <p> if picture is inside one
+        const picParent = pic.parentElement;
+        block.append(pic);
+        if (picParent && picParent.tagName === 'P' && !picParent.textContent.trim()) {
+          picParent.remove();
+        }
       }
+      // Move remaining children into hero-content wrapper
+      [...col.children].forEach((child) => {
+        if (child.tagName !== 'PICTURE') {
+          content.append(child);
+        }
+      });
     });
     row.remove();
   });
+
+  // Remove empty paragraphs left behind
+  content.querySelectorAll('p:empty').forEach((p) => p.remove());
 
   block.prepend(content);
 }
