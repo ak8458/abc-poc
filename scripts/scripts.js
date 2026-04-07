@@ -130,8 +130,10 @@ export function decorateMain(main) {
 async function loadTheme() {
   const theme = getMetadata('theme');
   if (theme) {
-    const themeCSS = `${window.hlx.codeBasePath}/styles/themes/${theme}.css`;
-    await loadCSS(themeCSS);
+    theme.split(',').forEach(async (c) => {
+      const themeCSS = `${window.hlx.codeBasePath}/styles/themes/${c.trim()}.css`;
+      await loadCSS(themeCSS);
+    });
   }
 }
 
