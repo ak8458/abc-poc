@@ -1,4 +1,9 @@
 /* styles/themes/careers.css */
+
+/* Careers theme for example
+ * We use this to override default styles
+ * To add more themes, add new files in this directory, e.g. `styles/themes/your-theme.css`
+ */
 body {
     /* colors */
     --background-color: white;
