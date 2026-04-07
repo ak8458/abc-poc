@@ -58,9 +58,12 @@ body.careers .hero picture::after {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgb(255 255 255 / 100%) 0%,
-    rgb(255 255 255 / 60%) 15%,
-    rgb(255 255 255 / 0%) 35%
+    rgb(255 255 255 / 80%) 8%,
+    rgb(255 255 255 / 60%) 8%,
+    rgb(255 255 255 / 60%) 16%,
+    rgb(255 255 255 / 30%) 16%,
+    rgb(255 255 255 / 30%) 24%,
+    transparent 24%
   );
   pointer-events: none;
 }
