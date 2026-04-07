@@ -1,0 +1,15 @@
+/* styles/themes/careers-v2.css */
+
+body {
+    /* colors */
+    --background-color: white;
+    --light-color: #FFA500;
+    --dark-color: #FFB343;
+    --text-color: #131313;
+    --link-color: #BE5103;
+    --link-hover-color: #FF7518;
+
+    /* fonts */
+    --body-font-family: roboto, roboto-fallback, helvetica, arial, sans-serif;
+    --heading-font-family: paralucent, roboto, roboto-fallback, helvetica, arial, sans-serif;
+}
