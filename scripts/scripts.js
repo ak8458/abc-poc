@@ -32,6 +32,60 @@ function buildHeroBlock(main) {
   }
 }
 
+function isIconLeadParagraph(element) {
+  const icon = element?.querySelector(':scope > span.icon');
+
+  return element?.tagName === 'P'
+    && element.children.length === 1
+    && !!icon
+    && element.textContent.trim() === '';
+}
+
+function isIconColumnsGroup(elements, startIndex) {
+  const [icon, heading, copy] = elements.slice(startIndex, startIndex + 3);
+
+  return isIconLeadParagraph(icon)
+    && heading?.tagName === 'H3'
+    && copy?.tagName === 'P';
+}
+
+function buildIconColumnsBlocks(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
+    let index = 0;
+    const offsets = [0, 3, 6];
+
+    while (index <= section.children.length - 9) {
+      const elements = [...section.children];
+      const startIndex = index;
+      const isThreeColumnIconPattern = offsets.every(
+        (offset) => isIconColumnsGroup(elements, startIndex + offset),
+      );
+
+      if (isThreeColumnIconPattern) {
+        const block = document.createElement('div');
+        const row = document.createElement('div');
+
+        block.classList.add('columns');
+        block.append(row);
+        section.insertBefore(block, elements[startIndex]);
+
+        offsets.forEach((offset) => {
+          const column = document.createElement('div');
+          const columnElements = elements.slice(startIndex + offset, startIndex + offset + 3);
+
+          columnElements.forEach((element) => {
+            column.append(element);
+          });
+
+          row.append(column);
+        });
+      }
+
+      index += 1;
+    }
+  });
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -68,6 +122,7 @@ function buildAutoBlocks(main) {
       });
     }
 
+    buildIconColumnsBlocks(main);
     buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
