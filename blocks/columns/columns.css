@@ -119,3 +119,24 @@
   }
 }
 
+/* Careers culture 3-column icon row */
+body.careers .columns.columns-3-cols:not(.columns-cards) > div {
+  align-items: flex-start;
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
+  margin-top: 0;
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child .icon {
+  width: 96px;
+  height: 96px;
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
+  font-family: roboto, roboto-fallback, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
