@@ -119,7 +119,17 @@
   }
 }
 
+/* Careers culture row spacing */
+body.careers .columns-wrapper + .columns-wrapper > .columns {
+  margin-top: 32px;
+}
+
+body.careers .columns > div + div {
+  margin-top: 32px;
+}
+
 /* Careers culture 3-column icon row */
+
 body.careers .columns.columns-3-cols:not(.columns-cards) > div {
   align-items: stretch;
 }
