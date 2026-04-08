@@ -121,7 +121,14 @@
 
 /* Careers culture 3-column icon row */
 body.careers .columns.columns-3-cols:not(.columns-cards) > div {
-  align-items: flex-start;
+  align-items: stretch;
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
+  padding: 24px;
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
