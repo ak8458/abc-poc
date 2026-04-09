@@ -29,8 +29,11 @@ function buildProductSection(section) {
     if (linksCol) {
       let ulsSeen = 0;
       [...linksCol.children].forEach((el) => {
-        if (el.tagName === 'UL' && ++ulsSeen === 2) colLinks2.append(el);
-        else colLinks1.append(el);
+        if (el.tagName === 'UL') {
+          ulsSeen += 1;
+          if (ulsSeen === 2) { colLinks2.append(el); return; }
+        }
+        colLinks1.append(el);
       });
     }
     if (socialCol) {
