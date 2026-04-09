@@ -1,5 +1,5 @@
 footer {
-  background-color: #f3f5f7;
+  background-color: var(--footer-bg-color);
   color: var(--brand-dark);
   font-family: var(--body-font-family);
   font-size: 16px;
@@ -34,11 +34,21 @@ footer .footer > div {
   height: 100%;
 }
 
+/* ── Shared section chrome ── */
+.footer-privacy,
+.footer-land-ack,
+.footer-product {
+  border-top: 1px solid var(--color-border);
+  padding: 32px 24px;
+}
+
+.footer-privacy,
+.footer-land-ack {
+  background-color: var(--background-color);
+}
+
 /* ── Privacy ── */
 .footer-privacy {
-  background-color: var(--background-color);
-  border-top: 1px solid #ccc;
-  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -61,11 +71,6 @@ footer .footer > div {
 }
 
 /* ── Land Acknowledgement ── */
-.footer-land-ack {
-  background-color: var(--background-color);
-  border-top: 1px solid #ccc;
-  padding: 32px 24px;
-}
 
 .footer-land-ack h2 {
   font-size: 24px;
@@ -87,10 +92,6 @@ footer .footer > div {
 }
 
 /* ── Product section ── */
-.footer-product {
-  padding: 32px 24px;
-  border-top: 1px solid #ccc;
-}
 
 /* Hide address + link cols on mobile */
 .footer-product .footer-col-address,

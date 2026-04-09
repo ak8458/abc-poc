@@ -19,17 +19,18 @@
   --link-color: #0075ab;
   --link-hover-color: #1d3ecf;
 
-    /* brand colors */
-    --brand-primary: #0075ab;
-    --brand-dark: #002638;
-    --brand-secondary: #102739;
-    --brand-grey: #f6f7f8;
+  /* brand colors */
+  --brand-primary: #0075ab;
+  --brand-dark: #002638;
+  --brand-secondary: #102739;
+  --brand-grey: #f6f7f8;
 
-    /* ui palette */
-    --card-accent-color: #b8cdff;
-    --color-hover-light: #4cc6f4;
-    --color-muted: #707070;
-    --color-border: #ddd;
+  /* ui palette */
+  --card-accent-color: #b8cdff;
+  --color-hover-light: #4cc6f4;
+  --color-muted: #707070;
+  --color-border: #ccc;
+  --footer-bg-color: #f3f5f7;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
