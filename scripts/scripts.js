@@ -51,37 +51,32 @@ function isIconColumnsGroup(elements, startIndex) {
 
 function buildIconColumnsBlocks(main) {
   main.querySelectorAll(':scope > div').forEach((section) => {
-    let index = 0;
     const offsets = [0, 3, 6];
+    const elements = [...section.children]; // snapshot once; avoids live-collection index drift
+    let i = 0;
 
-    while (index <= section.children.length - 9) {
-      const elements = [...section.children];
-      const startIndex = index;
-      const isThreeColumnIconPattern = offsets.every(
-        (offset) => isIconColumnsGroup(elements, startIndex + offset),
-      );
+    while (i + 8 < elements.length) {
+      const start = i; // snapshot to avoid no-loop-func with callback captures
+      const isMatch = offsets.every((offset) => isIconColumnsGroup(elements, start + offset));
 
-      if (isThreeColumnIconPattern) {
+      if (isMatch) {
         const block = document.createElement('div');
         const row = document.createElement('div');
 
         block.classList.add('columns');
         block.append(row);
-        section.insertBefore(block, elements[startIndex]);
+        section.insertBefore(block, elements[start]);
 
         offsets.forEach((offset) => {
           const column = document.createElement('div');
-          const columnElements = elements.slice(startIndex + offset, startIndex + offset + 3);
-
-          columnElements.forEach((element) => {
-            column.append(element);
-          });
-
+          elements.slice(start + offset, start + offset + 3).forEach((el) => column.append(el));
           row.append(column);
         });
-      }
 
-      index += 1;
+        i += 9; // skip past all 9 consumed elements
+      } else {
+        i += 1;
+      }
     }
   });
 }
@@ -185,10 +180,7 @@ export function decorateMain(main) {
 async function loadTheme() {
   const theme = getMetadata('theme');
   if (theme) {
-    theme.split(',').forEach(async (c) => {
-      const themeCSS = `${window.hlx.codeBasePath}/styles/themes/${c.trim()}.css`;
-      await loadCSS(themeCSS);
-    });
+    await Promise.all(theme.split(',').map((c) => loadCSS(`${window.hlx.codeBasePath}/styles/themes/${c.trim()}.css`)));
   }
 }
 
@@ -199,7 +191,7 @@ async function loadTheme() {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  loadTheme();
+  await loadTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

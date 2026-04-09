@@ -78,7 +78,7 @@
 .columns.columns-cards .columns-card-body h3 {
   font-size: 36px;
   font-weight: 500;
-  font-family: roboto, roboto-fallback, sans-serif;
+    font-family: var(--body-font-family), serif;
   line-height: 1.2;
   color: #002638;
   margin: 0 0 0.5em;
@@ -119,41 +119,4 @@
   }
 }
 
-/* Careers culture row spacing */
-body.careers .columns-wrapper + .columns-wrapper > .columns {
-  margin-top: 32px;
-}
-
-body.careers .columns > div + div {
-  margin-top: 32px;
-}
-
-/* Careers culture 3-column icon row */
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div {
-  align-items: stretch;
-}
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
-  background-color: var(--background-color);
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
-  padding: 24px;
-}
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
-  margin-top: 0;
-}
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child .icon {
-  width: 96px;
-  height: 96px;
-}
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
-  font-family: roboto, roboto-fallback, sans-serif;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.2;
-}
 
