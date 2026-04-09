@@ -1,20 +1,214 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #f3f5f7;
+  color: #002638;
+  font-family: roboto, roboto-fallback, sans-serif;
+  font-size: 16px;
 }
 
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
-footer .footer p {
+/* ── Shared low-specificity utilities (must precede section rules) ── */
+.footer-social-title {
+  font-weight: 700;
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+.footer-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin: 0;
+}
+
+.footer-social-icons .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-social-icons .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Privacy ── */
+.footer-privacy {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-privacy picture,
+.footer-privacy img {
+  display: block;
+}
+
+.footer-privacy p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.footer-privacy a {
+  color: #0075ab;
+  text-decoration: underline;
+}
+
+/* ── Land Acknowledgement ── */
+.footer-land-ack {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  padding: 32px 24px;
+}
+
+.footer-land-ack h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #002638;
+  margin: 0 0 16px;
+  border: none;
+}
+
+.footer-land-ack p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.footer-land-ack p:last-child,
+.footer-privacy p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Product section ── */
+.footer-product {
+  padding: 32px 24px;
+  border-top: 1px solid #ccc;
+}
+
+/* Hide address + link cols on mobile */
+.footer-product .footer-col-address,
+.footer-product .footer-col-links {
+  display: none;
+}
+
+.footer-product .footer-col-social {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-product .footer-col-address p {
+  line-height: 1.5;
+  margin: 0;
+}
+
+.footer-product .footer-col-links > p {
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.footer-product .footer-col-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-product .footer-col-links a {
+  color: #0075ab;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-product .footer-col-links a:hover {
+  color: #002638;
+}
+
+/* ── Responsive: 768px ── */
+@media (width >= 768px) {
+  .footer-land-ack {
+    padding: 56px 32px;
+  }
+
+  .footer-privacy {
+    padding: 32px;
+  }
+
+  .footer-product {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px;
+  }
+
+  .footer-product .footer-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 330px;
+  }
+
+  .footer-product .footer-col-address,
+  .footer-product .footer-col-links {
+    display: flex;
+  }
+
+  .footer-product .footer-col-address .icon-logo-small {
+    width: 160px;
+    height: 25px;
+    margin-bottom: 32px;
+  }
+
+  .footer-product .footer-col-address .icon-logo-small svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .footer-product .footer-col-links {
+    gap: 8px;
+  }
+}
+
+/* ── Responsive: 1200px ── */
+@media (width >= 1200px) {
+  .footer-land-ack {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .footer-land-ack > * {
+    flex: 1;
+    max-width: 700px;
+  }
+
+  .footer-land-ack h2 {
+    text-align: right;
+  }
+
+  .footer-privacy {
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .footer-privacy .footer-col-copyright {
+    flex: 1;
+    max-width: 1336px;
+  }
+
+  .footer-product {
+    gap: 48px;
   }
 }
