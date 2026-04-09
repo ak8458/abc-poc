@@ -7,11 +7,11 @@
 body {
     /* colors */
     --background-color: white;
-    --light-color: #f8f8f8;
-    --dark-color: #505050;
-    --text-color: #131313;
-    --link-color: #3b63fb;
-    --link-hover-color: #1d3ecf;
+    --light-color: #f6f7f8;
+    --dark-color: #002638;
+    --text-color: #002638;
+    --link-color: #0075ab;
+    --link-hover-color: #005a84;
 
     /* fonts */
     --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -47,7 +47,7 @@ body.careers .hero .hero-content {
 }
 
 body.careers .hero h1 {
-  color: #002638;
+  color: var(--text-color);
   font-family: var(--heading-font-family);
   font-size: 2rem;
   font-weight: 500;
@@ -57,7 +57,7 @@ body.careers .hero h1 {
 }
 
 body.careers .hero .hero-content p {
-  color: #002638;
+  color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: 18px;
   font-weight: 400;
@@ -71,7 +71,7 @@ body.careers .hero .hero-content .button-container {
 
 body.careers .hero .hero-content a {
   display: inline-block;
-  background-color: #0075ab;
+  background-color: var(--link-color);
   color: #fff;
   text-decoration: none;
   padding: 16px 32px;
@@ -83,7 +83,7 @@ body.careers .hero .hero-content a {
 }
 
 body.careers .hero .hero-content a:hover {
-  background-color: #005f8a;
+  background-color: var(--link-hover-color);
 }
 
 /* 600px+: split layout — image right, content left */
@@ -165,17 +165,17 @@ body.careers .cards .cards-card-body {
 }
 
 body.careers .cards .cards-card-body h3 {
-  color: #002638;
+  color: var(--text-color);
   font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
   margin: 0;
   padding: 16px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
 }
 
 body.careers .cards .cards-card-body p {
-  color: #707070;
+  color: var(--color-muted);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
@@ -187,7 +187,7 @@ body.careers .cards .cards-card-body ul {
   list-style: disc;
   padding: 24px 0 24px 20px;
   margin: 0;
-  color: #002638;
+  color: var(--text-color);
   font-size: 16px;
   line-height: 1.7;
 }
