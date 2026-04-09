@@ -78,7 +78,7 @@
 .columns.columns-cards .columns-card-body h3 {
   font-size: 36px;
   font-weight: 500;
-    font-family: var(--body-font-family), serif;
+  font-family: var(--body-font-family);
   line-height: 1.2;
   color: #002638;
   margin: 0 0 0.5em;

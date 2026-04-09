@@ -1,7 +1,7 @@
 footer {
   background-color: #f3f5f7;
   color: #002638;
-  font-family: roboto, roboto-fallback, sans-serif;
+  font-family: var(--body-font-family);
   font-size: 16px;
 }
 
