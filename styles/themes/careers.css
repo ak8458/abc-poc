@@ -276,6 +276,42 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
   margin-top: 32px;
 }
 
+/* ── Our values columns ── */
+
+body.careers .columns > div > div h3 {
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+body.careers .columns > div > div p {
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  body.careers .columns > div {
+    align-items: flex-start;
+  }
+
+  body.careers .columns > div > div {
+    padding-left: 32px;
+    border-left: 2px solid #0075ab;
+  }
+
+  body.careers .columns > div > div:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
 /* ── Footer ── */
 body.careers .footer-land-ack h2 {
   font-size: 36px;
