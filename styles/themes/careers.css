@@ -164,6 +164,15 @@ body.careers .cards .cards-card-body {
   padding: 0;
 }
 
+body.careers .columns > div > div h3 {
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
 body.careers .cards .cards-card-body h3 {
   color: var(--text-color);
   font-size: 28px;
