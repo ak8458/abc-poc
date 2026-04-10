@@ -1,4 +1,4 @@
-/* styles/themes/careers-v2-v2.css */
+/* styles/themes/careers-v2.css */
 
 body {
     /* colors */
@@ -54,15 +54,6 @@ body.careers-v2 .hero h1 {
 
 body.careers-v2 .hero .hero-content .button-container {
     margin: 0;
-}
-
-body.careers-v2 .columns > div > div p {
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
 }
 
 body.careers-v2 .hero .hero-content p {
@@ -168,16 +159,6 @@ body.careers-v2 .cards .cards-card-body {
     margin: 0;
     padding: 0;
 }
-
-body.careers-v2 .columns > div > div h3 {
-  color: var(--text-color);
-  font-family: var(--heading-font-family);
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0 0 16px;
-}
-
 
 body.careers-v2 .cards .cards-card-body h3 {
     color: var(--text-color);
@@ -292,22 +273,34 @@ body.careers-v2 .columns.columns-3-cols:not(.columns-cards) > div + div {
 }
 
 /* ── Our values columns ── */
+body.careers-v2 .columns > div > div h3 {
+    color: var(--text-color);
+    font-family: var(--heading-font-family), sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 16px;
+}
 
+body.careers-v2 .columns > div > div p {
+    color: var(--text-color);
+    font-family: var(--body-font-family), sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+}
 
 @media (width >= 900px) {
-  body.careers-v2 .columns > div {
-    align-items: flex-start;
-  }
+    body.careers-v2 .columns > div > div {
+        padding-left: 32px;
+        border-left: 2px solid var(--link-color);
+    }
 
-  body.careers-v2 .columns > div > div {
-    padding-left: 32px;
-    border-left: 2px solid #0075ab;
-  }
-
-  body.careers-v2 .columns > div > div:first-child {
-    border-left: none;
-    padding-left: 0;
-  }
+    body.careers-v2 .columns > div > div:first-child {
+        border-left: none;
+        padding-left: 0;
+    }
 }
 
 /* ── Footer ── */

@@ -22,7 +22,7 @@ function buildProductSection(section) {
   colSocial.classList.add('footer-col', 'footer-col-social');
 
   const columnsBlock = section.querySelector('.columns');
-  if (columnsBlock) {
+  if (columnsBlock && columnsBlock.firstElementChild) {
     // Content authored as a 3-column table: address | support+links | social
     const [addrCol, linksCol, socialCol] = [...columnsBlock.firstElementChild.children];
     if (addrCol) colAddress.append(...addrCol.children);
