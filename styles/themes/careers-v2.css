@@ -290,6 +290,41 @@ body.careers-v2 .columns.columns-3-cols:not(.columns-cards) > div + div {
     margin-top: 32px;
 }
 
+/* ── Driven by our purpose (1-col centered text) ── */
+
+body.careers-v2 .columns.columns-1-cols > div > div {
+    text-align: center;
+}
+
+body.careers-v2 .columns.columns-1-cols > div > div h2 {
+    color: var(--text-color);
+    font-family: var(--heading-font-family);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 24px;
+}
+
+body.careers-v2 .columns.columns-1-cols > div > div p + p {
+    margin-top: 16px;
+}
+
+body.careers-v2 .columns.columns-1-cols hr {
+    border: none;
+    border-top: 2px solid #0075ab;
+    margin: 40px 0;
+}
+
+@media (width >= 900px) {
+    body.careers-v2 .columns.columns-1-cols > div {
+        justify-content: center;
+    }
+
+    body.careers-v2 .columns.columns-1-cols > div > div {
+        max-width: 720px;
+    }
+}
+
 /* ── Our values columns ── */
 
 @media (width >= 900px) {
