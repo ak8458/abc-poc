@@ -296,12 +296,6 @@ body.careers-v2 .columns.columns-1-cols > div > div {
     text-align: center;
 }
 
-body.careers-v2 .columns.columns-1-cols > div > div p {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
 body.careers-v2 .columns.columns-1-cols > div > div p + p {
     margin-top: 16px;
 }

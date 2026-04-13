@@ -15,7 +15,7 @@ body {
 
     /* fonts */
     --body-font-family: roboto, roboto-fallback, sans-serif;
-    --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+    --heading-font-family: paralucent, roboto-condensed, roboto-condensed-fallback, sans-serif;
 }
 
 /* ── Hero block ── */
@@ -228,6 +228,10 @@ body.careers .cards .cards-card-body ul li {
 /* ── Columns: icon card variant ── */
 body.careers .columns-wrapper + .columns-wrapper > .columns {
   margin-top: 32px;
+}
+
+body.careers .columns.columns-1-cols > div > div {
+  text-align: center;
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div {
