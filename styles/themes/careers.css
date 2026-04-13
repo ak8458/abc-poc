@@ -282,15 +282,6 @@ body.careers .columns.columns-1-cols > div > div {
   text-align: center;
 }
 
-body.careers .columns.columns-1-cols > div > div h2 {
-  color: var(--text-color);
-  font-family: var(--heading-font-family);
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 24px;
-}
-
 body.careers .columns.columns-1-cols > div > div p + p {
   margin-top: 16px;
 }
@@ -341,18 +332,8 @@ body.careers .columns > div > div p {
     border-left: none;
     padding-left: 0;
   }
-}
 
-/* ── Footer ── */
-body.careers .footer-land-ack h2 {
-  font-size: 36px;
-  line-height: 1.1;
-  margin: 0 0 24px;
-}
-
-@media (width >= 900px) {
   body.careers .footer-land-ack h2 {
-    font-size: 48px;
     margin: 0;
   }
 }

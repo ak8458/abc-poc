@@ -72,14 +72,6 @@ footer .footer > div {
 
 /* ── Land Acknowledgement ── */
 
-.footer-land-ack h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--brand-dark);
-  margin: 0 0 16px;
-  border: none;
-}
-
 .footer-land-ack p {
   font-size: 16px;
   line-height: 1.5;
