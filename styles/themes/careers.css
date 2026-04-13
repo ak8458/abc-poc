@@ -297,12 +297,12 @@ body.careers .columns > div > div p {
 }
 
 @media (width >= 900px) {
-  body.careers .columns > div > div {
+  body.careers .columns.columns-4-cols > div > div {
     padding-left: 32px;
     border-left: 2px solid var(--link-color);
   }
 
-  body.careers .columns > div > div:first-child {
+  body.careers .columns.columns-4-cols > div > div:first-child {
     border-left: none;
     padding-left: 0;
   }
