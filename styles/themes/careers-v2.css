@@ -302,7 +302,7 @@ body.careers-v2 .columns.columns-1-cols > div > div p + p {
 
 body.careers-v2 .columns.columns-1-cols hr {
     border: none;
-    border-top: 2px solid #0075ab;
+    border-top: 2px solid var(--link-color);
     margin: 40px 0;
 }
 
@@ -328,7 +328,10 @@ body.careers-v2 .columns.columns-1-cols hr {
         border-left: none;
         padding-left: 0;
     }
+}
 
+/* ── Footer ── */
+@media (width >= 900px) {
     body.careers-v2 .footer-land-ack h2 {
         margin: 0;
     }

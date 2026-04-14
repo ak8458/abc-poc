@@ -336,7 +336,10 @@ body.careers .columns > div > div p {
     border-left: none;
     padding-left: 0;
   }
+}
 
+/* ── Footer ── */
+@media (width >= 900px) {
   body.careers .footer-land-ack h2 {
     margin: 0;
   }
