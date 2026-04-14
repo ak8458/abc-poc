@@ -23,7 +23,7 @@ npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts
 This site has diverged from the boilerplate baseline in these ways:
 
 ### Themes system (`styles/themes/`)
-Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` loads the matching CSS file. Two themes exist: `careers.css` and `careers-v2.css`. Theme CSS overrides `:root` CSS custom properties and can target `body.{theme}` for block-level overrides (e.g. `body.careers .hero`).
+Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` loads the matching CSS file. One themes exist: `careers.css`. Theme CSS overrides `:root` CSS custom properties and can target `body.{theme}` for block-level overrides (e.g. `body.careers .hero`).
 
 ### Button decoration (`scripts.js:decorateButtons`)
 This project uses a **custom** `decorateButtons` — not the boilerplate version. Links are only promoted to buttons when wrapped in `**strong**` or `*em*` formatting:
