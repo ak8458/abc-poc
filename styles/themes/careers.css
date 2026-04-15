@@ -12,7 +12,6 @@ body {
     --text-color: #002638;
     --link-color: #0075ab;
     --link-hover-color: #005a84;
-    --grey-8: #f3f5f7;
     --blue-12: #e0f5fd;
 
     /* hero */
@@ -53,11 +52,12 @@ body {
     --card-list-col-gap: var(--spacing-lg);
 
     /* columns / icon cards */
-    --values-content-max-width: 800px;
+    --content-max-width: 800px;
     --icon-card-padding: var(--spacing-md);
     --icon-card-icon-size: 96px;
     --icon-card-h3-size: 36px;
     --icon-card-row-gap: var(--spacing-md);
+    --single-column-bottom-gap: 30px;
 
     /* sections */
     --section-padding: var(--spacing-lg) 0;
@@ -69,7 +69,4 @@ body {
 
     /* typography */
     --font-size-lead: 1.333rem;
-
-    /* values section */
-    --values-section-margin: 30px;
 }

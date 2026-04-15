@@ -61,7 +61,7 @@
   color: var(--text-color);
   font-size: var(--body-font-size-m, 18px);
   line-height: var(--line-height-paragraph);
-    max-width: 800px;
+  max-width: var(--content-max-width);
 }
 
 .accordion-panel p + p {
