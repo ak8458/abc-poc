@@ -137,10 +137,11 @@ body.careers .section.lightblue {
 body.careers .columns.columns-1-cols > div > div {
   text-align: center;
   max-width: var(--values-content-max-width);
-  margin: var(--values-section-margin) auto;
+  margin: 0 auto var(--values-section-margin);
 }
 
-body.careers .section.section-metadata-container[data-border="bottom"] .columns.columns-1-cols > div > div   {
+/* 1-col container with bottom border — specificity (0,4,3) */
+body.careers .section.columns-container[data-border="bottom"] .columns.columns-1-cols > div > div {
   border: none;
   border-bottom: var(--border-width-accent) solid var(--blue-133);
   padding-bottom: var(--values-section-margin);
@@ -191,18 +192,23 @@ body.careers .section.grey .embed {
     justify-content: center;
   }
 
-  body.careers .columns.columns-4-cols > div > div {
+  body.careers .columns.columns-4-cols > div {
+    align-items: stretch;
+  }
+
+  body.careers .section.columns-container[data-border="left"] .columns.columns-4-cols > div > div {
     padding-left: var(--spacing-md);
     border-left: var(--border-width-thick) solid var(--link-color);
   }
 
-  body.careers .columns.columns-4-cols > div > div:first-child {
+  body.careers .section.columns-container[data-border="left"] .columns.columns-4-cols > div > div:first-child {
     border-left: none;
     padding-left: 0;
   }
 }
 
 /* ── Careers theme: icon card variant (3-col) ── */
+
 /* Higher specificity than above — must follow 1-col and 4-col rules */
 
 body.careers .columns-wrapper + .columns-wrapper > .columns {
