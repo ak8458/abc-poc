@@ -118,4 +118,140 @@
   }
 }
 
+/* ── Careers theme: section backgrounds ── */
+body.careers .section.grey {
+  background-color: var(--grey-8);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+body.careers .section.lightblue {
+  background-color: var(--blue-12);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+/* ── Careers theme: 1-col (purpose) + 4-col (values) ── */
+
+/* 1-col container — specificity (0,4,3) */
+body.careers .columns.columns-1-cols > div > div {
+  text-align: center;
+  max-width: var(--values-content-max-width);
+  margin: var(--values-section-margin) auto;
+}
+
+body.careers .section.section-metadata-container[data-border="bottom"] .columns.columns-1-cols > div > div   {
+  border: none;
+  border-bottom: var(--border-width-accent) solid var(--blue-133);
+  padding-bottom: var(--values-section-margin);
+}
+
+/* 4-col values text — specificity (0,3,4); must precede 3-col and 1-col p+p rules */
+body.careers .columns.columns-4-cols > div > div h3 {
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: var(--icon-card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+}
+
+body.careers .columns.columns-4-cols > div > div p {
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--hero-p-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-paragraph);
+  margin: 0;
+}
+
+/* 1-col paragraph — specificity (0,3,4) */
+body.careers .columns.columns-1-cols > div > div p {
+  font-size: var(--font-size-lead);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-display);
+}
+
+/* 1-col adjacent paragraph — specificity (0,3,5) */
+body.careers .columns.columns-1-cols > div > div p + p {
+  margin-top: var(--spacing-xs);
+}
+
+body.careers .section.grey .embed {
+  max-width: var(--values-content-max-width);
+  margin: 0 auto;
+}
+
+@media (width >= 900px) {
+  body.careers .section.grey {
+    padding: var(--section-padding-lg);
+  }
+
+  body.careers .columns.columns-1-cols > div {
+    justify-content: center;
+  }
+
+  body.careers .columns.columns-4-cols > div > div {
+    padding-left: var(--spacing-md);
+    border-left: var(--border-width-thick) solid var(--link-color);
+  }
+
+  body.careers .columns.columns-4-cols > div > div:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+/* ── Careers theme: icon card variant (3-col) ── */
+/* Higher specificity than above — must follow 1-col and 4-col rules */
+
+body.careers .columns-wrapper + .columns-wrapper > .columns {
+  margin-top: var(--icon-card-row-gap);
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div {
+  align-items: stretch;
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
+  background-color: var(--background-color);
+  border: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-accent) solid var(--card-accent-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--icon-card-padding);
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
+  margin-top: 0;
+  margin-bottom: var(--icon-card-row-gap);
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child .icon {
+  width: var(--icon-card-icon-size);
+  height: var(--icon-card-icon-size);
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
+  font-family: var(--body-font-family);
+  font-size: var(--icon-card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+  color: var(--brand-dark);
+}
+
+body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:first-child) {
+  font-family: var(--body-font-family);
+  font-size: var(--hero-p-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-paragraph);
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Higher specificity — must follow the > div rules above */
+body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
+  margin-top: var(--icon-card-row-gap);
+}
 

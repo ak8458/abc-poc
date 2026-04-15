@@ -205,3 +205,16 @@ footer .footer > div {
     gap: var(--spacing-lg);
   }
 }
+
+/* ── Careers theme ── */
+@media (width >= 900px) {
+  body.careers .footer-land-ack h2 {
+    margin: 0;
+  }
+}
+
+@media (width >= 1200px) {
+  body.careers .footer-privacy {
+    flex-direction: row;
+  }
+}
