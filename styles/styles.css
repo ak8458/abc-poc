@@ -354,7 +354,7 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    max-width: 1440px;
+    max-width: 1420px;
     padding: 0 32px;
   }
 }

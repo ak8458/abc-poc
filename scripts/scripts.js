@@ -94,6 +94,30 @@ async function loadFonts() {
 }
 
 /**
+ * Auto-blocks an accordion from sections with an h2 followed by even p pairs (question + answer).
+ * @param {Element} main The container element
+ */
+function buildAccordionBlock(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
+    const children = [...section.children];
+    const [first, ...rest] = children;
+
+    if (first?.tagName !== 'H2') return;
+    if (!rest.every((el) => el.tagName === 'P')) return;
+    if (rest.length < 4 || rest.length % 2 !== 0) return;
+
+    const pairs = [];
+    for (let i = 0; i < rest.length; i += 2) {
+      pairs.push([rest[i], rest[i + 1]]);
+    }
+
+    const block = buildBlock('accordion', pairs);
+    section.append(block);
+    rest.forEach((p) => p.remove());
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -117,6 +141,7 @@ function buildAutoBlocks(main) {
       });
     }
 
+    buildAccordionBlock(main);
     buildIconColumnsBlocks(main);
     buildHeroBlock(main);
   } catch (error) {
