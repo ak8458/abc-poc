@@ -19,95 +19,27 @@ body {
     /* fonts */
     --body-font-family: roboto, roboto-fallback, sans-serif;
     --heading-font-family: paralucent, roboto-condensed, roboto-condensed-fallback, sans-serif;
-}
 
-/* ── Hero block ── */
-
-/* Mobile base: stacked layout */
-body.careers .hero {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 0;
-}
-
-body.careers .hero picture {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  z-index: 0;
-}
-
-body.careers .hero .hero-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  padding: 32px 24px;
-  box-sizing: border-box;
-}
-
-body.careers .hero h1 {
-  color: var(--text-color);
-  font-family: var(--heading-font-family);
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 0.9;
-  margin: 0 0 24px;
-  max-width: none;
-}
-
-body.careers .hero .hero-content p {
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0 0 32px;
-}
-
-body.careers .hero .hero-content .button-container {
-  margin: 0;
-}
-
-body.careers .hero .hero-content a {
-  display: inline-block;
-  background-color: var(--link-color);
-  color: var(--background-color);
-  text-decoration: none;
-  padding: 16px 32px;
-  border-radius: 10px;
-  font-family: var(--body-font-family);
-  font-size: 1.125rem;
-  font-weight: 700;
-  transition: background-color 0.2s;
-}
-
-body.careers .hero .hero-content a:hover {
-  background-color: var(--link-hover-color);
-}
-
-/* 600px+: split layout — image right, content left */
-@media (width >= 600px) {
-  body.careers .hero {
-    flex-direction: row;
-    min-height: 500px;
-  }
-
-  body.careers .hero picture {
-    position: absolute;
-    inset: 0 0 0 auto;
-    width: 58.4%;
-    height: auto;
-  }
-
-  body.careers .hero picture::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
+    /* hero */
+    --hero-picture-height: 250px;
+    --hero-min-height-sm: 500px;
+    --hero-min-height-md: 600px;
+    --hero-min-height-lg: 700px;
+    --hero-image-width: 58.4%;
+    --hero-content-width: 41.6%;
+    --hero-content-indent: 190px;
+    --hero-h1-size: 2rem;
+    --hero-h1-size-sm: 3rem;
+    --hero-h1-size-md: 4rem;
+    --hero-h1-size-lg: 90px;
+    --hero-h1-weight: 500;
+    --hero-h1-line-height: 0.9;
+    --hero-h1-margin-bottom: var(--spacing-sm);
+    --hero-p-font-size: 18px;
+    --hero-p-margin-bottom: var(--spacing-md);
+    --hero-btn-padding: var(--spacing-xs) var(--spacing-md);
+    --hero-btn-font-size: 1.125rem;
+    --hero-gradient: linear-gradient(
       90deg,
       rgb(255 255 255 / 80%) 8%,
       rgb(255 255 255 / 60%) 8%,
@@ -116,38 +48,35 @@ body.careers .hero .hero-content a:hover {
       rgb(255 255 255 / 30%) 24%,
       transparent 24%
     );
-    pointer-events: none;
-  }
 
-  body.careers .hero .hero-content {
-    width: 41.6%;
-    flex-shrink: 0;
-    padding: 48px 24px 48px 190px;
-  }
+    /* cards */
+    --card-h3-size: 28px;
+    --card-h3-size-lg: 34px;
+    --card-p-size: 18px;
+    --card-p-size-lg: 20px;
+    --card-grid-gap: var(--spacing-md);
+    --card-list-col-gap: var(--spacing-lg);
 
-  body.careers .hero h1 {
-    font-size: 3rem;
-  }
-}
+    /* columns / icon cards */
+    --values-content-max-width: 800px;
+    --icon-card-padding: var(--spacing-md);
+    --icon-card-icon-size: 96px;
+    --icon-card-h3-size: 36px;
+    --icon-card-row-gap: var(--spacing-md);
 
-@media (width >= 900px) {
-  body.careers .hero {
-    min-height: 600px;
-  }
+    /* sections */
+    --section-padding: var(--spacing-lg) 0;
+    --section-padding-lg: var(--spacing-xl) 0;
 
-  body.careers .hero h1 {
-    font-size: 4rem;
-  }
-}
+    /* line heights */
+    --line-height-list: 1.7;
+    --line-height-display: 2rem;
 
-@media (width >= 1200px) {
-  body.careers .hero {
-    min-height: 700px;
-  }
+    /* typography */
+    --font-size-lead: 1.333rem;
 
-  body.careers .hero h1 {
-    font-size: 90px;
-  }
+    /* values section */
+    --values-section-margin: 30px;
 }
 
 /* ── Cards block ── */
@@ -159,7 +88,7 @@ body.careers .cards > ul {
 
 body.careers .cards > ul > li {
   border: none;
-  padding: 0 0 16px;
+  padding: 0 0 var(--spacing-xs);
 }
 
 body.careers .cards .cards-card-body {
@@ -169,30 +98,30 @@ body.careers .cards .cards-card-body {
 
 body.careers .cards .cards-card-body h3 {
   color: var(--text-color);
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.2;
+  font-size: var(--card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
   margin: 0;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-xs) 0;
+  border-bottom: var(--border-width) solid var(--color-border);
 }
 
 body.careers .cards .cards-card-body p {
   color: var(--color-muted);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: var(--card-p-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-paragraph);
   margin: 0;
-  padding: 24px 0;
+  padding: var(--spacing-sm) 0;
 }
 
 body.careers .cards .cards-card-body ul {
   list-style: disc;
-  padding: 24px 0 24px 20px;
+  padding: var(--spacing-sm) 0 var(--spacing-sm) 20px;
   margin: 0;
   color: var(--text-color);
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: var(--body-font-size-s, 16px);
+  line-height: var(--line-height-list);
 }
 
 body.careers .cards .cards-card-body ul li {
@@ -206,8 +135,8 @@ body.careers .cards .cards-card-body ul li {
   body.careers .cards > ul > li {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 0 32px;
-    padding: 0 0 32px;
+    gap: 0 var(--card-grid-gap);
+    padding: 0 0 var(--spacing-md);
   }
 
   body.careers .cards > ul > li > .cards-card-body:first-child {
@@ -215,16 +144,16 @@ body.careers .cards .cards-card-body ul li {
   }
 
   body.careers .cards .cards-card-body h3 {
-    font-size: 34px;
+    font-size: var(--card-h3-size-lg);
   }
 
   body.careers .cards .cards-card-body p {
-    font-size: 20px;
+    font-size: var(--card-p-size-lg);
   }
 
   body.careers .cards .cards-card-body ul {
     columns: 2;
-    column-gap: 48px;
+    column-gap: var(--card-list-col-gap);
   }
 }
 
@@ -232,65 +161,65 @@ body.careers .cards .cards-card-body ul li {
 
 body.careers .section.grey {
   background-color: var(--grey-8);
-  padding: 48px 0;
+  padding: var(--section-padding);
   margin: 0;
 }
 
 body.careers .section.lightblue {
     background-color: var(--blue-12);
-    padding: 48px 0;
+    padding: var(--section-padding);
     margin: 0;
 }
 
 /* 1-col container — specificity (0,3,3) */
 body.careers .columns.columns-1-cols > div > div {
   text-align: center;
-  max-width: 800px;
-  margin: 30px auto;
+  max-width: var(--values-content-max-width);
+  margin: var(--values-section-margin) auto;
   border: none;
-  border-bottom: 4px solid var(--blue-133);
-  padding-bottom: 30px;
+  border-bottom: var(--border-width-accent) solid var(--blue-133);
+  padding-bottom: var(--values-section-margin);
 }
 
 /* 4-col values text — specificity (0,3,4); must precede 3-col and 1-col p+p rules */
 body.careers .columns.columns-4-cols > div > div h3 {
   color: var(--text-color);
   font-family: var(--heading-font-family);
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0 0 16px;
+  font-size: var(--icon-card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
 }
 
 body.careers .columns.columns-4-cols > div > div p {
   color: var(--text-color);
   font-family: var(--body-font-family);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: var(--hero-p-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-paragraph);
   margin: 0;
 }
 
 /* 1-col paragraph — specificity (0,3,4) */
 body.careers .columns.columns-1-cols > div > div p {
-  font-size: 1.333rem;
-  font-weight: 500;
-  line-height: 2rem;
+  font-size: var(--font-size-lead);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-display);
 }
 
 /* 1-col adjacent paragraph — specificity (0,3,5) */
 body.careers .columns.columns-1-cols > div > div p + p {
-  margin-top: 16px;
+  margin-top: var(--spacing-xs);
 }
 
 body.careers .section.grey .embed {
-  max-width: 800px;
+  max-width: var(--values-content-max-width);
   margin: 0 auto;
 }
 
 @media (width >= 900px) {
   body.careers .section.grey {
-    padding: 80px 0;
+    padding: var(--section-padding-lg);
   }
 
   body.careers .columns.columns-1-cols > div {
@@ -298,8 +227,8 @@ body.careers .section.grey .embed {
   }
 
   body.careers .columns.columns-4-cols > div > div {
-    padding-left: 32px;
-    border-left: 2px solid var(--link-color);
+    padding-left: var(--spacing-md);
+    border-left: var(--border-width-thick) solid var(--link-color);
   }
 
   body.careers .columns.columns-4-cols > div > div:first-child {
@@ -310,7 +239,7 @@ body.careers .section.grey .embed {
 
 /* ── Columns: icon card variant (highest specificity — must follow column rules above) ── */
 body.careers .columns-wrapper + .columns-wrapper > .columns {
-  margin-top: 32px;
+  margin-top: var(--icon-card-row-gap);
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div {
@@ -319,44 +248,44 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div {
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
   background-color: var(--background-color);
-  border: 1px solid var(--color-border);
-  border-bottom: 4px solid var(--card-accent-color);
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
-  padding: 32px;
+  border: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-accent) solid var(--card-accent-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--icon-card-padding);
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
   margin-top: 0;
-  margin-bottom: 32px;
+  margin-bottom: var(--icon-card-row-gap);
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child .icon {
-  width: 96px;
-  height: 96px;
+  width: var(--icon-card-icon-size);
+  height: var(--icon-card-icon-size);
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
   font-family: var(--body-font-family);
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0 0 16px;
+  font-size: var(--icon-card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
   color: var(--brand-dark);
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:first-child) {
   font-family: var(--body-font-family);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: var(--hero-p-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-paragraph);
   margin: 0;
   color: var(--text-color);
 }
 
 /* Higher specificity — must follow the > div rules above */
 body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
-  margin-top: 32px;
+  margin-top: var(--icon-card-row-gap);
 }
 
 /* ── Footer ── */

@@ -35,6 +35,48 @@
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: paralucent, roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* spacing scale (em-based) */
+  --spacing-flow: 0.8em;
+
+  /* line heights */
+  --line-height-none: 0;
+  --line-height-tight: 1;
+  --line-height-heading: 1.2;
+  --line-height-button: 1.25;
+  --line-height-card-action: 1.333;
+  --line-height-paragraph: 1.5;
+  --line-height-body: 1.6;
+
+  /* spacing scale */
+  --spacing-xxs: 8px;
+  --spacing-xs: 16px;
+  --spacing-sm: 24px;
+  --spacing-md: 32px;
+  --spacing-lg: 48px;
+  --spacing-xl: 80px;
+
+  /* shape */
+  --radius-lg: 10px;
+
+  /* borders */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  --border-width-accent: 4px;
+
+  /* shadows */
+  --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);
+  --shadow-nav: 0 2px 4px rgb(0 0 0 / 8%);
+
+  /* transitions */
+  --transition-speed: 0.2s;
+
+  /* layout */
+  --max-width-content: 1200px;
+  --card-min-width: 257px;
 
   /* nav height */
   --nav-height: 64px;
@@ -77,7 +119,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: var(--line-height-body);
 }
 
 body.appear {
@@ -104,11 +146,11 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
+  margin-top: var(--spacing-flow);
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
   scroll-margin: 40px;
 }
 
@@ -125,7 +167,7 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
+  margin-top: var(--spacing-flow);
   margin-bottom: 0.25em;
 }
 
@@ -182,8 +224,8 @@ button.button {
   border-radius: 2.4em;
   padding: 0.5em 1.2em;
   font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-button);
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;

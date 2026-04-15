@@ -23,7 +23,7 @@
   .columns > div {
     align-items: flex-start;
     flex-direction: unset;
-    gap: 24px;
+    gap: var(--spacing-sm);
   }
 
   .columns > div > div {
@@ -35,23 +35,23 @@
 /* Card variant – image-bleed cards */
 .columns.columns-cards > div {
   align-items: stretch;
-  gap: 24px;
+  gap: var(--spacing-sm);
 }
 
 .columns.columns-cards > div > div {
   display: flex;
   flex-direction: column;
   background-color: var(--background-color);
-  border: 1px solid var(--color-border);
-  border-bottom: 4px solid var(--card-accent-color);
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
+  border: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-accent) solid var(--card-accent-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
 }
 
 .columns.columns-cards .columns-card-image {
   margin: 0;
-  line-height: 0;
+  line-height: var(--line-height-none);
 }
 
 .columns.columns-cards .columns-card-image img {
@@ -62,7 +62,7 @@
 
 .columns.columns-cards .columns-card-body {
   flex: 1;
-  padding: 24px 24px 0;
+  padding: var(--spacing-sm) var(--spacing-sm) 0;
 }
 
 .columns.columns-cards .columns-card-body > * {
@@ -70,21 +70,21 @@
 }
 
 .columns.columns-cards .columns-card-body > * + * {
-  margin-top: 0.75em;
+  margin-top: var(--spacing-flow);
 }
 
 .columns.columns-cards .columns-card-body h2,
 .columns.columns-cards .columns-card-body h3 {
   font-size: var(--heading-font-size-l, 36px);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-family: var(--body-font-family);
-  line-height: 1.2;
+  line-height: var(--line-height-heading);
   color: var(--brand-dark);
   margin: 0 0 0.5em;
 }
 
 .columns.columns-cards .columns-card-action {
-  padding: 16px 24px 24px;
+  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm);
 }
 
 .columns.columns-cards .columns-card-action a:any-link {
@@ -92,18 +92,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 16px 32px;
+  padding: var(--spacing-xs) var(--spacing-md);
   box-sizing: border-box;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   background-color: var(--link-color);
-  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 25%);
+  box-shadow: var(--shadow-card);
   color: var(--background-color);
   font-size: var(--body-font-size-m, 18px);
-  font-weight: 700;
-  line-height: 1.333;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-card-action);
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 .columns.columns-cards .columns-card-action a:hover {

@@ -4,21 +4,21 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+  gap: var(--spacing-sm);
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  border: var(--border-width) solid var(--color-border);
   background-color: var(--background-color);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: var(--spacing-xs);
 }
 
 .cards .cards-card-image {
-  line-height: 0;
+  line-height: var(--line-height-none);
 }
 
 .cards > ul > li img {
