@@ -32,7 +32,7 @@ body {
     --hero-h1-size-sm: 3rem;
     --hero-h1-size-md: 4rem;
     --hero-h1-size-lg: 90px;
-    --hero-h1-weight: 500;
+    --hero-h1-weight: var(--font-weight-medium);
     --hero-h1-line-height: 0.9;
     --hero-h1-margin-bottom: var(--spacing-sm);
     --hero-p-font-size: 18px;
@@ -166,9 +166,9 @@ body.careers .section.grey {
 }
 
 body.careers .section.lightblue {
-    background-color: var(--blue-12);
-    padding: var(--section-padding);
-    margin: 0;
+  background-color: var(--blue-12);
+  padding: var(--section-padding);
+  margin: 0;
 }
 
 /* 1-col container — specificity (0,3,3) */
