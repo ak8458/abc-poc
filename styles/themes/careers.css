@@ -14,11 +14,6 @@ body {
     --link-hover-color: #005a84;
     --grey-8: #f3f5f7;
     --blue-12: #e0f5fd;
-    --blue-133: #0075ab;
-
-    /* fonts */
-    --body-font-family: roboto, roboto-fallback, sans-serif;
-    --heading-font-family: paralucent, roboto-condensed, roboto-condensed-fallback, sans-serif;
 
     /* hero */
     --hero-picture-height: 250px;
