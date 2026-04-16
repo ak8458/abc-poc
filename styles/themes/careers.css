@@ -43,6 +43,11 @@ body {
       transparent 24%
     );
 
+    /* accordion */
+    --accordion-font-size: 18px;
+    --accordion-content-max-width: var(--content-max-width);
+    --accordion-content-padding: var(--spacing-xs) var(--spacing-sm);
+
     /* cards */
     --card-h3-size: 28px;
     --card-h3-size-lg: 34px;

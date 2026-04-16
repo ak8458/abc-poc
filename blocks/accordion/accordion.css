@@ -16,11 +16,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--accordion-content-padding);
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--heading-font-family);
-  font-size: var(--body-font-size-m, 18px);
+  font-size: var(--accordion-font-size, 18px);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-paragraph);
   text-align: left;
@@ -59,9 +59,9 @@
 .accordion-panel p {
   margin: 0;
   color: var(--text-color);
-  font-size: var(--body-font-size-m, 18px);
+  font-size: var(--accordion-font-size, 18px);
   line-height: var(--line-height-paragraph);
-  max-width: var(--content-max-width);
+  max-width: var(--accordion-content-max-width);
 }
 
 .accordion-panel p + p {
