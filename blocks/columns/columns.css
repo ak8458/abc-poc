@@ -309,12 +309,13 @@ body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p
   }
 
   body.careers .section.testimonial .columns-img-col {
-    flex: 0 0 40%;
+    flex: 0 0 20%;
     overflow: hidden;
   }
 
   body.careers .section.testimonial .columns-img-col img {
     height: 100%;
+    width: 327px;
     object-fit: cover;
     object-position: center top;
   }
