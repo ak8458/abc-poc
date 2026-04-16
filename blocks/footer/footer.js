@@ -46,7 +46,8 @@ function buildProductSection(section) {
         colSocial.append(el);
       });
     }
-    columnsBlock.parentElement.remove();
+    // Remove the entire section contents (including any wrapper divs) before appending columns
+    section.innerHTML = '';
   } else {
     // Flat content structure
     const els = [...section.children];
