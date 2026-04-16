@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -31,6 +32,55 @@ function buildHeroBlock(main) {
   }
 }
 
+function isIconLeadParagraph(element) {
+  const icon = element?.querySelector(':scope > span.icon');
+
+  return element?.tagName === 'P'
+    && element.children.length === 1
+    && !!icon
+    && element.textContent.trim() === '';
+}
+
+function isIconColumnsGroup(elements, startIndex) {
+  const [icon, heading, copy] = elements.slice(startIndex, startIndex + 3);
+
+  return isIconLeadParagraph(icon)
+    && heading?.tagName === 'H3'
+    && copy?.tagName === 'P';
+}
+
+function buildIconColumnsBlocks(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
+    const offsets = [0, 3, 6];
+    const elements = [...section.children]; // snapshot once; avoids live-collection index drift
+    let i = 0;
+
+    while (i + 8 < elements.length) {
+      const start = i; // snapshot to avoid no-loop-func with callback captures
+      const isMatch = offsets.every((offset) => isIconColumnsGroup(elements, start + offset));
+
+      if (isMatch) {
+        const block = document.createElement('div');
+        const row = document.createElement('div');
+
+        block.classList.add('columns');
+        block.append(row);
+        section.insertBefore(block, elements[start]);
+
+        offsets.forEach((offset) => {
+          const column = document.createElement('div');
+          elements.slice(start + offset, start + offset + 3).forEach((el) => column.append(el));
+          row.append(column);
+        });
+
+        i += 9; // skip past all 9 consumed elements
+      } else {
+        i += 1;
+      }
+    }
+  });
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -41,6 +91,30 @@ async function loadFonts() {
   } catch (e) {
     // do nothing
   }
+}
+
+/**
+ * Auto-blocks an accordion from sections with an h2 followed by even p pairs (question + answer).
+ * @param {Element} main The container element
+ */
+function buildAccordionBlock(main) {
+  main.querySelectorAll(':scope > div').forEach((section) => {
+    const children = [...section.children];
+    const [first, ...rest] = children;
+
+    if (first?.tagName !== 'H2') return;
+    if (!rest.every((el) => el.tagName === 'P')) return;
+    if (rest.length < 4 || rest.length % 2 !== 0) return;
+
+    const pairs = [];
+    for (let i = 0; i < rest.length; i += 2) {
+      pairs.push([rest[i], rest[i + 1]]);
+    }
+
+    const block = buildBlock('accordion', pairs);
+    section.append(block);
+    rest.forEach((p) => p.remove());
+  });
 }
 
 /**
@@ -67,6 +141,8 @@ function buildAutoBlocks(main) {
       });
     }
 
+    buildAccordionBlock(main);
+    buildIconColumnsBlocks(main);
     buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -126,6 +202,22 @@ export function decorateMain(main) {
   decorateButtons(main);
 }
 
+async function loadTheme() {
+  const theme = getMetadata('theme');
+  if (!theme) {
+    return;
+  }
+
+  const themes = theme.split(',').map((c) => c.trim()).filter(Boolean);
+  await Promise.all(themes.map(async (currentTheme) => {
+    try {
+      await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${currentTheme}.css`);
+    } catch (e) {
+      // ignore theme loading failures so page rendering is not blocked
+    }
+  }));
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -133,6 +225,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  await loadTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
