@@ -204,8 +204,17 @@ export function decorateMain(main) {
 
 async function loadTheme() {
   const theme = getMetadata('theme');
-  if (theme) {
-    await Promise.all(theme.split(',').map((c) => loadCSS(`${window.hlx.codeBasePath}/styles/themes/${c.trim()}.css`)));
+  if (!theme) {
+    return;
+  }
+
+  const themes = theme.split(',').map((c) => c.trim()).filter(Boolean);
+  for (const currentTheme of themes) {
+    try {
+      await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${currentTheme}.css`);
+    } catch (e) {
+      // ignore theme loading failures so page rendering is not blocked
+    }
   }
 }
 
