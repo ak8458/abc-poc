@@ -263,7 +263,7 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
 
 /* ── Careers theme: testimonial section ── */
 body.careers .section.testimonial {
-  background: linear-gradient(to top, var(--blue-12) 80%, transparent 80%);
+  background: linear-gradient(to top, var(--blue-12) 82%, transparent 82%);
   margin: 0;
   overflow: hidden;
 }
@@ -309,7 +309,7 @@ body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p
   }
 
   body.careers .section.testimonial .columns-img-col {
-    flex: 0 0 20%;
+    flex: 0 0 30%;
     overflow: hidden;
   }
 
@@ -323,8 +323,8 @@ body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p
   body.careers .section.testimonial .columns > div > div:not(.columns-img-col) {
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    padding: var(--spacing-lg) var(--spacing-xl);
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
   }
 }
 
