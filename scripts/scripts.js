@@ -209,13 +209,13 @@ async function loadTheme() {
   }
 
   const themes = theme.split(',').map((c) => c.trim()).filter(Boolean);
-  for (const currentTheme of themes) {
+  await Promise.all(themes.map(async (currentTheme) => {
     try {
       await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${currentTheme}.css`);
     } catch (e) {
       // ignore theme loading failures so page rendering is not blocked
     }
-  }
+  }));
 }
 
 /**
