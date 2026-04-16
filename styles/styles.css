@@ -75,7 +75,7 @@
   --transition-speed: 0.2s;
 
   /* layout */
-  --max-width-content: 1200px;
+  --max-width-content: 1420px;
   --card-min-width: 257px;
 
   /* nav height */
@@ -98,6 +98,7 @@
 @media (width >= 900px) {
   :root {
     /* body sizes */
+    --body-font-size-l: 27px;
     --body-font-size-m: 18px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
@@ -354,7 +355,7 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    max-width: 1420px;
+    max-width: var(--max-width-content);
     padding: 0 32px;
   }
 }

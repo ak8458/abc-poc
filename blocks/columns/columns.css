@@ -261,3 +261,69 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
   margin-top: var(--icon-card-row-gap);
 }
 
+/* ── Careers theme: testimonial section ── */
+body.careers .section.testimonial {
+  background-color: var(--blue-12);
+  margin: 0;
+  overflow: hidden;
+}
+
+body.careers .section.testimonial > div {
+  max-width: var(--max-width-content);
+  padding: 0;
+}
+
+/* Reset browser default blockquote styles */
+body.careers .section.testimonial blockquote {
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  font-size: var(--body-font-size-l, 27px);
+  line-height: var(--line-height-paragraph);
+  color: var(--text-color);
+}
+
+/* Two <p> elements inside blockquote flow as one sentence */
+body.careers .section.testimonial blockquote p {
+  display: inline;
+}
+
+/* Mobile: pad the text column */
+body.careers .section.testimonial .columns > div > div:not(.columns-img-col) {
+  padding: var(--spacing-sm);
+}
+
+/* Attribution */
+body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p {
+  margin: var(--spacing-xs) 0 0;
+  font-size: var(--body-font-size-m, 18px);
+  line-height: var(--line-height-paragraph);
+  color: var(--text-color);
+  font-style: italic;
+}
+
+@media (width >= 900px) {
+  body.careers .section.testimonial .columns > div {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  body.careers .section.testimonial .columns-img-col {
+    flex: 0 0 40%;
+    overflow: hidden;
+  }
+
+  body.careers .section.testimonial .columns-img-col img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  body.careers .section.testimonial .columns > div > div:not(.columns-img-col) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+}
+
