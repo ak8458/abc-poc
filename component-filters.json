@@ -1,7 +1,38 @@
 [
   {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "columns-row"
+    ]
+  },
+  {
+    "id": "columns-row",
+    "components": []
+  },
+  {
+    "id": "columns-cell",
+    "components": [
+      "text",
+      "image"
+    ]
+  },
+  {
     "id": "main",
-    "components": ["section"]
+    "components": [
+      "section"
+    ]
   },
   {
     "id": "section",
@@ -23,42 +54,5 @@
       "video",
       "product-recommendations"
     ]
-  },
-  {
-    "id": "accordion",
-    "components": ["accordion-item"]
-  },
-  {
-    "id": "cards",
-    "components": ["card"]
-  },
-  {
-    "id": "carousel",
-    "components": ["carousel-item"]
-  },
-  {
-    "id": "columns",
-    "components": ["columns-row"]
-  },
-  {
-    "id": "columns-row",
-    "components": []
-  },
-  {
-    "id": "columns-cell",
-    "components": ["text", "image"]
-  },
-  {
-    "id": "table",
-    "rte": {
-      "toolbar": {
-        "insert": ["table"],
-        "sections": ["insert"]
-      }
-    }
-  },
-  {
-    "id": "tabs",
-    "components": ["tabs-item"]
   }
 ]
