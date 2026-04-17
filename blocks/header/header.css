@@ -282,3 +282,81 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+/* ── Careers theme: two-band header ── */
+@media (width >= 900px) {
+  body.careers header .nav-wrapper {
+    background: linear-gradient(
+      to bottom,
+      var(--link-color) var(--careers-topbar-height),
+      var(--background-color) var(--careers-topbar-height)
+    );
+    border-bottom: var(--border-width) solid var(--color-border);
+    box-shadow: var(--shadow-nav);
+  }
+
+  body.careers header nav {
+    display: grid;
+    grid-template:
+      'tools tools' var(--careers-topbar-height)
+      'brand sections' var(--nav-height) / auto 1fr;
+    height: calc(var(--careers-topbar-height) + var(--nav-height));
+    max-width: 100%;
+    gap: 0;
+  }
+
+  body.careers header nav .nav-brand {
+    grid-area: brand;
+    align-self: center;
+  }
+
+  body.careers header nav .nav-sections {
+    grid-area: sections;
+    place-self: center end;
+  }
+
+  body.careers header nav .nav-tools {
+    grid-area: tools;
+    place-self: center end;
+    width: var(--header-tools-width);
+  }
+
+  body.careers header nav .nav-tools a:any-link {
+    display: inline-flex;
+    align-items: center;
+    height: var(--careers-topbar-height);
+    gap: var(--header-tools-link-gap);
+    padding: var(--header-tools-link-padding);
+    color: var(--background-color);
+    font-size: var(--header-tools-font-size);
+    font-weight: var(--font-weight-bold);
+    transition: background-color var(--transition-speed);
+  }
+
+  body.careers header nav .nav-tools a:any-link::before {
+    content: '';
+    display: block;
+    width: var(--header-tools-icon-width);
+    height: var(--header-tools-icon-height);
+    background-color: var(--background-color);
+    mask-image: url('/icons/link.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    flex-shrink: 0;
+  }
+
+  body.careers header nav .nav-tools a:hover {
+    background-color: var(--header-tools-hover-bg);
+    color: var(--background-color);
+    text-decoration: none;
+  }
+
+  body.careers header nav .nav-sections a:any-link {
+    color: var(--link-color);
+    font-weight: var(--font-weight-bold);
+  }
+
+  body.careers header nav .nav-sections a:hover {
+    color: var(--brand-dark);
+  }
+}

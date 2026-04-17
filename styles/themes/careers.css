@@ -68,10 +68,29 @@ body {
   --section-padding: var(--spacing-lg) 0;
   --section-padding-lg: var(--spacing-xl) 0;
 
+  /* header */
+  --careers-topbar-height: 48px;
+  --nav-height: 80px;
+  --header-tools-width: 152px;
+  --header-tools-link-gap: 6px;
+  --header-tools-link-padding: 0 16px;
+  --header-tools-font-size: 16px;
+  --header-tools-icon-width: 16px;
+  --header-tools-icon-height: 13px;
+  --header-tools-hover-bg: rgb(255 255 255 / 20%);
+
   /* line heights */
   --line-height-list: 1.7;
   --line-height-display: 2rem;
 
   /* typography */
   --font-size-lead: 1.333rem;
+
+  /* shadows */
+  --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);
+  --shadow-nav: 0 3px 3px rgb(0 0 0 / 16%);
+}
+
+body.careers main > .section:first-of-type {
+  margin-top: 50px;
 }
