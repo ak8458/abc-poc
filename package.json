@@ -10,6 +10,8 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
     "lint:json": "eslint . --ext .json",
     "build:json": "node ue/build-json.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "prepare": "husky"
   },
   "repository": {
@@ -23,16 +25,27 @@
   },
   "homepage": "https://github.com/adobe/aem-boilerplate#readme",
   "lint-staged": {
-    "*.js": "eslint --fix",
-    "**/*.css": "stylelint --fix",
-    "**/*.json": "eslint --fix"
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "**/*.json": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.28.6",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.32.0",
+    "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jsonc": "2.21.1",
+    "prettier": "3.8.3",
     "husky": "9.1.7",
     "lint-staged": "15.5.1",
     "stylelint": "17.8.0",

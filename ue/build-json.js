@@ -16,7 +16,8 @@ const GROUP_META = {
 };
 
 function buildJson() {
-  const files = fs.readdirSync(BLOCKS_DIR)
+  const files = fs
+    .readdirSync(BLOCKS_DIR)
     .filter((f) => f.endsWith('.json'))
     .sort();
 

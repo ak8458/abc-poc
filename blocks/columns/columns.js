@@ -18,10 +18,19 @@ export default function decorate(block) {
 
   // Detect card pattern: every column starts with an image paragraph and has additional content
   const rows = [...block.children];
-  const isCardPattern = cols.length >= 2 && rows.every((row) => [...row.children].every((col) => {
-    const firstEl = col.firstElementChild;
-    return firstEl && firstEl.tagName === 'P' && firstEl.querySelector('picture') && col.children.length > 1;
-  }));
+  const isCardPattern =
+    cols.length >= 2 &&
+    rows.every((row) =>
+      [...row.children].every((col) => {
+        const firstEl = col.firstElementChild;
+        return (
+          firstEl &&
+          firstEl.tagName === 'P' &&
+          firstEl.querySelector('picture') &&
+          col.children.length > 1
+        );
+      }),
+    );
 
   if (isCardPattern) {
     block.classList.add('columns-cards');

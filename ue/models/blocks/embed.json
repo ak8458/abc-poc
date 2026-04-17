@@ -10,9 +10,7 @@
           "name": "embed",
           "rows": 1,
           "columns": 1,
-          "fields": [
-            { "name": "url", "selector": "div>div>p>a[href]" }
-          ]
+          "fields": [{ "name": "url", "selector": "div>div>p>a[href]" }]
         }
       }
     }

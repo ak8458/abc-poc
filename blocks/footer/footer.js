@@ -31,7 +31,10 @@ function buildProductSection(section) {
       [...linksCol.children].forEach((el) => {
         if (el.tagName === 'UL') {
           ulsSeen += 1;
-          if (ulsSeen === 2) { colLinks2.append(el); return; }
+          if (ulsSeen === 2) {
+            colLinks2.append(el);
+            return;
+          }
         }
         colLinks1.append(el);
       });
@@ -61,7 +64,10 @@ function buildProductSection(section) {
       } else if (el.tagName === 'UL') {
         ulsSeen += 1;
         phase = ulsSeen === 1 ? 'links1' : 'links2';
-      } else if (phase === 'address' && el.querySelector?.('strong')?.textContent.trim() === 'Support') {
+      } else if (
+        phase === 'address' &&
+        el.querySelector?.('strong')?.textContent.trim() === 'Support'
+      ) {
         phase = 'links1';
       }
 

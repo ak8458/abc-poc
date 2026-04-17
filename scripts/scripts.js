@@ -20,8 +20,12 @@ import {
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  if (
+    h1 &&
+    picture &&
+    // eslint-disable-next-line no-bitwise
+    h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING
+  ) {
     // Check if h1 or picture is already inside a hero block
     if (h1.closest('.hero') || picture.closest('.hero')) {
       return; // Don't create a duplicate hero block
@@ -35,18 +39,18 @@ function buildHeroBlock(main) {
 function isIconLeadParagraph(element) {
   const icon = element?.querySelector(':scope > span.icon');
 
-  return element?.tagName === 'P'
-    && element.children.length === 1
-    && !!icon
-    && element.textContent.trim() === '';
+  return (
+    element?.tagName === 'P' &&
+    element.children.length === 1 &&
+    !!icon &&
+    element.textContent.trim() === ''
+  );
 }
 
 function isIconColumnsGroup(elements, startIndex) {
   const [icon, heading, copy] = elements.slice(startIndex, startIndex + 3);
 
-  return isIconLeadParagraph(icon)
-    && heading?.tagName === 'H3'
-    && copy?.tagName === 'P';
+  return isIconLeadParagraph(icon) && heading?.tagName === 'H3' && copy?.tagName === 'P';
 }
 
 function buildIconColumnsBlocks(main) {
@@ -87,7 +91,8 @@ function buildIconColumnsBlocks(main) {
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+    if (!window.location.hostname.includes('localhost'))
+      sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
     // do nothing
   }
@@ -124,7 +129,9 @@ function buildAccordionBlock(main) {
 function buildAutoBlocks(main) {
   try {
     // auto load `*/fragments/*` references
-    const fragments = [...main.querySelectorAll('a[href*="/fragments/"]')].filter((f) => !f.closest('.fragment'));
+    const fragments = [...main.querySelectorAll('a[href*="/fragments/"]')].filter(
+      (f) => !f.closest('.fragment'),
+    );
     if (fragments.length > 0) {
       // eslint-disable-next-line import/no-cycle
       import('../blocks/fragment/fragment.js').then(({ loadFragment }) => {
@@ -166,7 +173,9 @@ function decorateButtons(main) {
     // skip URL display links
     try {
       if (new URL(a.href).href === new URL(text, window.location).href) return;
-    } catch { /* continue */ }
+    } catch {
+      /* continue */
+    }
 
     // require authored formatting for buttonization
     const strong = a.closest('strong');
@@ -175,7 +184,8 @@ function decorateButtons(main) {
 
     p.className = 'button-wrapper';
     a.className = 'button';
-    if (strong && em) { // high-impact call-to-action
+    if (strong && em) {
+      // high-impact call-to-action
       a.classList.add('accent');
       const outer = strong.contains(em) ? strong : em;
       outer.replaceWith(a);
@@ -208,14 +218,19 @@ async function loadTheme() {
     return;
   }
 
-  const themes = theme.split(',').map((c) => c.trim()).filter(Boolean);
-  await Promise.all(themes.map(async (currentTheme) => {
-    try {
-      await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${currentTheme}.css`);
-    } catch (e) {
-      // ignore theme loading failures so page rendering is not blocked
-    }
-  }));
+  const themes = theme
+    .split(',')
+    .map((c) => c.trim())
+    .filter(Boolean);
+  await Promise.all(
+    themes.map(async (currentTheme) => {
+      try {
+        await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${currentTheme}.css`);
+      } catch (e) {
+        // ignore theme loading failures so page rendering is not blocked
+      }
+    }),
+  );
 }
 
 /**
@@ -231,11 +246,6 @@ async function loadEager(doc) {
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
-  }
-
-  if (/\.(stage-ue|ue)\.da\.live$/.test(window.location.hostname)) {
-    const { default: ue } = await import(`${window.hlx.codeBasePath}/ue/scripts/ue.js`);
-    ue();
   }
 
   try {
@@ -282,6 +292,12 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+}
+
+// UE Editor support before page load
+if (/\.(stage-ue|ue)\.da\.live$/.test(window.location.hostname)) {
+  // eslint-disable-next-line import/no-unresolved
+  await import(`${window.hlx.codeBasePath}/ue/scripts/ue.js`).then(({ default: ue }) => ue());
 }
 
 loadPage();

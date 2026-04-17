@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: 'airbnb-base',
+  extends: ['airbnb-base', 'prettier'],
   env: {
     browser: true,
   },
@@ -30,14 +30,7 @@ module.exports = {
       files: ['**/*.json'],
       plugins: ['jsonc'],
       parser: 'jsonc-eslint-parser',
-      extends: ['plugin:jsonc/recommended-with-json'],
-      rules: {
-        'jsonc/indent': ['error', 2],
-        'jsonc/array-bracket-spacing': ['error', 'never'],
-        'jsonc/comma-dangle': ['error', 'never'],
-        'jsonc/key-spacing': ['error', { beforeColon: false, afterColon: true }],
-        'jsonc/object-curly-spacing': ['error', 'always'],
-      },
+      extends: ['plugin:jsonc/recommended-with-json', 'prettier'],
     },
   ],
 };

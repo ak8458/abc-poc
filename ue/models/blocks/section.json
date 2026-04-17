@@ -21,9 +21,7 @@
           "component": "multiselect",
           "name": "style",
           "label": "Style",
-          "options": [
-            { "name": "Highlight", "value": "highlight" }
-          ]
+          "options": [{ "name": "Highlight", "value": "highlight" }]
         }
       ]
     }
@@ -36,9 +34,22 @@
     {
       "id": "section",
       "components": [
-        "accordion", "cards", "carousel", "columns", "embed",
-        "fragment", "form", "hero", "image", "quote", "search",
-        "tabs", "table", "text", "video", "product-recommendations"
+        "accordion",
+        "cards",
+        "carousel",
+        "columns",
+        "embed",
+        "fragment",
+        "form",
+        "hero",
+        "image",
+        "quote",
+        "search",
+        "tabs",
+        "table",
+        "text",
+        "video",
+        "product-recommendations"
       ]
     }
   ]
