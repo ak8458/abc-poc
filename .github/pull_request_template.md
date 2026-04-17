@@ -4,5 +4,5 @@ Fix #<gh-issue-id>
 
 Test URLs:
 
-- Before: https://main--{repo}--{owner}.aem.live/
-- After: https://<branch>--{repo}--{owner}.aem.live/
+- Before: https://main--abc-poc--ak8458.aem.live/
+- After: https://<branch>--abc-poc--ak8458.aem.live/
