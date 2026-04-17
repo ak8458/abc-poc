@@ -1,0 +1,61 @@
+{
+  "group": "sections",
+  "definitions": [
+    {
+      "title": "Section",
+      "id": "section",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div></div>"
+        }
+      },
+      "filter": "section",
+      "model": "section"
+    }
+  ],
+  "models": [
+    {
+      "id": "section",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "options": [
+            { "name": "Grey", "value": "grey" },
+            { "name": "Blue", "value": "blue" },
+            { "name": "Testimonial", "value": "testimonial" },
+            { "name": "Highlight", "value": "highlight" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "main",
+      "components": ["section"]
+    },
+    {
+      "id": "section",
+      "components": [
+        "accordion",
+        "cards",
+        "carousel",
+        "columns",
+        "embed",
+        "fragment",
+        "form",
+        "hero",
+        "image",
+        "quote",
+        "search",
+        "tabs",
+        "table",
+        "text",
+        "video",
+        "product-recommendations"
+      ]
+    }
+  ]
+}

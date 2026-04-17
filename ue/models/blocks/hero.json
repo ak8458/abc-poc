@@ -1,0 +1,49 @@
+{
+  "group": "blocks",
+  "definitions": [
+    {
+      "title": "Hero",
+      "id": "hero",
+      "model": "hero",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"hero\"><div><div><h1><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture>Hero Title</h1><p></p></div></div></div>",
+          "fields": [
+            { "name": "image", "selector": "div>div>h1>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div>div>h1>picture>img[alt]" },
+            { "name": "text", "selector": "div>div>h1" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "hero",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Alt",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Heading",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
