@@ -144,10 +144,10 @@
         "value": ""
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Text",
+        "label": "Heading",
         "valueType": "string"
       }
     ]
@@ -186,6 +186,18 @@
         "name": "style",
         "label": "Style",
         "options": [
+          {
+            "name": "Grey",
+            "value": "grey"
+          },
+          {
+            "name": "Blue",
+            "value": "blue"
+          },
+          {
+            "name": "Testimonial",
+            "value": "testimonial"
+          },
           {
             "name": "Highlight",
             "value": "highlight"

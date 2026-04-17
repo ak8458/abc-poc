@@ -7,10 +7,10 @@
       "model": "hero",
       "plugins": {
         "da": {
-          "unsafeHTML": "<div class=\"hero\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture><h1></h1></div></div></div>",
+          "unsafeHTML": "<div class=\"hero\"><div><div><h1><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture>Hero Title</h1><p></p></div></div></div>",
           "fields": [
-            { "name": "image", "selector": "div>div>picture>img[src]" },
-            { "name": "imageAlt", "selector": "div>div>picture>img[alt]" },
+            { "name": "image", "selector": "div>div>h1>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div>div>h1>picture>img[alt]" },
             { "name": "text", "selector": "div>div>h1" }
           ]
         }
@@ -36,10 +36,10 @@
           "value": ""
         },
         {
-          "component": "text",
+          "component": "richtext",
           "name": "text",
           "value": "",
-          "label": "Text",
+          "label": "Heading",
           "valueType": "string"
         }
       ]
