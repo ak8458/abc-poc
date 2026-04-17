@@ -233,6 +233,11 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
+  if (/\.(stage-ue|ue)\.da\.live$/.test(window.location.hostname)) {
+    const { default: ue } = await import(`${window.hlx.codeBasePath}/ue/scripts/ue.js`);
+    ue();
+  }
+
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
     if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
