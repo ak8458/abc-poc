@@ -250,6 +250,109 @@ body.careers .section.grey .embed {
   }
 }
 
+/* ── Careers theme: join-team section ── */
+body.careers .section.join-team {
+  background-color: var(--brand-dark);
+  margin: 0;
+  overflow: hidden;
+  height: 560px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- join-team selectors never match the same elements as columns-1-cols, testimonial, or 4-cols rules */
+body.careers .section.join-team > div {
+  max-width: var(--max-width-content);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Keep DOM order: text left, image right (base CSS uses order: 0 on img col) */
+body.careers .section.join-team .columns-img-col {
+  order: 2;
+}
+
+body.careers .section.join-team h2 {
+  margin-top: 0;
+  color: var(--background-color);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- join-team p never matches testimonial blockquote p */
+body.careers .section.join-team p {
+  color: var(--background-color);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- join-team p:has(a) never matches 4-cols p */
+body.careers .section.join-team p:has(a) {
+  margin-top: var(--spacing-lg);
+}
+
+/* Filled button for the plain Explore jobs link */
+body.careers .section.join-team a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: var(--border-width-thick) solid var(--link-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--link-color);
+  color: var(--background-color);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+body.careers .section.join-team a:hover {
+  background-color: var(--color-hover-light);
+  border-color: var(--color-hover-light);
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+/* Mobile: pad the text column */
+/* stylelint-disable-next-line no-descending-specificity -- join-team and data-border selectors never match the same element */
+body.careers .section.join-team .columns > div > div:not(.columns-img-col) {
+  padding: var(--spacing-xl) var(--spacing-xxs);
+}
+
+@media (width >= 900px) {
+  /* Propagate section height so the image column fills it */
+  body.careers .section.join-team .columns,
+  body.careers .section.join-team .columns > div {
+    height: 100%;
+  }
+
+  body.careers .section.join-team .columns > div {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  /* Flex container so picture can be vertically centred */
+  body.careers .section.join-team .columns-img-col {
+    display: flex;
+    align-items: center;
+    flex: 0 0 50%;
+    overflow: hidden;
+    padding: var(--spacing-md) 0;
+  }
+
+  body.careers .section.join-team .columns-img-col picture {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body.careers .section.join-team .columns-img-col img {
+    width: 95%;
+    height: auto;
+    display: block;
+  }
+
+  body.careers .section.join-team .columns > div > div:not(.columns-img-col) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl) 0;
+  }
+}
+
 /* ── Careers theme: icon card variant (3-col) ── */
 
 /* Higher specificity than above — must follow 1-col and 4-col rules */
