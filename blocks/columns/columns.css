@@ -510,3 +510,71 @@ body.careers .section.people-vision .cards .cards-card-body p {
     padding: var(--spacing-md);
   }
 }
+
+/* ── Careers theme: award-winning section ── */
+body.careers .section.award-winning {
+  background-color: var(--blue-12);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+body.careers .section.award-winning .columns > div > div:first-child h2 {
+  color: var(--dark-color);
+  font-size: var(--heading-font-size-xl, 45px);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+}
+
+body.careers .section.award-winning .columns > div > div:first-child p {
+  font-size: var(--body-font-size-m, 18px);
+  line-height: var(--line-height-paragraph);
+  margin: 0 0 var(--spacing-sm);
+}
+
+body.careers .section.award-winning a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xxs) var(--spacing-sm);
+  border: var(--border-width-thick) solid var(--dark-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+body.careers .section.award-winning a:hover {
+  background-color: var(--color-hover-light);
+  border-color: var(--color-hover-light);
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+body.careers .section.award-winning .columns > div > div + div p:first-child {
+  font-size: var(--award-winning-sub-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-paragraph);
+  margin: 0 0 var(--spacing-xxs);
+}
+
+body.careers .section.award-winning .columns > div > div + div p:last-child {
+  color: var(--dark-color);
+    font-family: var(--heading-font-family);
+  font-size: var(--award-winning-discription);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-heading);
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  body.careers .section.award-winning .columns-4-cols > div {
+    align-items: flex-start;
+  }
+
+  body.careers .section.award-winning .columns > div > div + div {
+    border-left: var(--border-width) solid var(--dark-color);
+    padding-left: var(--spacing-md);
+  }
+}

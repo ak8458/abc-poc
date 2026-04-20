@@ -86,6 +86,10 @@ body {
   /* typography */
   --font-size-lead: 24px;
 
+  /* award-winning */
+  --award-winning-sub-title: 25.5px;
+  --award-winning-discription: 40px;
+
   /* people-vision */
   --people-vision-h2-size: 36px;
   --people-vision-h2-size-lg: 45px;
