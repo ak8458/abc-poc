@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: 'airbnb-base',
+  extends: ['airbnb-base', 'prettier'],
   env: {
     browser: true,
   },
@@ -15,4 +15,22 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
   },
+  overrides: [
+    {
+      // Node.js build script — CommonJS, no browser globals
+      files: ['ue/build-json.js'],
+      env: { node: true, browser: false },
+      parserOptions: { sourceType: 'script' },
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
+      // JSON files — syntax validation + consistent formatting
+      files: ['**/*.json'],
+      plugins: ['jsonc'],
+      parser: 'jsonc-eslint-parser',
+      extends: ['plugin:jsonc/recommended-with-json', 'prettier'],
+    },
+  ],
 };

@@ -5,73 +5,73 @@
  * To add more themes, add new files in this directory, e.g. `styles/themes/your-theme.css`
  */
 body {
-    /* colors */
-    --background-color: #fff;
-    --light-color: #f6f7f8;
-    --dark-color: #002638;
-    --text-color: #002638;
-    --link-color: #0075ab;
-    --link-hover-color: #005a84;
-    --blue-12: #e0f5fd;
+  /* colors */
+  --background-color: #fff;
+  --light-color: #f6f7f8;
+  --dark-color: #002638;
+  --text-color: #002638;
+  --link-color: #0075ab;
+  --link-hover-color: #005a84;
+  --blue-12: #e0f5fd;
 
-    /* hero */
-    --hero-picture-height: 250px;
-    --hero-min-height-sm: 500px;
-    --hero-min-height-md: 600px;
-    --hero-min-height-lg: 700px;
-    --hero-image-width: 58.4%;
-    --hero-content-width: 41.6%;
-    --hero-content-indent: 190px;
-    --hero-h1-size: 2rem;
-    --hero-h1-size-sm: 3rem;
-    --hero-h1-size-md: 4rem;
-    --hero-h1-size-lg: 90px;
-    --hero-h1-weight: var(--font-weight-medium);
-    --hero-h1-line-height: 0.9;
-    --hero-h1-margin-bottom: var(--spacing-sm);
-    --hero-p-font-size: 18px;
-    --hero-p-margin-bottom: var(--spacing-md);
-    --hero-btn-padding: var(--spacing-xs) var(--spacing-md);
-    --hero-btn-font-size: 1.125rem;
-    --hero-gradient: linear-gradient(
-      90deg,
-      rgb(255 255 255 / 80%) 8%,
-      rgb(255 255 255 / 60%) 8%,
-      rgb(255 255 255 / 60%) 16%,
-      rgb(255 255 255 / 30%) 16%,
-      rgb(255 255 255 / 30%) 24%,
-      transparent 24%
-    );
+  /* hero */
+  --hero-picture-height: 250px;
+  --hero-min-height-sm: 500px;
+  --hero-min-height-md: 600px;
+  --hero-min-height-lg: 700px;
+  --hero-image-width: 58.4%;
+  --hero-content-width: 41.6%;
+  --hero-content-indent: 190px;
+  --hero-h1-size: 2rem;
+  --hero-h1-size-sm: 3rem;
+  --hero-h1-size-md: 4rem;
+  --hero-h1-size-lg: 90px;
+  --hero-h1-weight: var(--font-weight-medium);
+  --hero-h1-line-height: 0.9;
+  --hero-h1-margin-bottom: var(--spacing-sm);
+  --hero-p-font-size: 18px;
+  --hero-p-margin-bottom: var(--spacing-md);
+  --hero-btn-padding: var(--spacing-xs) var(--spacing-md);
+  --hero-btn-font-size: 1.125rem;
+  --hero-gradient: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 80%) 8%,
+    rgb(255 255 255 / 60%) 8%,
+    rgb(255 255 255 / 60%) 16%,
+    rgb(255 255 255 / 30%) 16%,
+    rgb(255 255 255 / 30%) 24%,
+    transparent 24%
+  );
 
-    /* accordion */
-    --accordion-font-size: 18px;
-    --accordion-content-max-width: var(--content-max-width);
-    --accordion-content-padding: var(--spacing-xs) var(--spacing-sm);
+  /* accordion */
+  --accordion-font-size: 18px;
+  --accordion-content-max-width: var(--content-max-width);
+  --accordion-content-padding: var(--spacing-xs) var(--spacing-sm);
 
-    /* cards */
-    --card-h3-size: 28px;
-    --card-h3-size-lg: 34px;
-    --card-p-size: 18px;
-    --card-p-size-lg: 20px;
-    --card-grid-gap: var(--spacing-md);
-    --card-list-col-gap: var(--spacing-lg);
+  /* cards */
+  --card-h3-size: 28px;
+  --card-h3-size-lg: 34px;
+  --card-p-size: 18px;
+  --card-p-size-lg: 20px;
+  --card-grid-gap: var(--spacing-md);
+  --card-list-col-gap: var(--spacing-lg);
 
-    /* columns / icon cards */
-    --content-max-width: 800px;
-    --icon-card-padding: var(--spacing-md);
-    --icon-card-icon-size: 96px;
-    --icon-card-h3-size: 36px;
-    --icon-card-row-gap: var(--spacing-md);
-    --single-column-bottom-gap: 30px;
+  /* columns / icon cards */
+  --content-max-width: 800px;
+  --icon-card-padding: var(--spacing-md);
+  --icon-card-icon-size: 96px;
+  --icon-card-h3-size: 36px;
+  --icon-card-row-gap: var(--spacing-md);
+  --single-column-bottom-gap: 30px;
 
-    /* sections */
-    --section-padding: var(--spacing-lg) 0;
-    --section-padding-lg: var(--spacing-xl) 0;
+  /* sections */
+  --section-padding: var(--spacing-lg) 0;
+  --section-padding-lg: var(--spacing-xl) 0;
 
-    /* line heights */
-    --line-height-list: 1.7;
-    --line-height-display: 2rem;
+  /* line heights */
+  --line-height-list: 1.7;
+  --line-height-display: 2rem;
 
-    /* typography */
-    --font-size-lead: 1.333rem;
+  /* typography */
+  --font-size-lead: 1.333rem;
 }

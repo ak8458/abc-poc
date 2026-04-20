@@ -14,6 +14,7 @@ npm run lint:fix                                                   # auto-fix li
 ```
 
 Dev server at `http://localhost:3000`. Use `--html-folder drafts` to serve local test HTML:
+
 ```bash
 npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts
 ```
@@ -23,10 +24,13 @@ npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts
 This site has diverged from the boilerplate baseline in these ways:
 
 ### Themes system (`styles/themes/`)
+
 Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` loads the matching CSS file. One themes exist: `careers.css`. Theme CSS overrides `:root` CSS custom properties and can target `body.{theme}` for block-level overrides (e.g. `body.careers .hero`).
 
 ### Button decoration (`scripts.js:decorateButtons`)
+
 This project uses a **custom** `decorateButtons` — not the boilerplate version. Links are only promoted to buttons when wrapped in `**strong**` or `*em*` formatting:
+
 - `**bold link**` → `.button.primary`
 - `*italic link*` → `.button.secondary`
 - `***bold+italic link***` → `.button.accent` (high-impact CTA)
@@ -34,12 +38,15 @@ This project uses a **custom** `decorateButtons` — not the boilerplate version
 Plain links are never auto-buttonized.
 
 ### Hero block (`blocks/hero/`)
+
 Auto-blocked via `buildHeroBlock()` in `scripts.js` when a `<picture>` precedes an `<h1>`. The block separates the picture (full-bleed background, `position: absolute`) from text content (`.hero-content`). The `careers` theme overrides this with a split-screen layout (image right 58.4%, text left 41.6% with a gradient bleed).
 
 ### Columns block (`blocks/columns/`)
+
 Detects a **card pattern** automatically: if every column in every row starts with an image `<p>` and has additional content, it adds `.columns-cards` and restructures into `.columns-card-image`, `.columns-card-body`, `.columns-card-action` divs. No author opt-in required.
 
 ### Fragment auto-blocking (`scripts.js:buildAutoBlocks`)
+
 Links matching `/fragments/` are auto-replaced inline with the fragment content — authors don't need to use an explicit Fragment block.
 
 ## CSS Conventions

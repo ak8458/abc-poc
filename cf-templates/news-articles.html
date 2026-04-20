@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>{{data.title}}</title>
@@ -10,8 +10,7 @@
         <h1>{{data.title}}</h1>
         {{#data.releaseType}}
         <p><strong>{{data.releaseType}}</strong></p>
-        {{/data.releaseType}}
-        {{#data.publishDate}}
+        {{/data.releaseType}} {{#data.publishDate}}
         <p><time datetime="{{data.publishDate}}">{{data.publishDate}}</time></p>
         {{/data.publishDate}}
       </div>

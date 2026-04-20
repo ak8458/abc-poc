@@ -1,0 +1,50 @@
+{
+  "group": "default",
+  "definitions": [
+    {
+      "title": "Text",
+      "id": "text",
+      "model": "text",
+      "plugins": {
+        "da": {
+          "name": "text",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "title": "Image",
+      "id": "image",
+      "model": "image",
+      "plugins": {
+        "da": {
+          "name": "image",
+          "type": "image",
+          "fields": [
+            { "name": "image", "selector": "img[src]" },
+            { "name": "imageAlt", "selector": "img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "text",
+      "fields": []
+    },
+    {
+      "id": "image",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        { "component": "text", "name": "imageAlt", "label": "Alt Text" }
+      ]
+    }
+  ],
+  "filters": []
+}
