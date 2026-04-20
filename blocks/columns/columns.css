@@ -440,3 +440,62 @@ body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p
     padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
   }
 }
+
+/* ── Careers theme: people-vision section ── */
+body.careers .section.people-vision {
+  background-color: var(--blue-12);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+body.careers .section.people-vision .default-content-wrapper h2 {
+  color: var(--dark-color);
+  font-size: var(--people-vision-h2-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+}
+
+body.careers .section.people-vision .default-content-wrapper p {
+  font-size: var(--body-font-size-m, 18px);
+  line-height: var(--line-height-body);
+  margin: 0 0 var(--spacing-md);
+  max-width: var(--people-vision-p-max-width);
+}
+
+body.careers .section.people-vision .cards > ul {
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+body.careers .section.people-vision .cards > ul > li {
+  background-color: var(--background-color);
+  border-radius: var(--people-vision-card-radius);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-card);
+}
+
+body.careers .section.people-vision .cards .cards-card-body h3 {
+  font-size: var(--people-vision-card-h3-size);
+  font-weight: var(--font-weight-medium);
+  border-bottom: none;
+  padding: 0 0 var(--spacing-xs);
+}
+
+body.careers .section.people-vision .cards .cards-card-body p {
+  font-size: var(--body-font-size-m, 18px);
+  padding: 0;
+  color: var(--text-color);
+  max-width: var(--content-max-width);
+}
+
+@media (width >= 900px) {
+  body.careers .section.people-vision .default-content-wrapper h2 {
+    font-size: var(--people-vision-h2-size-lg);
+  }
+
+  body.careers .section.people-vision .cards > ul > li {
+    display: block;
+    padding: var(--spacing-md);
+  }
+}
