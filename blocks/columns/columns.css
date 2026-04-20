@@ -535,11 +535,12 @@ body.careers .section.award-winning .columns > div > div:first-child p {
 body.careers .section.award-winning a:any-link {
   display: inline-flex;
   align-items: center;
-  padding: var(--spacing-xxs) var(--spacing-sm);
+  padding: var(--award-winning-btn-padding);
   border: var(--border-width-thick) solid var(--dark-color);
   border-radius: var(--radius-lg);
   background-color: var(--dark-color);
   color: var(--background-color);
+  font-size: var(--award-winning-btn-font-size);
   font-weight: var(--font-weight-bold);
   text-decoration: none;
   transition: background-color var(--transition-speed), color var(--transition-speed);
@@ -556,7 +557,7 @@ body.careers .section.award-winning .columns > div > div + div p:first-child {
   font-size: var(--award-winning-sub-title);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-paragraph);
-  margin: 0 0 var(--spacing-xxs);
+  margin: 0 0 var(--spacing-sm);
 }
 
 body.careers .section.award-winning .columns > div > div + div p:last-child {
@@ -570,11 +571,26 @@ body.careers .section.award-winning .columns > div > div + div p:last-child {
 
 @media (width >= 900px) {
   body.careers .section.award-winning .columns-4-cols > div {
-    align-items: flex-start;
+    align-items: stretch;
   }
 
+  body.careers .section.award-winning .columns > div > div:first-child {
+    flex: 0 0 var(--award-winning-col1-width);
+  }
+
+  body.careers .section.award-winning .columns > div > div:first-child h2 {
+    width: var(--award-winning-col1-h2-width);
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity -- div+div never matches :first-child */
   body.careers .section.award-winning .columns > div > div + div {
-    border-left: var(--border-width) solid var(--dark-color);
+    flex: 0 0 var(--award-winning-col-width);
     padding-left: var(--spacing-md);
+    text-align: center;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity -- div+div+div never matches :first-child */
+  body.careers .section.award-winning .columns > div > div + div + div {
+    border-left: var(--border-width-thick) solid var(--link-color);
   }
 }

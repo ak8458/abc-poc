@@ -60,7 +60,7 @@ body {
   --content-max-width: 800px;
   --icon-card-padding: var(--spacing-md);
   --icon-card-icon-size: 96px;
-  --icon-card-h3-size: 36px;
+  --icon-card-h3-size: var(--heading-font-size-l);
   --icon-card-row-gap: var(--spacing-md);
   --single-column-bottom-gap: 30px;
 
@@ -89,13 +89,18 @@ body {
   /* award-winning */
   --award-winning-sub-title: 25.5px;
   --award-winning-discription: 40px;
+  --award-winning-col1-width: 550px;
+  --award-winning-col1-h2-width: 480px;
+  --award-winning-col-width: 226px;
+  --award-winning-btn-font-size: 18px;
+  --award-winning-btn-padding: var(--spacing-xs) var(--spacing-md);
 
   /* people-vision */
-  --people-vision-h2-size: 36px;
+  --people-vision-h2-size: var(--heading-font-size-l);
   --people-vision-h2-size-lg: 45px;
   --people-vision-p-max-width: 565px;
   --people-vision-card-radius: 8px;
-  --people-vision-card-h3-size: 36px;
+  --people-vision-card-h3-size: var(--heading-font-size-l);
 
   /* shadows */
   --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);
