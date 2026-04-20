@@ -215,6 +215,7 @@ body.careers .columns.columns-1-cols > div > div p {
 body.careers .columns.columns-1-cols > div > div h2 {
   margin-top: 0;
 }
+
 /* 1-col adjacent paragraph — specificity (0,3,5) */
 body.careers .columns.columns-1-cols > div > div p + p {
   margin-top: var(--spacing-xs);
@@ -274,6 +275,7 @@ body.careers .section.join-team .columns-img-col {
   order: 2;
 }
 
+/* stylelint-disable-next-line no-descending-specificity -- join-team h2 never matches columns-1-cols h2 */
 body.careers .section.join-team h2 {
   margin-top: 0;
   color: var(--background-color);
