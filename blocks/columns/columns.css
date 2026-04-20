@@ -208,10 +208,13 @@ body.careers .columns.columns-4-cols > div > div p {
 /* 1-col paragraph — specificity (0,3,4) */
 body.careers .columns.columns-1-cols > div > div p {
   font-size: var(--font-size-lead);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   line-height: var(--line-height-display);
 }
 
+body.careers .columns.columns-1-cols > div > div h2 {
+  margin-top: 0;
+}
 /* 1-col adjacent paragraph — specificity (0,3,5) */
 body.careers .columns.columns-1-cols > div > div p + p {
   margin-top: var(--spacing-xs);
@@ -396,6 +399,10 @@ body.careers .section.testimonial {
   overflow: hidden;
 }
 
+body.careers .section.people-vision + .section.testimonial {
+  background: linear-gradient(to bottom, var(--blue-12) 18%, transparent 18%);
+}
+
 /* Reset browser default blockquote styles */
 body.careers .section.testimonial blockquote {
   margin: 0;
@@ -456,6 +463,7 @@ body.careers .section.people-vision .default-content-wrapper h2 {
   margin: 0 0 var(--spacing-xs);
 }
 
+/* stylelint-disable-next-line no-descending-specificity -- people-vision p never matches 3-cols p:first-child */
 body.careers .section.people-vision .default-content-wrapper p {
   font-size: var(--body-font-size-m, 18px);
   line-height: var(--line-height-body);
@@ -482,6 +490,7 @@ body.careers .section.people-vision .cards .cards-card-body h3 {
   padding: 0 0 var(--spacing-xs);
 }
 
+/* stylelint-disable-next-line no-descending-specificity -- people-vision card p never matches 3-cols p:first-child */
 body.careers .section.people-vision .cards .cards-card-body p {
   font-size: var(--body-font-size-m, 18px);
   padding: 0;

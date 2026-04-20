@@ -81,10 +81,10 @@ body {
 
   /* line heights */
   --line-height-list: 1.7;
-  --line-height-display: 2rem;
+  --line-height-display: 1.5;
 
   /* typography */
-  --font-size-lead: 1.333rem;
+  --font-size-lead: 24px;
 
   /* people-vision */
   --people-vision-h2-size: 36px;
