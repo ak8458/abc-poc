@@ -225,7 +225,7 @@
                 },
                 {
                   "name": "text",
-                  "selector": "div>div>h1"
+                  "selector": "div>div"
                 }
               ]
             }
