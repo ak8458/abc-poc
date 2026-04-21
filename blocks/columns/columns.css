@@ -652,4 +652,70 @@ body.careers .section.support-your-career .columns > div > div p:last-child {
     font-family: var(--body-font-family);
     font-size: var(--card-h3-size-xl);
   }
+
+  body.careers .section.bottom-photo .columns-img-col {
+    flex: 0 0 48%;
+  }
+
+  body.careers .section.bottom-photo .columns > div {
+    gap: var(--spacing-lg);
+    padding: 0 10px;
+  }
+
+  body.careers .section.bottom-photo .columns > div > div {
+    padding-right: 4px;
+  }
+
+  body.careers .section.bottom-photo .columns > div > div h2 {
+    margin-top: 0;
+  }
+}
+
+/* ── Careers theme: bottom-photo section ── */
+body.careers .section.bottom-photo {
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+/* ── Careers theme: your-wellbeing section ── */
+body.careers .section.your-wellbeing {
+  background-color: var(--brand-grey);
+  padding: var(--spacing-xl) 0;
+  margin: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- your-wellbeing div never matches testimonial div:not(.columns-img-col) */
+body.careers .section.your-wellbeing .columns > div > div {
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- your-wellbeing p never matches award-winning or support-your-career p:first-child/last-child */
+body.careers .section.your-wellbeing .columns > div > div p {
+  font-size: var(--body-font-size-m, 18px);
+  line-height: var(--line-height-paragraph);
+}
+
+body.careers .section.your-wellbeing .columns > div > div p a {
+    font-weight: var(--font-weight-bold);
+}
+
+@media (width >= 900px) {
+  body.careers .section.your-wellbeing {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    height: var(--your-wellbeing-height);
+    padding: var(--spacing-lg) 0;
+    box-sizing: border-box;
+  }
+
+  body.careers .section.your-wellbeing > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 var(--your-wellbeing-block-width);
+  }
 }

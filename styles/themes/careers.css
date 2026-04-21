@@ -97,6 +97,10 @@ body {
   --award-winning-btn-font-size: 18px;
   --award-winning-btn-padding: var(--spacing-xs) var(--spacing-md);
 
+  /* your-wellbeing */
+  --your-wellbeing-height: 472px;
+  --your-wellbeing-block-width: 672px;
+
   /* support-your-career */
   --support-career-p-max-width: 650px;
 

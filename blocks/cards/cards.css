@@ -79,6 +79,10 @@ body.careers .cards .cards-card-body ul li {
   padding: 0;
 }
 
+body.careers .cards .cards-card-body ul li a {
+  font-weight: var(--font-weight-bold);
+}
+
 @media (width >= 900px) {
   body.careers .cards > ul > li {
     display: grid;
