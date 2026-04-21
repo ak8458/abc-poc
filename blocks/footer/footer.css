@@ -60,7 +60,7 @@ footer .footer > div {
 }
 
 .footer-privacy p {
-  font-size: var(--body-font-size-xs, 14px);
+  font-size: var(--body-font-size-s, 16px);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-xxs);
 }
@@ -68,12 +68,13 @@ footer .footer > div {
 .footer-privacy a {
   color: var(--link-color);
   text-decoration: underline;
+  font-weight: var(--font-weight-bold);
 }
 
 /* ── Land Acknowledgement ── */
 
 .footer-land-ack p {
-  font-size: var(--body-font-size-s, 16px);
+  font-size: var(--body-font-size-m, 18px);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-xs);
 }

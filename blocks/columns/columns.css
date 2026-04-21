@@ -652,7 +652,15 @@ body.careers .section.support-your-career .columns > div > div p:last-child {
     font-family: var(--body-font-family);
     font-size: var(--card-h3-size-xl);
   }
+}
 
+/* ── Careers theme: bottom-photo section ── */
+body.careers .section.bottom-photo {
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+@media (width >= 900px) {
   body.careers .section.bottom-photo .columns-img-col {
     flex: 0 0 48%;
   }
@@ -669,12 +677,10 @@ body.careers .section.support-your-career .columns > div > div p:last-child {
   body.careers .section.bottom-photo .columns > div > div h2 {
     margin-top: 0;
   }
-}
 
-/* ── Careers theme: bottom-photo section ── */
-body.careers .section.bottom-photo {
-  padding: var(--section-padding);
-  margin: 0;
+  body.careers .section.bottom-photo .columns > div > div a {
+    font-weight: var(--font-weight-bold);
+  }
 }
 
 /* ── Careers theme: your-wellbeing section ── */
@@ -698,7 +704,7 @@ body.careers .section.your-wellbeing .columns > div > div p {
 }
 
 body.careers .section.your-wellbeing .columns > div > div p a {
-    font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 @media (width >= 900px) {
