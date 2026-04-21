@@ -529,7 +529,7 @@ body.careers .section.award-winning .columns > div > div:first-child h2 {
 body.careers .section.award-winning .columns > div > div:first-child p {
   font-size: var(--body-font-size-m, 18px);
   line-height: var(--line-height-paragraph);
-  margin: 0 0 var(--spacing-sm);
+  margin: 0 0 var(--spacing-lg);
 }
 
 body.careers .section.award-winning a:any-link {
@@ -554,7 +554,8 @@ body.careers .section.award-winning a:hover {
 }
 
 body.careers .section.award-winning .columns > div > div + div p:first-child {
-  font-size: var(--award-winning-sub-title);
+  font-family: var(--body-font-family);
+  font-size: var(--award-winning-subtitle);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-sm);
@@ -562,10 +563,10 @@ body.careers .section.award-winning .columns > div > div + div p:first-child {
 
 body.careers .section.award-winning .columns > div > div + div p:last-child {
   color: var(--dark-color);
-    font-family: var(--heading-font-family);
-  font-size: var(--award-winning-discription);
+  font-family: var(--heading-font-family);
+  font-size: var(--award-winning-description);
   font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-heading);
+  line-height: var(--line-height-award-description);
   margin: 0;
 }
 
@@ -592,5 +593,63 @@ body.careers .section.award-winning .columns > div > div + div p:last-child {
   /* stylelint-disable-next-line no-descending-specificity -- div+div+div never matches :first-child */
   body.careers .section.award-winning .columns > div > div + div + div {
     border-left: var(--border-width-thick) solid var(--link-color);
+  }
+}
+
+/* ── Careers theme: support-your-career section ── */
+/* stylelint-disable-next-line no-descending-specificity -- support-your-career intro p never matches 3-cols p:first-child */
+body.careers .section.support-your-career .default-content-wrapper p {
+  font-size: var(--body-font-size-m, 18px);
+  line-height: var(--line-height-paragraph);
+  max-width: var(--support-career-p-max-width);
+  margin: 0 0 var(--spacing-xs);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- support-your-career div never matches testimonial div:not(.columns-img-col) */
+body.careers .section.support-your-career .columns > div > div {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-accent) solid var(--card-accent-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-sm);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- support-your-career h3 never matches people-vision cards-card-body h3 */
+body.careers .section.support-your-career .columns > div > div h3 {
+  color: var(--dark-color);
+  font-size: var(--card-h3-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- support-your-career card p never matches 3-cols p:first-child */
+body.careers .section.support-your-career .columns > div > div p {
+  font-size: var(--card-p-size);
+  line-height: var(--line-height-paragraph);
+  margin: 0;
+}
+
+body.careers .section.support-your-career .columns > div > div p a {
+  font-weight: var(--font-weight-bold);
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- p:last-child never matches award-winning p:first-child */
+body.careers .section.support-your-career .columns > div > div p:last-child {
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+}
+
+@media (width >= 900px) {
+  body.careers .section.support-your-career .columns-2-cols > div {
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  body.careers .section.support-your-career .columns > div > div h3 {
+    font-family: var(--body-font-family);
+    font-size: var(--card-h3-size-xl);
   }
 }

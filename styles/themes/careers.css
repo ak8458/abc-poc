@@ -51,6 +51,7 @@ body {
   /* cards */
   --card-h3-size: 28px;
   --card-h3-size-lg: 34px;
+  --card-h3-size-xl: 36px;
   --card-p-size: 18px;
   --card-p-size-lg: 20px;
   --card-grid-gap: var(--spacing-md);
@@ -87,13 +88,17 @@ body {
   --font-size-lead: 24px;
 
   /* award-winning */
-  --award-winning-sub-title: 25.5px;
-  --award-winning-discription: 40px;
+  --award-winning-subtitle: 1.25rem;
+  --award-winning-description: 40px;
+  --line-height-award-description: 1.4;
   --award-winning-col1-width: 550px;
   --award-winning-col1-h2-width: 480px;
   --award-winning-col-width: 226px;
   --award-winning-btn-font-size: 18px;
   --award-winning-btn-padding: var(--spacing-xs) var(--spacing-md);
+
+  /* support-your-career */
+  --support-career-p-max-width: 650px;
 
   /* people-vision */
   --people-vision-h2-size: var(--heading-font-size-l);
