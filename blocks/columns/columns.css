@@ -725,3 +725,79 @@ body.careers .section.your-wellbeing .columns > div > div p a {
     flex: 0 0 var(--your-wellbeing-block-width);
   }
 }
+
+/* ── Careers theme: our-teams section ── */
+body.careers .section.our-teams {
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+body.careers .section.our-teams .default-content-wrapper h3 {
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--font-weight-medium);
+  margin-top: 36px;
+  margin-bottom: var(--spacing-xs);
+}
+
+body.careers .section.our-teams .columns > div + div {
+  margin-top: var(--icon-card-row-gap);
+}
+
+body.careers .section.our-teams .columns > div > div:empty {
+  display: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- our-teams card never matches testimonial div:not(.columns-img-col) or support-your-career div */
+body.careers .section.our-teams .columns > div > div {
+  display: grid;
+  grid-template-columns: var(--icon-card-icon-size) 1fr;
+  gap: 0 var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background-color: var(--background-color);
+  border: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-accent) solid var(--card-accent-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* Icon container (h3 in row 1, p in rows 2–5) */
+body.careers .section.our-teams .columns > div > div > :first-child {
+  grid-row: 1 / 3;
+  margin: 0;
+}
+
+body.careers .section.our-teams .columns > div > div img {
+  width: var(--icon-card-icon-size);
+  height: var(--icon-card-icon-size);
+  object-fit: contain;
+  display: block;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- our-teams title h3 never matches 3-cols h3 or 4-cols h3 */
+body.careers .section.our-teams .columns > div > div > h3:not(:first-child) {
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-color);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xxs);
+  align-self: end;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- our-teams desc p never matches award-winning or support-your-career p */
+body.careers .section.our-teams .columns > div > div > p:not(:first-child) {
+  font-size: var(--body-font-size-m);
+  line-height: var(--line-height-paragraph);
+  margin: 0;
+  align-self: start;
+}
+
+@media (width >= 900px) {
+  body.careers .section.our-teams .columns > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    align-items: stretch;
+  }
+}
