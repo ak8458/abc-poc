@@ -683,6 +683,14 @@ body.careers .section.bottom-photo {
   }
 }
 
+/* ── Careers theme: culture-cards section ── */
+body.careers .section.culture-cards,
+body.careers .section:has(+ .section.culture-cards) {
+  background-color: var(--footer-bg-color);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
 /* ── Careers theme: your-wellbeing section ── */
 body.careers .section.your-wellbeing {
   background-color: var(--brand-grey);
