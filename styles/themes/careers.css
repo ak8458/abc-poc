@@ -111,6 +111,14 @@ body {
   --people-vision-card-radius: 8px;
   --people-vision-card-h3-size: var(--heading-font-size-l);
 
+  /* our-teams */
+  --our-teams-heading-font: var(--body-font-family);
+  --our-teams-heading-size: var(--heading-font-size-l);
+  --our-teams-heading-weight: var(--font-weight-medium);
+  --our-teams-card-title-size: var(--heading-font-size-m);
+  --our-teams-card-title-weight: var(--font-weight-bold);
+  --our-teams-card-desc-size: var(--body-font-size-m);
+
   /* shadows */
   --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);
   --shadow-nav: 0 3px 3px rgb(0 0 0 / 16%);
