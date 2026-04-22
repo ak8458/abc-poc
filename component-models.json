@@ -147,7 +147,7 @@
         "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Heading",
+        "label": "Text",
         "valueType": "string"
       }
     ]

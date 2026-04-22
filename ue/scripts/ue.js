@@ -10,12 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-// eslint-disable-next-line import/no-unresolved
-import { showSlide } from '../../blocks/carousel/carousel.js';
 import { moveInstrumentation } from './ue-utils.js';
 
 const setupObservers = () => {
-  const mutatingBlocks = document.querySelectorAll('div.cards, div.carousel, div.accordion');
+  const mutatingBlocks = document.querySelectorAll('div.cards, div.accordion');
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' && mutation.target.tagName === 'DIV') {
@@ -69,27 +67,6 @@ const setupObservers = () => {
               );
             }
             break;
-          case 'carousel':
-            if (
-              removedElements.length === 1 &&
-              removedElements[0].attributes['data-aue-component']?.value === 'carousel-item'
-            ) {
-              const resourceAttr = removedElements[0].getAttribute('data-aue-resource');
-              if (resourceAttr) {
-                const itemMatch = resourceAttr.match(/item-(\d+)/);
-                if (itemMatch && itemMatch[1]) {
-                  const slideIndex = parseInt(itemMatch[1], 10);
-                  const slides = mutation.target.querySelectorAll('li.carousel-slide');
-                  const targetSlide = Array.from(slides).find(
-                    (slide) => parseInt(slide.getAttribute('data-slide-index'), 10) === slideIndex,
-                  );
-                  if (targetSlide) {
-                    moveInstrumentation(removedElements[0], targetSlide);
-                  }
-                }
-              }
-            }
-            break;
           default:
             break;
         }
@@ -129,7 +106,6 @@ const setupUEEventHandlers = () => {
         element?.closest('.block[data-aue-resource]');
       if (blockEl) {
         const block = blockEl.getAttribute('data-aue-component');
-        const index = element.getAttribute('data-slide-index');
 
         switch (block) {
           case 'accordion':
@@ -137,29 +113,6 @@ const setupUEEventHandlers = () => {
               details.open = false;
             });
             element.open = true;
-            break;
-          case 'carousel':
-            if (index) {
-              showSlide(blockEl, index);
-            }
-            break;
-          case 'tabs':
-            if (element === block) {
-              return;
-            }
-            blockEl.querySelectorAll('[role=tabpanel]').forEach((panel) => {
-              panel.setAttribute('aria-hidden', true);
-            });
-            element.setAttribute('aria-hidden', false);
-            blockEl
-              .querySelector('.tabs-list')
-              .querySelectorAll('button')
-              .forEach((btn) => {
-                btn.setAttribute('aria-selected', false);
-              });
-            blockEl
-              .querySelector(`[aria-controls=${element?.id}]`)
-              .setAttribute('aria-selected', true);
             break;
           default:
             break;

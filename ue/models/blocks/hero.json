@@ -11,7 +11,7 @@
           "fields": [
             { "name": "image", "selector": "div>div>h1>picture>img[src]" },
             { "name": "imageAlt", "selector": "div>div>h1>picture>img[alt]" },
-            { "name": "text", "selector": "div>div>h1" }
+            { "name": "text", "selector": "div>div" }
           ]
         }
       }
@@ -39,7 +39,7 @@
           "component": "richtext",
           "name": "text",
           "value": "",
-          "label": "Heading",
+          "label": "Text",
           "valueType": "string"
         }
       ]
