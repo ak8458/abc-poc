@@ -111,6 +111,12 @@ body {
   --people-vision-card-radius: 8px;
   --people-vision-card-h3-size: var(--heading-font-size-l);
 
+  /* how-hire */
+  --how-hire-heading-size: 45px;
+  --how-hire-step-title-size: var(--heading-font-size-l);
+  --how-hire-step-title-height: 43px;
+  --how-hire-cards-max-width: 923px;
+
   /* our-teams */
   --our-teams-heading-font: var(--body-font-family);
   --our-teams-heading-size: var(--heading-font-size-l);
