@@ -46,7 +46,8 @@ function buildJson() {
     console.log(`  wrote ${name}`);
   };
 
-  write('component-definitions.json', definitions);
+  write('component-definition.json', definitions); // currently singular for some reason
+  write('component-definitions.json', definitions); // should be plural per documentation
   write('component-models.json', models);
   write('component-filters.json', filters);
 
