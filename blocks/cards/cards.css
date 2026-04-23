@@ -56,7 +56,7 @@ body.careers .cards .cards-card-body h3 {
 
 body.careers .cards .cards-card-body p {
   color: var(--color-muted);
-  font-size: var(--card-p-size);
+  font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-paragraph);
   margin: 0;
@@ -65,15 +65,15 @@ body.careers .cards .cards-card-body p {
 
 body.careers .cards .cards-card-body ul {
   list-style: disc;
-  padding: var(--spacing-sm) 0 var(--spacing-sm) 20px;
+  padding: var(--spacing-sm) 0 var(--spacing-sm) var(--card-list-indent);
   margin: 0;
   color: var(--text-color);
-  font-size: var(--body-font-size-s, 16px);
+  font-size: var(--body-font-size-s);
   line-height: var(--line-height-list);
 }
 
 body.careers .cards .cards-card-body ul li {
-  margin-bottom: 4px;
+  margin-bottom: var(--card-list-item-gap);
   border: none;
   background: none;
   padding: 0;

@@ -29,8 +29,9 @@ body {
   --hero-h1-weight: var(--font-weight-medium);
   --hero-h1-line-height: 0.9;
   --hero-h1-margin-bottom: var(--spacing-sm);
-  --hero-p-font-size: 18px;
+  --hero-h1-padding-end: 10px;
   --hero-p-margin-bottom: var(--spacing-md);
+  --hero-p-last-margin-top: 20px;
   --hero-btn-padding: var(--spacing-xs) var(--spacing-md);
   --hero-gradient: linear-gradient(
     90deg,
@@ -50,11 +51,11 @@ body {
   /* cards */
   --card-h3-size: 28px;
   --card-h3-size-lg: 34px;
-  --card-h3-size-xl: 36px;
-  --card-p-size: 18px;
   --card-p-size-lg: 20px;
   --card-grid-gap: var(--spacing-md);
   --card-list-col-gap: var(--spacing-lg);
+  --card-list-indent: 20px;
+  --card-list-item-gap: 4px;
 
   /* columns / icon cards */
   --content-max-width: 800px;
@@ -115,6 +116,9 @@ body {
   --how-hire-step-title-size: var(--heading-font-size-l);
   --how-hire-step-title-height: 43px;
   --how-hire-cards-max-width: 923px;
+  --how-hire-blockquote-left: 26px;
+  --how-hire-lightbulb-width: 18px;
+  --how-hire-lightbulb-height: 24px;
 
   /* our-teams */
   --our-teams-heading-font: var(--body-font-family);
@@ -123,6 +127,21 @@ body {
   --our-teams-card-title-size: var(--heading-font-size-m);
   --our-teams-card-title-weight: var(--font-weight-bold);
   --our-teams-card-desc-size: var(--body-font-size-m);
+
+  /* join-team */
+  --join-team-height: 560px;
+  --join-team-img-col-width: 50%;
+  --join-team-img-width: 95%;
+
+  /* testimonial */
+  --testimonial-gradient-stop: 82%;
+  --testimonial-gradient-stop-alt: 18%;
+  --testimonial-img-col-width: 30%;
+
+  /* bottom-photo */
+  --bottom-photo-img-col-width: 48%;
+  --bottom-photo-inner-padding: 10px;
+  --bottom-photo-col-offset: 5px;
 
   /* shadows */
   --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);

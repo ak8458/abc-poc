@@ -78,14 +78,14 @@ body.careers .hero h1 {
 body.careers .hero .hero-content p {
   color: var(--text-color);
   font-family: var(--body-font-family);
-  font-size: var(--hero-p-font-size);
+  font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--hero-p-margin-bottom);
 }
 
 body.careers .hero .hero-content p:last-child {
-  margin-top: 20px;
+  margin-top: var(--hero-p-last-margin-top);
 }
 
 body.careers .hero .hero-content .button-container {
@@ -150,7 +150,7 @@ body.careers .hero .hero-content a:hover {
 
   body.careers .hero h1 {
     font-size: var(--hero-h1-size-md);
-    padding-right: 10px;
+    padding-right: var(--hero-h1-padding-end);
   }
 }
 
