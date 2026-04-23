@@ -84,6 +84,10 @@ body.careers .hero .hero-content p {
   margin: 0 0 var(--hero-p-margin-bottom);
 }
 
+body.careers .hero .hero-content p:last-child {
+  margin-top: 20px;
+}
+
 body.careers .hero .hero-content .button-container {
   margin: 0;
 }
@@ -91,18 +95,19 @@ body.careers .hero .hero-content .button-container {
 body.careers .hero .hero-content a {
   display: inline-block;
   background-color: var(--link-color);
+  box-shadow: var(--shadow-card);
   color: var(--background-color);
   text-decoration: none;
   padding: var(--hero-btn-padding);
   border-radius: var(--radius-lg);
-  font-family: var(--body-font-family);
-  font-size: var(--hero-btn-font-size);
   font-weight: var(--font-weight-bold);
   transition: background-color var(--transition-speed);
 }
 
 body.careers .hero .hero-content a:hover {
-  background-color: var(--link-hover-color);
+  background-color: var(--color-hover-light);
+  color: var(--brand-dark);
+  box-shadow: var(--shadow-button-hover);
 }
 
 /* 600px+: split layout — image right, content left */
@@ -145,6 +150,7 @@ body.careers .hero .hero-content a:hover {
 
   body.careers .hero h1 {
     font-size: var(--hero-h1-size-md);
+    padding-right: 10px;
   }
 }
 
