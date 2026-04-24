@@ -378,7 +378,7 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-c
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
-  font-family: var(--body-font-family), sans-serif;
+  font-family: var(--body-font-family);
   font-size: var(--icon-card-h3-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-heading);
@@ -387,7 +387,7 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
 }
 
 body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:first-child) {
-  font-family: var(--body-font-family), sans-serif;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-paragraph);
@@ -556,7 +556,7 @@ body.careers .section.award-winning a:hover {
 }
 
 body.careers .section.award-winning .columns > div > div + div p:first-child {
-  font-family: var(--body-font-family), sans-serif;
+  font-family: var(--body-font-family);
   font-size: var(--award-winning-subtitle);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-paragraph);
@@ -565,7 +565,7 @@ body.careers .section.award-winning .columns > div > div + div p:first-child {
 
 body.careers .section.award-winning .columns > div > div + div p:last-child {
   color: var(--dark-color);
-  font-family: var(--heading-font-family), sans-serif;
+  font-family: var(--heading-font-family);
   font-size: var(--award-winning-description);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-award-description);
@@ -651,7 +651,7 @@ body.careers .section.support-your-career .columns > div > div p:last-child {
   }
 
   body.careers .section.support-your-career .columns > div > div h3 {
-    font-family: var(--body-font-family), sans-serif;
+    font-family: var(--body-font-family);
     font-size: var(--heading-font-size-l);
   }
 }
@@ -744,7 +744,7 @@ body.careers .section.our-teams {
 
 /* stylelint-disable-next-line no-descending-specificity -- our-teams heading h3 never matches 3-cols h3 */
 body.careers .section.our-teams .default-content-wrapper h3 {
-  font-family: var(--our-teams-heading-font), sans-serif;
+  font-family: var(--our-teams-heading-font);
   font-size: var(--our-teams-heading-size);
   font-weight: var(--our-teams-heading-weight);
   margin-top: var(--spacing-md);
@@ -795,7 +795,7 @@ body.careers .section.how-hire .icon img {
 
 /* stylelint-disable-next-line no-descending-specificity -- our-teams title h3 never matches 3-cols h3 or 4-cols h3 */
 body.careers .section.our-teams .columns > div > div > h3:not(:first-child) {
-  font-family: var(--our-teams-heading-font), sans-serif;
+  font-family: var(--our-teams-heading-font);
   font-size: var(--our-teams-card-title-size);
   font-weight: var(--our-teams-card-title-weight);
   color: var(--dark-color);
@@ -862,7 +862,7 @@ body.careers .section.how-hire .cards-card-body {
 
 /* stylelint-disable-next-line no-descending-specificity -- how-hire h3 never matches 3-cols, 4-cols, or our-teams h3 */
 body.careers .section.how-hire .cards .cards-card-body h3 {
-  font-family: var(--body-font-family), sans-serif;
+  font-family: var(--body-font-family);
   font-size: var(--how-hire-step-title-size);
   font-weight: var(--font-weight-medium);
   color: var(--dark-color);
@@ -907,7 +907,7 @@ body.careers .section.how-hire .cards-card-body blockquote {
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--light-color);
   border: var(--border-width) solid var(--card-accent-color);
-  border-left: var(--border-width-quate) solid var(--card-accent-color);
+  border-left: var(--border-width-quote) solid var(--card-accent-color);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
   font-size: var(--body-font-size-m);
   font-style: normal;
