@@ -693,6 +693,11 @@ body.careers .section:has(+ .section.culture-cards) {
   margin: 0;
 }
 
+body.careers .section.culture-cards .columns.block > div > div > p:first-child .icon {
+    width: var(--icon-card-icon-size);
+    height: var(--icon-card-icon-size);
+}
+
 /* ── Careers theme: your-wellbeing section ── */
 body.careers .section.your-wellbeing {
   background-color: var(--brand-grey);
