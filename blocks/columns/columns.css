@@ -516,13 +516,14 @@ body.careers .section.people-vision .cards .cards-card-body p {
 }
 
 /* ── Careers theme: award-winning section ── */
-body.careers .section.award-winning {
+/* stylelint-disable-next-line no-descending-specificity -- award-winning section never matches testimonial section */
+body.careers .section:has(.columns.four-columns-flex) {
   background-color: var(--blue-12);
   padding: var(--section-padding);
   margin: 0;
 }
 
-body.careers .section.award-winning .columns > div > div:first-child h2 {
+body.careers .columns.four-columns-flex > div > div:first-child h2 {
   color: var(--dark-color);
   font-size: var(--heading-font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -530,13 +531,14 @@ body.careers .section.award-winning .columns > div > div:first-child h2 {
   margin: 0 0 var(--spacing-xs);
 }
 
-body.careers .section.award-winning .columns > div > div:first-child p {
+/* stylelint-disable-next-line no-descending-specificity -- award-winning :first-child p never matches 3-cols p:first-child */
+body.careers .columns.four-columns-flex > div > div:first-child p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-lg);
 }
 
-body.careers .section.award-winning a:any-link {
+body.careers .columns.four-columns-flex a:any-link {
   display: inline-flex;
   align-items: center;
   padding: var(--award-winning-btn-padding);
@@ -550,14 +552,15 @@ body.careers .section.award-winning a:any-link {
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-body.careers .section.award-winning a:hover {
+body.careers .columns.four-columns-flex a:hover {
   background-color: var(--color-hover-light);
   border-color: var(--color-hover-light);
   color: var(--dark-color);
   text-decoration: none;
 }
 
-body.careers .section.award-winning .columns > div > div + div p:first-child {
+/* stylelint-disable-next-line no-descending-specificity -- award-winning div+div p:first-child never matches 3-cols p:first-child */
+body.careers .columns.four-columns-flex > div > div + div p:first-child {
   font-family: var(--body-font-family);
   font-size: var(--award-winning-subtitle);
   font-weight: var(--font-weight-bold);
@@ -565,7 +568,8 @@ body.careers .section.award-winning .columns > div > div + div p:first-child {
   margin: 0 0 var(--spacing-sm);
 }
 
-body.careers .section.award-winning .columns > div > div + div p:last-child {
+/* stylelint-disable-next-line no-descending-specificity -- award-winning div+div p:last-child never matches 3-cols p:first-child */
+body.careers .columns.four-columns-flex > div > div + div p:last-child {
   color: var(--dark-color);
   font-family: var(--heading-font-family);
   font-size: var(--award-winning-description);
@@ -575,27 +579,27 @@ body.careers .section.award-winning .columns > div > div + div p:last-child {
 }
 
 @media (width >= 900px) {
-  body.careers .section.award-winning .columns-4-cols > div {
+  body.careers .columns.four-columns-flex > div {
     align-items: stretch;
   }
 
-  body.careers .section.award-winning .columns > div > div:first-child {
+  body.careers .columns.four-columns-flex > div > div:first-child {
     flex: 0 0 var(--award-winning-col1-width);
   }
 
-  body.careers .section.award-winning .columns > div > div:first-child h2 {
+  body.careers .columns.four-columns-flex > div > div:first-child h2 {
     width: var(--award-winning-col1-h2-width);
   }
 
   /* stylelint-disable-next-line no-descending-specificity -- div+div never matches :first-child */
-  body.careers .section.award-winning .columns > div > div + div {
+  body.careers .columns.four-columns-flex > div > div + div {
     flex: 0 0 var(--award-winning-col-width);
     padding-left: var(--spacing-md);
     text-align: center;
   }
 
   /* stylelint-disable-next-line no-descending-specificity -- div+div+div never matches :first-child */
-  body.careers .section.award-winning .columns > div > div + div + div {
+  body.careers .columns.four-columns-flex > div > div + div + div {
     border-left: var(--border-width-thick) solid var(--link-color);
   }
 }
