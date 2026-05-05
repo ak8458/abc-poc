@@ -257,15 +257,14 @@ body.careers .section.grey .embed {
 }
 
 /* ── Careers theme: join-team section ── */
-body.careers .section.join-team {
+body.careers .section:has(.columns.join-team) {
   background-color: var(--brand-dark);
   margin: 0;
   overflow: hidden;
   height: var(--join-team-height);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- join-team selectors never match the same elements as columns-1-cols, testimonial, or 4-cols rules */
-body.careers .section.join-team > div {
+body.careers .section:has(.columns.join-team) > div {
   max-width: var(--max-width-content);
   height: 100%;
   margin: 0 auto;
@@ -273,28 +272,25 @@ body.careers .section.join-team > div {
 }
 
 /* Keep DOM order: text left, image right (base CSS uses order: 0 on img col) */
-body.careers .section.join-team .columns-img-col {
+body.careers .columns.join-team .columns-img-col {
   order: 2;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- join-team h2 never matches columns-1-cols h2 */
-body.careers .section.join-team h2 {
+body.careers .columns.join-team h2 {
   margin-top: 0;
   color: var(--background-color);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- join-team p never matches testimonial blockquote p */
-body.careers .section.join-team p {
+body.careers .columns.join-team p {
   color: var(--background-color);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- join-team p:has(a) never matches 4-cols p */
-body.careers .section.join-team p:has(a) {
+body.careers .columns.join-team p:has(a) {
   margin-top: var(--spacing-lg);
 }
 
 /* Filled button for the plain Explore jobs link */
-body.careers .section.join-team a:any-link {
+body.careers .columns.join-team a:any-link {
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-xs) var(--spacing-md);
@@ -307,7 +303,7 @@ body.careers .section.join-team a:any-link {
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-body.careers .section.join-team a:hover {
+body.careers .columns.join-team a:hover {
   background-color: var(--color-hover-light);
   border-color: var(--color-hover-light);
   color: var(--brand-dark);
@@ -315,25 +311,24 @@ body.careers .section.join-team a:hover {
 }
 
 /* Mobile: pad the text column */
-/* stylelint-disable-next-line no-descending-specificity -- join-team and data-border selectors never match the same element */
-body.careers .section.join-team .columns > div > div:not(.columns-img-col) {
+body.careers .columns.join-team > div > div:not(.columns-img-col) {
   padding: var(--spacing-xl) var(--spacing-xxs);
 }
 
 @media (width >= 900px) {
   /* Propagate section height so the image column fills it */
-  body.careers .section.join-team .columns,
-  body.careers .section.join-team .columns > div {
+  body.careers .columns.join-team,
+  body.careers .columns.join-team > div {
     height: 100%;
   }
 
-  body.careers .section.join-team .columns > div {
+  body.careers .columns.join-team > div {
     align-items: stretch;
     gap: 0;
   }
 
   /* Flex container so picture can be vertically centred */
-  body.careers .section.join-team .columns-img-col {
+  body.careers .columns.join-team .columns-img-col {
     display: flex;
     align-items: center;
     flex: 0 0 var(--join-team-img-col-width);
@@ -341,18 +336,18 @@ body.careers .section.join-team .columns > div > div:not(.columns-img-col) {
     padding: var(--spacing-md) 0;
   }
 
-  body.careers .section.join-team .columns-img-col picture {
+  body.careers .columns.join-team .columns-img-col picture {
     width: 100%;
     overflow: hidden;
   }
 
-  body.careers .section.join-team .columns-img-col img {
+  body.careers .columns.join-team .columns-img-col img {
     width: var(--join-team-img-width);
     height: auto;
     display: block;
   }
 
-  body.careers .section.join-team .columns > div > div:not(.columns-img-col) {
+  body.careers .columns.join-team > div > div:not(.columns-img-col) {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
