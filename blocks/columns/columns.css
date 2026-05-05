@@ -139,7 +139,7 @@ body.careers .section.lightblue {
 /* 1-col container — specificity (0,4,3) */
 
 /* Testimonial section container - specificity (0,3,2) */
-body.careers .section.testimonial > div {
+body.careers .section:has(.columns.testimonial) > div {
   max-width: var(--max-width-content);
   padding: 0;
 }
@@ -172,7 +172,7 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
 }
 
 /* Mobile: pad the text column */
-body.careers .section.testimonial .columns > div > div:not(.columns-img-col) {
+body.careers .columns.testimonial > div > div:not(.columns-img-col) {
   padding: var(--spacing-sm);
 }
 
@@ -184,7 +184,7 @@ body.careers .section.columns-container[data-border='bottom'] .columns.columns-1
 }
 
 /* Testimonial blockquote p - specificity (0,3,3); must precede higher specificity p rules */
-body.careers .section.testimonial blockquote p {
+body.careers .columns.testimonial blockquote p {
   display: inline;
 }
 
@@ -397,18 +397,19 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:fi
 }
 
 /* ── Careers theme: testimonial section ── */
-body.careers .section.testimonial {
+body.careers .section:has(.columns.testimonial) {
   background: linear-gradient(to top, var(--blue-12) var(--testimonial-gradient-stop), transparent var(--testimonial-gradient-stop));
   margin: 0;
   overflow: hidden;
 }
 
-body.careers .section.people-vision + .section.testimonial {
+/* stylelint-disable-next-line no-descending-specificity -- testimonial and culture-cards selectors never match the same section element */
+body.careers .section.people-vision + .section:has(.columns.testimonial) {
   background: linear-gradient(to bottom, var(--blue-12) var(--testimonial-gradient-stop-alt), transparent var(--testimonial-gradient-stop-alt));
 }
 
 /* Reset browser default blockquote styles */
-body.careers .section.testimonial blockquote {
+body.careers .columns.testimonial blockquote {
   margin: 0;
   padding: 0;
   font-style: italic;
@@ -418,7 +419,8 @@ body.careers .section.testimonial blockquote {
 }
 
 /* Attribution */
-body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p {
+/* stylelint-disable-next-line no-descending-specificity -- testimonial attribution p never matches 3-cols p:first-child */
+body.careers .columns.testimonial > div > div:not(.columns-img-col) > p {
   margin: var(--spacing-xs) 0 0;
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
@@ -427,24 +429,24 @@ body.careers .section.testimonial .columns > div > div:not(.columns-img-col) > p
 }
 
 @media (width >= 900px) {
-  body.careers .section.testimonial .columns > div {
+  body.careers .columns.testimonial > div {
     align-items: stretch;
     gap: 0;
   }
 
-  body.careers .section.testimonial .columns-img-col {
+  body.careers .columns.testimonial .columns-img-col {
     flex: 0 0 var(--testimonial-img-col-width);
     overflow: hidden;
   }
 
-  body.careers .section.testimonial .columns-img-col img {
+  body.careers .columns.testimonial .columns-img-col img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center top;
   }
 
-  body.careers .section.testimonial .columns > div > div:not(.columns-img-col) {
+  body.careers .columns.testimonial > div > div:not(.columns-img-col) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -687,6 +689,7 @@ body.careers .section.bottom-photo {
 
 /* ── Careers theme: culture-cards section ── */
 body.careers .section.culture-cards,
+/* stylelint-disable-next-line no-descending-specificity -- culture-cards :has() selector never matches testimonial section */
 body.careers .section:has(+ .section.culture-cards) {
   background-color: var(--footer-bg-color);
   padding: var(--section-padding);
