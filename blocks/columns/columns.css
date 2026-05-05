@@ -399,7 +399,7 @@ body.careers .section:has(.columns.testimonial) {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- testimonial and culture-cards selectors never match the same section element */
-body.careers .section.people-vision + .section:has(.columns.testimonial) {
+body.careers .section.cards-container + .section:has(.columns.testimonial) {
   background: linear-gradient(to bottom, var(--blue-12) var(--testimonial-gradient-stop-alt), transparent var(--testimonial-gradient-stop-alt));
 }
 
@@ -450,13 +450,13 @@ body.careers .columns.testimonial > div > div:not(.columns-img-col) > p {
 }
 
 /* ── Careers theme: people-vision section ── */
-body.careers .section.people-vision {
+body.careers .section:has(.cards.no-images) {
   background-color: var(--blue-12);
   padding: var(--section-padding);
   margin: 0;
 }
 
-body.careers .section.people-vision .default-content-wrapper h2 {
+body.careers .section:has(.cards.no-images) .default-content-wrapper h2 {
   color: var(--dark-color);
   font-size: var(--people-vision-h2-size);
   font-weight: var(--font-weight-bold);
@@ -464,35 +464,33 @@ body.careers .section.people-vision .default-content-wrapper h2 {
   margin: 0 0 var(--spacing-xs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- people-vision p never matches 3-cols p:first-child */
-body.careers .section.people-vision .default-content-wrapper p {
+body.careers .section:has(.cards.no-images) .default-content-wrapper p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-body);
   margin: 0 0 var(--spacing-md);
   max-width: var(--people-vision-p-max-width);
 }
 
-body.careers .section.people-vision .cards > ul {
+body.careers .section:has(.cards.no-images) .cards > ul {
   flex-direction: column;
   gap: var(--spacing-md);
 }
 
-body.careers .section.people-vision .cards > ul > li {
+body.careers .section:has(.cards.no-images) .cards > ul > li {
   background-color: var(--background-color);
   border-radius: var(--people-vision-card-radius);
   padding: var(--spacing-sm);
   box-shadow: var(--shadow-card);
 }
 
-body.careers .section.people-vision .cards .cards-card-body h3 {
+body.careers .section:has(.cards.no-images) .cards .cards-card-body h3 {
   font-size: var(--people-vision-card-h3-size);
   font-weight: var(--font-weight-medium);
   border-bottom: none;
   padding: 0 0 var(--spacing-xs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- people-vision card p never matches 3-cols p:first-child */
-body.careers .section.people-vision .cards .cards-card-body p {
+body.careers .section:has(.cards.no-images) .cards .cards-card-body p {
   font-size: var(--body-font-size-m);
   padding: 0;
   color: var(--text-color);
@@ -500,11 +498,11 @@ body.careers .section.people-vision .cards .cards-card-body p {
 }
 
 @media (width >= 900px) {
-  body.careers .section.people-vision .default-content-wrapper h2 {
+  body.careers .section:has(.cards.no-images) .default-content-wrapper h2 {
     font-size: var(--people-vision-h2-size-lg);
   }
 
-  body.careers .section.people-vision .cards > ul > li {
+  body.careers .section:has(.cards.no-images) .cards > ul > li {
     display: block;
     padding: var(--spacing-md);
   }
