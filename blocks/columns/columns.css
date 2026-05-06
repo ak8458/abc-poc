@@ -780,9 +780,9 @@ body.careers .section.our-teams .columns > div > div > :first-child {
 }
 
 body.careers .section.our-teams .columns > div > div .icon {
-    display: block;
-    width: var(--icon-card-icon-size);
-    height: var(--icon-card-icon-size);
+  display: block;
+  width: var(--icon-card-icon-size);
+  height: var(--icon-card-icon-size);
 }
 
 body.careers .columns.three-columns > div > div > p:first-child .icon {
@@ -871,7 +871,7 @@ body.careers .section.how-hire .cards .cards-card-body h3 {
   font-weight: var(--font-weight-medium);
   color: var(--dark-color);
   min-height: var(--how-hire-step-title-height);
-  line-height: var(--how-hire-step-title-height);
+  line-height: var(--line-height-heading);
   border-bottom: none;
   padding: 0;
   margin: 0 0 var(--spacing-xs);
