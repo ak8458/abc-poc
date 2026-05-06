@@ -685,14 +685,12 @@ body.careers .section.bottom-photo {
 }
 
 /* ── Careers theme: culture-cards section ── */
-body.careers .section.culture-cards,
+body.careers .section:has(.columns.three-columns),
 /* stylelint-disable-next-line no-descending-specificity -- culture-cards :has() selector never matches testimonial section */
-body.careers .section:has(+ .section.culture-cards) {
-  background-color: var(--footer-bg-color);
+body.careers .section:has(+ .section:has(.columns.three-columns)) {
   padding: var(--section-padding);
   margin: 0;
 }
-
 
 /* ── Careers theme: your-wellbeing section ── */
 body.careers .section.your-wellbeing {
@@ -787,9 +785,9 @@ body.careers .section.our-teams .columns > div > div .icon {
     height: var(--icon-card-icon-size);
 }
 
-body.careers .section.culture-cards .columns.block > div > div > p:first-child .icon {
-    width: var(--icon-card-icon-size);
-    height: var(--icon-card-icon-size);
+body.careers .columns.three-columns > div > div > p:first-child .icon {
+  width: 96px;
+  height: 96px;
 }
 
 body.careers .section.our-teams .icon img,
