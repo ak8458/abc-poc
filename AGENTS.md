@@ -19,7 +19,6 @@ The repository provides the basic structure, blocks, and configuration needed to
 ## Setup Commands
 
 - Install dependencies: `npm install`
-- Start local development: `npx -y @adobe/aem-cli up --no-open --forward-browser-logs` (run in background, if possible)
   - Install the AEM CLI globally by running `npm install -g @adobe/aem-cli` then `aem up` is equivalent to the command above
   - The dev server runs at `http://localhost:3000` with auto-reload. Open it in playwright, puppeteer, or a browser. If none are available, ask the human to open it and give feedback.
 - Run linting before committing: `npm run lint`
@@ -31,10 +30,8 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── blocks/          # Reusable content blocks
     └── {blockname}/   - Individual block directory
         ├── {blockname}.js      # Block's JavaScript
-        └── {blockname}.css     # Block's styles
 ├── styles/          # Global styles and CSS
     ├── styles.css          # Minimal global styling and layout for your website required for LCP
-    ├── lazy-styles.css     # Additional global styling and layout for below the fold/post LCP content
     └── fonts.css           # Font definitions
 ├── scripts/         # JavaScript libraries and utilities
     ├── aem.js           # Core AEM Library for Edge Delivery page decoration logic (NEVER MODIFY THIS FILE)
@@ -50,8 +47,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 
 ### JavaScript
 
-- Use ES6+ features (arrow functions, destructuring, etc.)
-- Follow Airbnb ESLint rules (already configured)
+    └── fonts.css           # Font definitions
 - Always include `.js` file extensions in imports
 - Use Unix line endings (LF)
 
@@ -63,14 +59,6 @@ The repository provides the basic structure, blocks, and configuration needed to
   - Declare styles mobile first, use `min-width` media queries at 600px/900px/1200px for tablet and desktop
 - Ensure all selectors are scoped to the block.
   - Bad: `.item-list`
-  - Good: `.{blockname} .item-list`
-- Avoid classes `{blockname}-container` and `{blockname}-wrapper` as those are used on sections and could be confusing.
-
-### HTML
-
-- Use semantic HTML5 elements
-- Ensure accessibility standards (ARIA labels, proper heading hierarchy)
-- Follow AEM markup conventions for blocks and sections
 
 ## Key Concepts
 
@@ -78,7 +66,6 @@ The repository provides the basic structure, blocks, and configuration needed to
 
 CMS authored content is a key part of every AEM Website. The content of a page is broken into sections. Sections can have default content (text, headings, links, etc.) as well as content in blocks.
 
-If no authored content exists to test against, you can create static HTML files in a `drafts/` folder at the project root. Pass `--html-folder drafts` when starting the dev server. Follow the aem markup structure and save files with `.html` or `.plain.html` extensions.
 
 Background on content and markup structure can be found at https://www.aem.live/developer/markup-sections-blocks and https://www.aem.live/developer/markup-reference respectively.
 
@@ -88,7 +75,6 @@ You can inspect the contents of any page with `curl http://localhost:3000/path/t
 
 Blocks are the re-usable building blocks of AEM. Blocks add styling and functionality to content. Each block has an initial content structure it expects, and transforms the html in the block using DOM APIs to render a final structure.
 
-The initial content structure is important because it impacts how the author will create the content and how you will write your code to decorate it. In some sense, you can think of this structure as the contract for your block between the author and the developer. You should decide on this initial structure before writing any code, and be careful when making changes to code that makes assumptions about that structure as it could break existing pages.
 
 The block javascript should export a default function which is called to perform the block decoration:
 
@@ -126,9 +112,6 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 ### Performance
 
 - Follow AEM Edge Delivery performance best practices https://www.aem.live/developer/keeping-it-100
-- Images uploaded by authors are automatically optimized, all images and assets committed to git must be optimized and checked for size
-- Use lazy loading for non-critical resources (`lazy-styles.css` and `delayed.js`)
-- Minimize JavaScript bundle size by avoiding dependencies, using automatic code splitting provided by `/blocks/`
 
 ### Accessibility
 
@@ -158,21 +141,6 @@ With this information, you can construct URLs for the preview environment (same 
 3. Run a PageSpeed Insights check at https://developers.google.com/speed/pagespeed/insights/?url=YOUR_URL against the feature preview URL and fix any issues. Target a score of 100
 4. Open a pull request to merge changes to `main`
    1. in the PR description, include a link to `https://{branch}--abc-poc--ak8458.aem.page/{path}` with a path to a file that illustrates the change you've made. This is the same path you have been testing with locally. WITHOUT THIS YOUR PR WILL BE REJECTED
-   2. If an existing page to demonstrate your changes doesn't exist, create test content as a static html file and ask the user for help copying it to a cms content page you can link in the PR
-5. use `gh pr checks` to verify the status of code synchronization, linting, and performance tests
-6. A human reviewer will review the code, inspect the provided URL and merge the PR
-7. AEM Code Sync updates the main branch for production
-
-## Troubleshooting
-
-### Getting Help
-
-- Check [AEM Edge Delivery documentation](https://www.aem.live/docs/)
-- Review [Developer Tutorial](https://www.aem.live/developer/tutorial)
-- Consult [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
-- Consider the rules in [David's Model](https://www.aem.live/docs/davidsmodel)
-- Search the web with `site:www.aem.live`
-- Search the full text of the documentation with `curl -s https://www.aem.live/docpages-index.json | jq -r '.data[] | select(.content | test("KEYWORD"; "i")) | "\(.path): \(.title)"'`
 
 ## Security Considerations
 
