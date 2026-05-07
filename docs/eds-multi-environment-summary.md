@@ -10,10 +10,10 @@ EDS separates **code** (branch-per-environment), **content** (Document Authoring
 
 | Track | Role | Code | Content (DA) | Assets (AEMaaCS) | Typical public face |
 |--------|------|------|----------------|--------------------|----------------------|
-| **Integration** | Build, draft, QA, stakeholder review | Feature & `dev` branches → per-branch `*.aem.page` / `*.aem.live` on the **stage** EDS site | Stage org/site (e.g. `acme-stage` or `acme/stage`) | Non-prod program (Dev/Stage) | `stage.acme.com` → `main--acme-stage--<org>.aem.live` |
+| **Integration** | Build, draft, QA, stakeholder review | Feature & `dev` branches → per-branch `*.aem.page` / `*.aem.live` on the integration EDS site (e.g. **`acme-dev`**) | Non‑prod DA org/site (e.g. `acme-dev` or `acme/dev`) | **AEMaaCS Dev** (non‑prod DAM — not the AEMaaCS Stage runtime) | `dev.acme.com` → `main--acme-dev--<org>.aem.live` |
 | **Release** | Live production | Protected **`main`** → prod EDS site + custom domain | Prod org/site (e.g. `acme`) | Production program | `www.acme.com` → `main--acme--<org>.aem.live` |
 
-**Single GitLab repo, two EDS sites:** One repository registered once in Cloud Manager (BYO Git) drives both `acme-stage` and `acme`, so the same commit on `main` is identical on both tracks — no merge drift between “stage code” and “prod code.”
+**Single GitLab repo, two EDS sites:** One repository registered once in Cloud Manager (BYO Git) drives both `acme-dev` and `acme`, so the same commit on `main` is identical on both tracks — no merge drift between integration‑track delivery and production delivery.
 
 ---
 
@@ -24,26 +24,28 @@ EDS builds preview and live URLs per branch, e.g. `https://<branch>--<repo>--<ow
 
 | Surface | Primary users | What they do |
 |---------|----------------|--------------|
-| Per-branch **`.aem.page`** (stage site) | Developers | Quick smoke tests, author feedback |
-| Per-branch **`.aem.live`** (stage site) | Developers, QA | Performance and cache behavior like prod |
-| **`stage.acme.com`** (maps to `main` on stage EDS site) | QA, marketing, legal/brand, stakeholders | End-to-end UAT on `main` + stage content + stage assets; often IP/SSO restricted |
+| Per-branch **`.aem.page`** (integration EDS site, e.g. `acme-dev`) | Developers | Quick smoke tests, author feedback |
+| Per-branch **`.aem.live`** (integration EDS site) | Developers, QA | Performance and cache behavior like prod |
+| **`dev.acme.com`** (maps to `main` on integration EDS site) | QA, marketing, legal/brand, stakeholders | End-to-end UAT on `main` + non‑prod DA content + **AEMaaCS Dev** assets; often IP/SSO restricted |
 | **`www.acme.com`** (maps to `main` on prod EDS site) | Customers, SEO, analytics | Live site |
 
 **Document Authoring (DA)**  
 | DA area | Primary users | Intent |
 |---------|----------------|--------|
-| Stage site | Authors drafting, content QA, marketing | Drafts, preview against stage DAM |
-| Prod site | Small publisher group, localization leads | Publish after review; content promoted from stage when ready |
+| Non‑prod DA site | Authors drafting, content QA, marketing | Drafts, preview against **AEMaaCS Dev** DAM |
+| Prod site | Small publisher group, localization leads | Publish after review; content promoted from non‑prod DA when ready |
 
 **AEM Assets**  
 | Environment | Primary users | Intent |
 |-------------|----------------|--------|
-| Non-prod (stage program) | Asset managers, brand/legal, photographers | Ingest, metadata, renditions, rights review — **not** production DAM |
+| **AEMaaCS Dev** (non‑prod program) | Asset managers, brand/legal, photographers | Ingest, metadata, renditions, rights review — **not** production DAM |
 | Prod | DAM admins, approved publishers | Final assets published to publish tier for production pages |
 
 ---
 
 ## 3. Architecture (high level)
+
+The following explains how each of the three streams is independently managed before converging at the EDS delivery layer
 
 Three **independent buses** converge at Edge Delivery:
 
@@ -53,7 +55,7 @@ Three **independent buses** converge at Edge Delivery:
 | **Content** | DA (`content.da.live`) per org/site | Preview/publish pulls into Content Bus; orthogonal to which code branch you hit (change URL prefix to test code vs content combinations) |
 | **Media** | Assets referenced from documents | On first preview, EDS fetches from AEM Publish, hashes binary, serves from **Media Bus** (`media_<hash>.*`) — CDN-friendly, immutable per hash |
 
-**Why two DA sites and two AEM programs:** DA documents and DAM assets are not Git branches. Separate stage vs prod stores prevent draft or unapproved assets from appearing on production previews.
+**Why two DA sites and two AEM programs:** DA documents and DAM assets are not Git branches. Separate non‑prod vs prod stores prevent draft or unapproved assets from appearing on production previews. On the integration track, AEM Assets are sourced from **AEMaaCS Dev**, not from an AEMaaCS **Stage** environment.
 
 **Public hostnames** typically proxy **`.aem.live`** (not `.aem.page`) so behavior matches cached production delivery.
 
@@ -70,7 +72,7 @@ flowchart TB
     classDef user fill:#fce4ec,stroke:#c2185b,color:#880e4f
 
     DEV["👩‍💻 Developers<br/>IDE + GitLab MR"]:::code
-    AUTH_S["✍️ Stage Authors<br/>QA + Marketing draft"]:::content
+    AUTH_S["✍️ Non‑prod Authors<br/>QA + Marketing draft"]:::content
     AUTH_P["✍️ Prod Authors<br/>Approved content"]:::content
     DAMU["📷 Asset Managers<br/>Brand + Legal"]:::asset
 
@@ -81,19 +83,19 @@ flowchart TB
     end
 
     subgraph ContentStream["CONTENT STREAM"]
-        DA_S["DA — acme-stage<br/>content.da.live/acme/stage"]:::content
+        DA_S["DA — acme / dev<br/>content.da.live/acme/dev"]:::content
         DA_P["DA — acme-prod<br/>content.da.live/acme/prod"]:::content
         CONTB["EDS Content Bus"]:::eds
     end
 
     subgraph AssetStream["ASSET STREAM"]
-        DAM_S["AEMaaCS Non-Prod<br/>Author + Publish<br/>(Stage)"]:::asset
+        DAM_S["AEMaaCS Dev<br/>Author + Publish<br/>(non-prod)"]:::asset
         DAM_P["AEMaaCS Prod<br/>Author + Publish"]:::asset
         MB["EDS Media Bus<br/>content-addressable<br/>media_&lt;hash&gt;.&lt;ext&gt;"]:::eds
     end
 
     subgraph Delivery["DELIVERY"]
-        EDS_S["acme-stage--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ stage.acme.com"]:::eds
+        EDS_S["acme-dev--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ dev.acme.com"]:::eds
         EDS_P["acme--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ www.acme.com"]:::eds
     end
 
@@ -137,10 +139,10 @@ flowchart LR
     subgraph IT["🟡 INTEGRATION TRACK"]
         direction TB
         IT_GL["GitLab<br/>feature/* + dev branches"]:::int
-        IT_DA["DA Stage Site<br/>/acme/stage/*"]:::int
-        IT_DAM["AEMaaCS Non-Prod Assets<br/>Author + Publish (Stage)"]:::int
-        IT_EDS["acme-stage--&lt;org&gt;<br/>.aem.page / .aem.live"]:::int
-        IT_URL["stage.acme.com<br/>(restricted by IP/SSO)"]:::int
+        IT_DA["DA non‑prod site<br/>/acme/dev/*"]:::int
+        IT_DAM["AEMaaCS Dev Assets<br/>Author + Publish<br/>(non-prod)"]:::int
+        IT_EDS["acme-dev--&lt;org&gt;<br/>.aem.page / .aem.live"]:::int
+        IT_URL["dev.acme.com<br/>(restricted by IP/SSO)"]:::int
 
         IT_GL --> IT_EDS
         IT_DA --> IT_EDS
@@ -182,14 +184,14 @@ sequenceDiagram
     participant GL as GitLab
     participant CM as Cloud Manager
     participant EDS as EDS (helix-admin)
-    participant Stage as acme-stage<br/>.aem.live
+    participant IntTrack as acme-dev<br/>.aem.live
     participant Prod as acme<br/>.aem.live
 
     Dev->>GL: git push feature/hero-redesign
     GL->>CM: webhook: branch updated
     CM->>EDS: mirror sync (cm-repo.adobe.io)
-    EDS-->>Stage: build feature-hero-redesign--acme-stage--org.aem.live
-    Note over Dev,Stage: Developer + QA validate on per-branch URL
+    EDS-->>IntTrack: build feature-hero-redesign--acme-dev--org.aem.live
+    Note over Dev,IntTrack: Developer + QA validate on per-branch URL
 
     Dev->>GL: open MR feature/hero-redesign → main
     GL->>GL: PR validation (Cloud Manager)<br/>+ CI lint/tests
@@ -198,9 +200,9 @@ sequenceDiagram
     Dev->>GL: merge MR (main)
     GL->>CM: webhook: main updated
     CM->>EDS: mirror sync
-    EDS-->>Stage: rebuild main--acme-stage--org.aem.live
+    EDS-->>IntTrack: rebuild main--acme-dev--org.aem.live
     EDS-->>Prod: rebuild main--acme--org.aem.live
-    Note over Stage,Prod: Same commit hash on both URLs<br/>Authors validate against prod content+assets
+    Note over IntTrack,Prod: Same commit hash on both URLs<br/>Authors validate against prod content+assets
 ```
 
 #### Asset Delivery Flow (no Dynamic Media)
@@ -250,10 +252,10 @@ flowchart LR
 
 ### Code flow (simplified)
 
-1. Push **`feature/x`** → automatic **`feature-x--acme-stage--<org>.aem.live`** (and `.aem.page`).  
-2. Open MR → **`feature/x` → `main`**, review, QA on branch URL against **stage** DA + stage DAM.  
-3. Merge to **`main`** → Cloud Manager sync → **`main--acme-stage--<org>.aem.live`** and **`main--acme--<org>.aem.live`** both rebuild **same commit**.  
-4. UAT on **`stage.acme.com`**; when satisfied, coordinate **content** (copy/republish to prod DA) and **assets** (promote/republish in prod AEM — not automatic across programs).  
+1. Push **`feature/x`** → automatic **`feature-x--acme-dev--<org>.aem.live`** (and `.aem.page`).  
+2. Open MR → **`feature/x` → `main`**, review, QA on branch URL against **non‑prod** DA + **AEMaaCS Dev** DAM.  
+3. Merge to **`main`** → Cloud Manager sync → **`main--acme-dev--<org>.aem.live`** and **`main--acme--<org>.aem.live`** both rebuild **same commit**.  
+4. UAT on **`dev.acme.com`**; when satisfied, coordinate **content** (copy/republish to prod DA) and **assets** (promote/republish in prod AEM — not automatic across programs).  
 5. Live traffic on **`www.acme.com`** reads **`main`** on the prod EDS site + prod DA + prod DAM.
 
 ### Gates (ownership in brief)
@@ -262,17 +264,17 @@ flowchart LR
 |------|----------------|--------|
 | Branch builds clean | Developer | Lint/tests; branch URL works |
 | Merge to `main` | Tech lead + passing checks | MR + Cloud Manager validation |
-| Ship code to production experience | Release manager | UAT on stage hostname; no blocking sev-1 |
+| Ship code to production experience | Release manager | UAT on integration hostname (`dev.acme.com`); no blocking sev-1 |
 | Content on prod DA | Content lead / release | Editorial + legal; references resolve |
 | Assets on prod AEM | DAM admin | Rights and metadata; republish |
 | Cache / invalidation on go-live | Release manager | Align all three streams on prod track |
 
 ### Hotfix
 
-Branch **`hotfix/<ticket>` from `main`**, push → validate on stage track branch URL → expedited MR → merge **`main`** → both tracks update. Stage still tracks `main`; release manager may push to prod quickly for critical fixes.
+Branch **`hotfix/<ticket>` from `main`**, push → validate on integration track branch URL → expedited MR → merge **`main`** → both tracks update. The integration track still tracks `main`; release manager may push to prod quickly for critical fixes.
 
 ---
 
 ## 5. One-line mental model
 
-**Integration track** = experiment safely (any branch + stage DA + stage DAM + `stage.acme.com` for `main`). **Release track** = **`main`** + prod DA + prod DAM + **`www.acme.com`**. **Promotion** is a merge for code, and deliberate human/process steps for content and assets.
+**Integration track** = experiment safely (any branch + non‑prod DA + **AEMaaCS Dev** DAM + `dev.acme.com` for `main`). **Release track** = **`main`** + prod DA + prod DAM + **`www.acme.com`**. **Promotion** is a merge for code, and deliberate human/process steps for content and assets.

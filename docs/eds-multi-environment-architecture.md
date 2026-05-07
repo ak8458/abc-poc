@@ -21,16 +21,16 @@
 
 ## 1. Executive Summary
 
-EDS is a fundamentally different delivery platform from classic AEM Sites + Dispatcher. Its architecture is built around three independent buses — **Code Bus**, **Content Bus**, and **Media Bus** — each with its own lifecycle, its own caching model, and its own promotion path. A successful multi‑environment design starts by aligning your release process to *those* lifecycles rather than forcing a monolithic dev→stage→prod promotion onto them.
+EDS is a fundamentally different delivery platform from classic AEM Sites + Dispatcher. Its architecture is built around three independent buses — **Code Bus**, **Content Bus**, and **Media Bus** — each with its own lifecycle, its own caching model, and its own promotion path. A successful multi‑environment design starts by aligning your release process to *those* lifecycles rather than forcing a monolithic dev→QA→prod promotion onto them.
 
 The recommended architecture for this customer is a **two‑track topology**:
 
 | Track | Purpose | Code | Content | Assets |
 |---|---|---|---|---|
-| **Integration Track** | Non‑prod playground for development, content drafting, asset experimentation, QA, and stakeholder review. | GitLab feature & `dev` branches → preview/live URLs on `*.aem.page` / `*.aem.live` (stage site). | DA org/site dedicated to non‑prod (e.g., `acme-stage`). | AEMaaCS **non‑prod** program (Dev or Stage env). |
+| **Integration Track** | Non‑prod playground for development, content drafting, asset experimentation, QA, and stakeholder review. | GitLab feature & `dev` branches → preview/live URLs on `*.aem.page` / `*.aem.live` (integration EDS site, e.g. `acme-dev`). | DA org/site dedicated to non‑prod (e.g. `acme` / `dev` — `content.da.live/acme/dev`). | AEMaaCS **Dev** environment (non‑production DAM — not the AEMaaCS Stage runtime). |
 | **Release Track** | Production. Content and assets are governed; only validated code reaches `main`. | GitLab `main` branch → production EDS site → custom domain. | DA org/site dedicated to prod (e.g., `acme`). | AEMaaCS **production** program. |
 
-Within each track, EDS gives every Git branch its own preview (`*.aem.page`) and live (`*.aem.live`) URL — so within the Integration Track alone you effectively get unlimited per‑developer testing environments, eliminating the need for a separate "staging" CDN in most cases.
+Within each track, EDS gives every Git branch its own preview (`*.aem.page`) and live (`*.aem.live`) URL — so within the Integration Track alone you effectively get unlimited per‑developer testing environments, eliminating the need for a separate dedicated integration CDN in most cases.
 
 The high‑value engineering work in this design is **wiring the EDS site configurations correctly** so that the right code branch, the right DA content store, and the right AEM Assets origin all flow into the right published URL — automatically, with strong governance, and with surgical cache invalidation.
 
@@ -57,7 +57,7 @@ A traditional shared "dev environment" — where one broken commit blocks the wh
 
 ### 2.2 `*.aem.page` is **not** a staging environment
 
-`*.aem.page` and `*.aem.live` use **different caching rules**. `aem.page` is optimized for authoring immediacy (low TTL, fast invalidation), while `aem.live` is optimized for cacheability. Using `aem.page` as a stand‑in for "stage" will give you false confidence — a page that performs well on `aem.page` may behave differently on `aem.live`. Always validate code against the `*.aem.live` URL of a branch, not the `*.aem.page` URL.
+`*.aem.page` and `*.aem.live` use **different caching rules**. `aem.page` is optimized for authoring immediacy (low TTL, fast invalidation), while `aem.live` is optimized for cacheability. Using `aem.page` as a stand‑in for production delivery (`aem.live`) will give you false confidence — a page that performs well on `aem.page` may behave differently on `aem.live`. Always validate code against the `*.aem.live` URL of a branch, not the `*.aem.page` URL.
 
 ### 2.3 Why the two‑track model is still necessary
 
@@ -148,19 +148,19 @@ The Media Bus then performs **on‑the‑fly format conversion** (AVIF for suppo
 |---|---|---|
 | **GitLab branches in scope** | `feature/*`, `dev`, `release/*` | `main` |
 | **Cloud Manager BYO Git registration** | Single registration shared across both tracks | Same registration |
-| **EDS site (helix‑admin org/site)** | `acme-stage` | `acme` |
-| **EDS preview URL pattern** | `<branch>--acme-stage--<org>.aem.page` | `main--acme--<org>.aem.page` |
-| **EDS live URL pattern** | `<branch>--acme-stage--<org>.aem.live` | `main--acme--<org>.aem.live` |
-| **Public hostname** | `stage.acme.com` (BYO CDN or Adobe Managed CDN) | `www.acme.com` |
-| **DA content store** | `https://da.live/#/acme-stage/site` | `https://da.live/#/acme/site` |
-| **`fstab.yaml` mountpoint** | `https://content.da.live/acme-stage/site` | `https://content.da.live/acme/site` |
-| **AEMaaCS Assets program** | Non‑prod program (Dev + Stage envs) | Production program |
-| **DA → AEM Assets config keys** | Stage program ID, stage publish hostname | Prod program ID, prod publish hostname |
-| **Push invalidation target** | Stage CDN / Adobe Managed CDN stage edge | Prod CDN |
+| **EDS site (helix‑admin org/site)** | `acme-dev` | `acme` |
+| **EDS preview URL pattern** | `<branch>--acme-dev--<org>.aem.page` | `main--acme--<org>.aem.page` |
+| **EDS live URL pattern** | `<branch>--acme-dev--<org>.aem.live` | `main--acme--<org>.aem.live` |
+| **Public hostname** | `dev.acme.com` (BYO CDN or Adobe Managed CDN) | `www.acme.com` |
+| **DA content store** | `https://da.live/#/acme/dev` | `https://da.live/#/acme/prod` |
+| **`fstab.yaml` mountpoint** | `https://content.da.live/acme/dev` | `https://content.da.live/acme/prod` |
+| **AEMaaCS Assets program** | Non‑prod program, **Dev** environment | Production program |
+| **DA → AEM Assets config keys** | Dev program ID, Dev publish hostname (AEMaaCS Dev tier) | Prod program ID, prod publish hostname |
+| **Push invalidation target** | Integration track CDN / Adobe Managed CDN (non‑prod edge) | Prod CDN |
 
 ### 4.2 Why a *single* GitLab repository with two EDS sites
 
-The customer should run **one GitLab repository** that drives **two EDS sites** (`acme-stage` and `acme`). The repo is registered once in Cloud Manager via BYO Git, and that single registration is referenced by both EDS site configurations.
+The customer should run **one GitLab repository** that drives **two EDS sites** (`acme-dev` and `acme`). The repo is registered once in Cloud Manager via BYO Git, and that single registration is referenced by both EDS site configurations.
 
 This is the same pattern as the EDS "Repoless" feature: multiple sites share a code source. From the [BYO Git docs](https://www.aem.live/developer/byo-git):
 
@@ -168,18 +168,18 @@ This is the same pattern as the EDS "Repoless" feature: multiple sites share a c
 
 **Why this is better than two repos:**
 
-- A code change validated on the Integration Track is *byte‑identical* on the Release Track — no merge drift, no "but it worked on stage" debugging.
+- A code change validated on the Integration Track is *byte‑identical* on the Release Track — no merge drift, no "but it worked on **dev**" debugging.
 - Branch isolation is still complete: `feature/x` only exists on the Integration Track's preview URLs because the Release Track's site config typically only reacts to `main`. (You can scope this via Admin API config or by simply not exposing non‑main branches on the prod hostname.)
 - Cloud Manager only has one repository to manage and authenticate against.
 
-### 4.3 Why two AEMaaCS programs (Dev/Stage vs Prod) is non‑negotiable
+### 4.3 Why two AEMaaCS programs (non‑prod Dev vs prod) is non‑negotiable
 
 Unlike code branches (cheap and unlimited), AEM as a Cloud Service environments are heavyweight and stateful. The customer's existing AEMaaCS Assets license likely already includes:
 
-- A **non‑production program** with one or more environments (often Dev + Stage).
+- A **non‑production program** with a **Dev** environment used as the integration‑track DAM (this reference architecture wires DA on the integration track to **AEMaaCS Dev**, not to a separate AEMaaCS **Stage** environment).
 - A **production program** with author + publish.
 
-These should map directly to the two tracks. Authors uploading new asset variants, testing rendition pipelines, or experimenting with metadata schemas should never do this on the production AEM Author. Asset reviewers (rights & legal) gate the *promotion* of an asset from non‑prod to prod.
+These should map directly to the two tracks. Authors uploading new asset variants, testing rendition pipelines, or experimenting with metadata schemas should never do this on the production AEM Author. Asset reviewers (rights & legal) gate the *promotion* of an asset from **AEMaaCS Dev** to prod.
 
 > **Promotion of assets** between AEMaaCS programs is **not automatic**. Teams typically use AEM Assets Migration tooling, asset workflows, or — more commonly for a smaller, curated asset set — manually re‑upload approved assets to the production program. The two‑track model accepts this duplication as the cost of governance.
 
@@ -187,10 +187,10 @@ These should map directly to the two tracks. Authors uploading new asset variant
 
 DA permissions are configured per org via `https://da.live/config#/{org}/`, and content lives at `https://content.da.live/{org}/{site}/`. Two options exist:
 
-- **Two sites under one org** (`acme/stage` and `acme/prod`) — simpler IMS group management; permissions applied per path.
-- **Two separate orgs** (`acme-stage` and `acme`) — strongest isolation; useful when authoring teams should have zero visibility into the other track.
+- **Two sites under one org** (`acme/dev` and `acme/prod`) — simpler IMS group management; permissions applied per path.
+- **Two separate orgs** (`acme-dev` and `acme`) — strongest isolation; useful when authoring teams should have zero visibility into the other track.
 
-For most customers, **two sites under one org** with strict path‑level permissions in the org's permissions sheet is the right balance. A `reviewers` group might have `read` on stage and nothing on prod; a `prod-publishers` group has `write` on prod paths only.
+For most customers, **two sites under one org** with strict path‑level permissions in the org's permissions sheet is the right balance. A `reviewers` group might have `read` on non‑prod paths and nothing on prod; a `prod-publishers` group has `write` on prod paths only.
 
 ---
 
@@ -207,7 +207,7 @@ flowchart TB
     classDef user fill:#fce4ec,stroke:#c2185b,color:#880e4f
 
     DEV["👩‍💻 Developers<br/>IDE + GitLab MR"]:::code
-    AUTH_S["✍️ Stage Authors<br/>QA + Marketing draft"]:::content
+    AUTH_S["✍️ Non‑prod Authors<br/>QA + Marketing draft"]:::content
     AUTH_P["✍️ Prod Authors<br/>Approved content"]:::content
     DAMU["📷 Asset Managers<br/>Brand + Legal"]:::asset
 
@@ -218,19 +218,19 @@ flowchart TB
     end
 
     subgraph ContentStream["CONTENT STREAM"]
-        DA_S["DA — acme-stage<br/>content.da.live/acme/stage"]:::content
+        DA_S["DA — acme / dev<br/>content.da.live/acme/dev"]:::content
         DA_P["DA — acme-prod<br/>content.da.live/acme/prod"]:::content
         CONTB["EDS Content Bus"]:::eds
     end
 
     subgraph AssetStream["ASSET STREAM"]
-        DAM_S["AEMaaCS Non-Prod<br/>Author + Publish<br/>(Stage)"]:::asset
+        DAM_S["AEMaaCS Dev<br/>Author + Publish<br/>(non-prod)"]:::asset
         DAM_P["AEMaaCS Prod<br/>Author + Publish"]:::asset
         MB["EDS Media Bus<br/>content-addressable<br/>media_&lt;hash&gt;.&lt;ext&gt;"]:::eds
     end
 
     subgraph Delivery["DELIVERY"]
-        EDS_S["acme-stage--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ stage.acme.com"]:::eds
+        EDS_S["acme-dev--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ dev.acme.com"]:::eds
         EDS_P["acme--&lt;org&gt;<br/>.aem.page / .aem.live<br/>→ www.acme.com"]:::eds
     end
 
@@ -274,10 +274,10 @@ flowchart LR
     subgraph IT["🟡 INTEGRATION TRACK"]
         direction TB
         IT_GL["GitLab<br/>feature/* + dev branches"]:::int
-        IT_DA["DA Stage Site<br/>/acme/stage/*"]:::int
-        IT_DAM["AEMaaCS Non-Prod Assets<br/>Author + Publish (Stage)"]:::int
-        IT_EDS["acme-stage--&lt;org&gt;<br/>.aem.page / .aem.live"]:::int
-        IT_URL["stage.acme.com<br/>(restricted by IP/SSO)"]:::int
+        IT_DA["DA non‑prod site<br/>/acme/dev/*"]:::int
+        IT_DAM["AEMaaCS Dev Assets<br/>Author + Publish<br/>(non-prod)"]:::int
+        IT_EDS["acme-dev--&lt;org&gt;<br/>.aem.page / .aem.live"]:::int
+        IT_URL["dev.acme.com<br/>(restricted by IP/SSO)"]:::int
 
         IT_GL --> IT_EDS
         IT_DA --> IT_EDS
@@ -319,14 +319,14 @@ sequenceDiagram
     participant GL as GitLab
     participant CM as Cloud Manager
     participant EDS as EDS (helix-admin)
-    participant Stage as acme-stage<br/>.aem.live
+    participant IntTrack as acme-dev<br/>.aem.live
     participant Prod as acme<br/>.aem.live
 
     Dev->>GL: git push feature/hero-redesign
     GL->>CM: webhook: branch updated
     CM->>EDS: mirror sync (cm-repo.adobe.io)
-    EDS-->>Stage: build feature-hero-redesign--acme-stage--org.aem.live
-    Note over Dev,Stage: Developer + QA validate on per-branch URL
+    EDS-->>IntTrack: build feature-hero-redesign--acme-dev--org.aem.live
+    Note over Dev,IntTrack: Developer + QA validate on per-branch URL
 
     Dev->>GL: open MR feature/hero-redesign → main
     GL->>GL: PR validation (Cloud Manager)<br/>+ CI lint/tests
@@ -335,9 +335,9 @@ sequenceDiagram
     Dev->>GL: merge MR (main)
     GL->>CM: webhook: main updated
     CM->>EDS: mirror sync
-    EDS-->>Stage: rebuild main--acme-stage--org.aem.live
+    EDS-->>IntTrack: rebuild main--acme-dev--org.aem.live
     EDS-->>Prod: rebuild main--acme--org.aem.live
-    Note over Stage,Prod: Same commit hash on both URLs<br/>Authors validate against prod content+assets
+    Note over IntTrack,Prod: Same commit hash on both URLs<br/>Authors validate against prod content+assets
 ```
 
 ### 5.4 Asset Delivery Flow (no Dynamic Media)
@@ -381,12 +381,12 @@ flowchart LR
 
 | Environment | Primary Users | Their Activities | URL Pattern |
 |---|---|---|---|
-| **Per‑branch preview** (`<branch>--acme-stage--<org>.aem.page`) | Developers | Live‑edit feedback, smoke testing of code+content+asset combinations. | `feature-x--acme-stage--<org>.aem.page` |
-| **Per‑branch live** (`<branch>--acme-stage--<org>.aem.live`) | Developers, QA | Test under production cache rules (TTLs, push invalidation). | `feature-x--acme-stage--<org>.aem.live` |
-| **Integration Track public** (`stage.acme.com`) | QA, Marketing reviewers, internal stakeholders, third‑party reviewers (legal, brand) | End‑to‑end UAT against `main` branch + stage content + stage assets. SSO/IP‑gated. | `stage.acme.com` (proxies to `main--acme-stage--<org>.aem.live`) |
-| **DA Stage** (`da.live/#/acme/stage`) | Content authors (drafting), marketing teams, content QA | Author drafts, run preview, validate layout against stage assets. | DA UI |
-| **DA Prod** (`da.live/#/acme/prod`) | Content publishers (small group), localization leads | Final publish to production. Drafts copied from stage after content QA. | DA UI |
-| **AEMaaCS Non‑Prod Assets** | Asset managers (test ingest), brand/legal (review), photographers (upload drafts) | Upload, metadata enrichment, rendition testing, rights review. | `author-stage.adobeaemcloud.com` |
+| **Per‑branch preview** (`<branch>--acme-dev--<org>.aem.page`) | Developers | Live‑edit feedback, smoke testing of code+content+asset combinations. | `feature-x--acme-dev--<org>.aem.page` |
+| **Per‑branch live** (`<branch>--acme-dev--<org>.aem.live`) | Developers, QA | Test under production cache rules (TTLs, push invalidation). | `feature-x--acme-dev--<org>.aem.live` |
+| **Integration Track public** (`dev.acme.com`) | QA, Marketing reviewers, internal stakeholders, third‑party reviewers (legal, brand) | End‑to‑end UAT against `main` branch + non‑prod DA content + **AEMaaCS Dev** DAM assets. SSO/IP‑gated. | `dev.acme.com` (proxies to `main--acme-dev--<org>.aem.live`) |
+| **DA — integration / non‑prod** (`da.live/#/acme/dev`) | Content authors (drafting), marketing teams, content QA | Author drafts, run preview, validate layout against **AEMaaCS Dev** assets. | DA UI |
+| **DA Prod** (`da.live/#/acme/prod`) | Content publishers (small group), localization leads | Final publish to production. Drafts copied from non‑prod DA after content QA. | DA UI |
+| **AEMaaCS Dev (non‑prod DAM)** | Asset managers (test ingest), brand/legal (review), photographers (upload drafts) | Upload, metadata enrichment, rendition testing, rights review — **AEMaaCS Dev** tier. | Dev Author URL from Cloud Manager |
 | **AEMaaCS Prod Assets** | Asset publishers (small group), DAM admins | Final upload, publish to publish tier. | `author.adobeaemcloud.com` |
 | **Release Track production** (`www.acme.com`) | End users, search engines, analytics | Live site. | `www.acme.com` (proxies to `main--acme--<org>.aem.live`) |
 
@@ -397,7 +397,7 @@ flowchart LR
 | Code commit & MR | **R** | I | I | C | I | I |
 | Code review approval | **A** | — | — | C | — | I |
 | Merge to `main` | R | — | — | — | — | **A** |
-| Authoring on DA Stage | I | **R** | C | C | — | I |
+| Authoring on non‑prod DA | I | **R** | C | C | — | I |
 | Promote DA content to prod | C | C | — | C | — | **A** |
 | Asset upload (non‑prod) | — | I | **R** | C | C | — |
 | Asset approval | — | I | C | — | **A** | I |
@@ -414,8 +414,8 @@ flowchart LR
 A **trunk‑based** flow with short‑lived feature branches is the natural fit for EDS, because EDS already publishes every branch automatically.
 
 ```
-main                ← protected; deploys to BOTH acme-stage and acme EDS sites
-└── feature/*       ← short-lived; deploys to acme-stage only (per-branch URLs)
+main                ← protected; deploys to BOTH acme-dev and acme EDS sites
+└── feature/*       ← short-lived; deploys to acme-dev only (per-branch URLs)
 └── hotfix/*        ← short-lived; expedited path through main
 ```
 
@@ -433,25 +433,25 @@ main                ← protected; deploys to BOTH acme-stage and acme EDS sites
 ```mermaid
 flowchart TD
     A[Developer creates<br/>feature/abc branch] --> B[Push to GitLab]
-    B --> C[EDS auto-builds<br/>feature-abc--acme-stage--org<br/>.aem.page / .aem.live]
+    B --> C[EDS auto-builds<br/>feature-abc--acme-dev--org<br/>.aem.page / .aem.live]
     C --> D{Developer<br/>self-test}
     D -->|fail| B
     D -->|pass| E[Open MR to main]
 
     E --> F[Cloud Manager<br/>PR validation]
-    F --> G[Code review +<br/>QA validates branch URL<br/>against stage content+assets]
+    F --> G[Code review +<br/>QA validates branch URL<br/>against non‑prod DA + AEMaaCS Dev assets]
     G -->|reject| B
     G -->|approve| H[Merge to main]
 
-    H --> I[Stage track:<br/>main--acme-stage--org<br/>.aem.live updated]
+    H --> I[Integration track:<br/>main--acme-dev--org<br/>.aem.live updated]
     H --> J[Prod track:<br/>main--acme--org<br/>.aem.live updated]
 
-    I --> K{UAT on<br/>stage.acme.com}
+    I --> K{UAT on<br/>dev.acme.com}
     K -->|fail| L[Hotfix MR<br/>back to main]
     L --> H
     K -->|pass| M[Content + Asset<br/>promotion gate]
 
-    M --> N[Authors copy/republish<br/>approved DA stage content<br/>to DA prod]
+    M --> N[Authors copy/republish<br/>approved non‑prod DA content<br/>to DA prod]
     M --> O[DAM admin promotes<br/>approved assets to<br/>AEMaaCS Prod + publishes]
 
     N --> P[DA prod publish<br/>→ Content Bus<br/>→ www.acme.com updated]
@@ -465,9 +465,9 @@ flowchart TD
 
 | Gate | Owner | Criteria |
 |---|---|---|
-| **Code → Stage track** | Developer | Branch builds clean, lint passes, branch URL renders |
+| **Code → Integration track** | Developer | Branch builds clean, lint passes, branch URL renders |
 | **Code → `main`** | Tech Lead + Cloud Manager PR validation | MR approved, CI green, QA sign‑off on branch URL |
-| **Code in production** | Release Manager | UAT on `stage.acme.com` passes, no Sev1 open |
+| **Code in production** | Release Manager | UAT on `dev.acme.com` passes, no Sev1 open |
 | **Content → Prod DA** | Content Lead | Editorial review, legal sign‑off, asset references resolve |
 | **Asset → Prod DAM** | DAM Admin | Rights cleared, metadata complete, rendition QC done |
 | **Domain switch / cache purge** | Release Manager | All three streams aligned on production track |
@@ -477,7 +477,7 @@ flowchart TD
 ```
 hotfix/<ticket> ← branched from main, NOT from feature
     ↓
-push → branch URL on stage track
+push → branch URL on integration track
     ↓
 expedited MR review (single approver, fast-track CI)
     ↓
@@ -486,7 +486,7 @@ merge to main
 auto-deploy to both tracks; verify on www.acme.com
 ```
 
-Hotfixes deliberately bypass the long stage UAT gate. The stage track is still updated automatically (because it tracks `main`), but the release manager can choose to deploy to prod immediately for Sev1 fixes.
+Hotfixes deliberately bypass the long integration‑hostname UAT gate (`dev.acme.com`). The integration track is still updated automatically (because it tracks `main`), but the release manager can choose to deploy to prod immediately for Sev1 fixes.
 
 ---
 
@@ -556,9 +556,9 @@ For the **Integration Track**, the customer can typically use the Adobe Managed 
 
 ### 8.6 DA → AEM Assets configuration
 
-The DA‑side configuration that wires DA to a specific AEMaaCS environment is set per DA site (or org) in the DA config sheet. Per the [DA AEM Assets setup docs](https://docs.da.live/administrators/guides/setup-aem-assets), the relevant keys include the AEM environment hostname and the IMS client ID. **Critically, the customer must configure two distinct sets of keys** — one in the DA Stage site config (pointing to AEMaaCS Non‑Prod) and one in the DA Prod site config (pointing to AEMaaCS Prod). This is what enables the two‑track separation at the asset stream level.
+The DA‑side configuration that wires DA to a specific AEMaaCS environment is set per DA site (or org) in the DA config sheet. Per the [DA AEM Assets setup docs](https://docs.da.live/administrators/guides/setup-aem-assets), the relevant keys include the AEM environment hostname and the IMS client ID. **Critically, the customer must configure two distinct sets of keys** — one in the non‑prod DA site config (pointing to **AEMaaCS Dev**) and one in the DA prod site config (pointing to AEMaaCS Prod). This is what enables the two‑track separation at the asset stream level.
 
-> **Watch out:** It is tempting to point both DA sites at the production AEMaaCS to "save the duplication." Don't. An author drafting on DA Stage will then see — and could insert — un‑approved or rights‑pending assets, and the whole point of the separation is lost.
+> **Watch out:** It is tempting to point both DA sites at the production AEMaaCS to "save the duplication." Don't. An author drafting on non‑prod DA will then see — and could insert — un‑approved or rights‑pending assets, and the whole point of the separation is lost.
 
 ---
 
@@ -566,13 +566,13 @@ The DA‑side configuration that wires DA to a specific AEMaaCS environment is s
 
 ### 9.1 Permissions matrix
 
-| Role | GitLab | DA Stage | DA Prod | AEMaaCS Non‑Prod | AEMaaCS Prod |
+| Role | GitLab | DA (non‑prod) | DA Prod | AEMaaCS Dev | AEMaaCS Prod |
 |---|---|---|---|---|---|
-| Developer | Maintainer (own MRs) | Read | Read | Author tester | Read‑only on author |
+| Developer | Maintainer (own MRs) | Read | Read | Author tester (Dev) | Read‑only on author |
 | Content Author | None | Write | Read | None | None |
 | Content Publisher | None | Write | Write | None | None |
-| Asset Manager | None | Read | Read | Write (DAM) | Read‑only |
-| DAM Admin | None | Read | Read | Admin | Admin |
+| Asset Manager | None | Read | Read | Write (DAM, Dev) | Read‑only |
+| DAM Admin | None | Read | Read | Admin (Dev) | Admin |
 | QA Engineer | Reporter | Read | Read | Read‑only | Read‑only |
 | Release Manager | Maintainer (protected branches) | Read | Write | Read‑only | Read‑only |
 
@@ -611,10 +611,10 @@ Enable [Cloud Manager push validation](https://www.aem.live/docs/) for the EDS s
 
 ### 10.1 BYO Git registration in EDS site config
 
-For **`acme-stage`** (Integration Track):
+For **`acme-dev`** (Integration Track):
 
 ```bash
-curl -v -X POST https://admin.hlx.page/config/<org>/sites/acme-stage/code.json \
+curl -v -X POST https://admin.hlx.page/config/<org>/sites/acme-dev/code.json \
   -H 'content-type: application/json' \
   -H 'x-auth-token: <your-auth-token>' \
   --data '{
@@ -661,13 +661,13 @@ mountpoints:
 Where `<org>/<site>` resolves differently per EDS site because each EDS site is configured with its own `content.json` Admin API entry pointing to the appropriate DA path. Alternatively, configure the content source via `https://admin.hlx.page/config/<org>/sites/<site>/content.json` per site:
 
 ```bash
-# Stage track points to the stage DA site
-curl -X POST https://admin.hlx.page/config/<org>/sites/acme-stage/content.json \
+# Integration track (`acme-dev`) points to the non‑prod DA site
+curl -X POST https://admin.hlx.page/config/<org>/sites/acme-dev/content.json \
   -H 'content-type: application/json' \
   -H 'x-auth-token: <your-auth-token>' \
   --data '{
     "source": {
-      "url": "https://content.da.live/acme/stage",
+      "url": "https://content.da.live/acme/dev",
       "type": "markup"
     }
   }'
@@ -686,7 +686,7 @@ curl -X POST https://admin.hlx.page/config/<org>/sites/acme/content.json \
 
 ### 10.3 DA Site config for AEM Assets connector (`/.da/config`)
 
-For DA Stage site, in the DA config sheet (`https://da.live/sheet#/acme/stage/.da/config`), add the AEM Assets configuration keys pointing at the **non‑prod** AEMaaCS environment. For DA Prod site, add the same keys but pointing at the **prod** AEMaaCS environment. Refer to the [DA AEM Assets setup guide](https://docs.da.live/administrators/guides/setup-aem-assets) for the exact key names, which include AEM hostname, IMS client ID, and the appropriate `repositoryId` per environment. Site‑level values take precedence over org‑level values, which is what enables the per‑track configuration.
+For the non‑prod DA site, in the DA config sheet (`https://da.live/sheet#/acme/dev/.da/config`), add the AEM Assets configuration keys pointing at **AEMaaCS Dev** (the Dev Author / Dev Publish endpoints from Cloud Manager). For DA prod site, add the same keys but pointing at the **prod** AEMaaCS environment. Refer to the [DA AEM Assets setup guide](https://docs.da.live/administrators/guides/setup-aem-assets) for the exact key names, which include AEM hostname, IMS client ID, and the appropriate `repositoryId` per environment. Site‑level values take precedence over org‑level values, which is what enables the per‑track configuration.
 
 ### 10.4 GitLab webhook to Cloud Manager
 
@@ -721,7 +721,7 @@ Combine with **Approval Rules** (Settings → Merge requests → Approval rules)
 
 ### 10.6 Recommended `.helix/query.yaml` and `helix-config.yaml` placement
 
-Both files belong at the repo root and are consumed by EDS automatically. Per‑site overrides (e.g., a different sitemap config for stage vs prod) are managed via the EDS Admin API config endpoints, **not** by branching the YAML files. Keep the repo single‑source‑of‑truth.
+Both files belong at the repo root and are consumed by EDS automatically. Per‑site overrides (e.g., a different sitemap config for the **acme-dev** site vs **acme** prod) are managed via the EDS Admin API config endpoints, **not** by branching the YAML files. Keep the repo single‑source‑of‑truth.
 
 ### 10.7 Push Invalidation for BYO CDN (Release Track)
 
@@ -748,14 +748,14 @@ If using Akamai, Fastly, Cloudflare, or CloudFront in front of `www.acme.com`:
 <!-- What does this MR change? -->
 
 ## EDS preview links
-- Stage track preview: https://<branch>--acme-stage--<org>.aem.page
-- Stage track live: https://<branch>--acme-stage--<org>.aem.live
+- Integration track preview: https://<branch>--acme-dev--<org>.aem.page
+- Integration track live: https://<branch>--acme-dev--<org>.aem.live
 
 ## Validation checklist
-- [ ] Branch live URL renders against stage DA content
+- [ ] Branch live URL renders against non‑prod DA content
 - [ ] Lighthouse score ≥ 95 on representative pages
 - [ ] No new console errors
-- [ ] If asset references changed: bulk-preview triggered in DA stage
+- [ ] If asset references changed: bulk-preview triggered in non‑prod DA (AEMaaCS Dev assets)
 - [ ] Cloud Manager PR validation passing
 
 ## Risk assessment
