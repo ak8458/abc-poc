@@ -25,6 +25,9 @@ The repository provides the basic structure, blocks, and configuration needed to
   - To serve local test HTML: `npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts`
 - Run linting before committing: `npm run lint`
 - Auto-Fix linting issues: `npm run lint:fix`
+- Format all files: `npm run format` (Prettier); check only: `npm run format:check`
+- Build Universal Editor JSON: `npm run build:json` (aggregates `ue/models/blocks/*.json` into root-level component JSON files)
+- **Husky pre-commit hook**: lint-staged auto-runs ESLint+Prettier on staged `.js`/`.css`/`.json` files on every commit.
 
 ## Project Structure
 
@@ -131,6 +134,10 @@ body {
 
 To add a new theme, create `styles/themes/{theme-name}.css` and reference it in the page's metadata table.
 
+**Multiple themes**: The metadata value can be comma-separated to load multiple themes simultaneously (e.g., `theme: careers, special-event`). Each CSS file is loaded in parallel via `Promise.all`.
+
+> **CSS lint caveat**: `npm run lint:css` covers `blocks/**/*.css` and `styles/*.css` only — files under `styles/themes/` are **not** linted automatically. Run `npx stylelint "styles/themes/**/*.css"` to lint theme files manually.
+
 ### Button decoration (`scripts.js:decorateButtons`)
 
 This project uses a **custom** `decorateButtons` — not the boilerplate version. Links are only promoted to buttons when wrapped in `**strong**` or `*em*` formatting:
@@ -145,7 +152,7 @@ This project uses a **custom** `decorateButtons` — not the boilerplate version
 
 Four patterns are detected automatically — no explicit block authoring required:
 
-1. **Hero** (`buildHeroBlock`): A `<picture>` preceding an `<h1>` in the first section triggers creation of a `hero` block. Skipped if either element is already inside `.hero`.
+1. **Hero** (`buildHeroBlock`): The first `<picture>` and `<h1>` found anywhere in `<main>` (via `main.querySelector`) are wrapped into a `hero` block prepended to `<main>` in a new section. Skipped if either element is already inside `.hero`.
 
 2. **Accordion** (`buildAccordionBlock`): A section whose first child is `<h2>` and all remaining children are `<p>` elements in an even number ≥ 4 becomes an `accordion` block. Pairs of `<p>` elements form question/answer rows.
 
@@ -166,6 +173,12 @@ No author opt-in required; detection is purely structural.
 ### Universal Editor (UE) support
 
 The `ue/` directory contains component models (`ue/models/`) and a runtime script (`ue/scripts/ue.js`). The UE script is loaded automatically in `scripts.js` when the hostname matches `*.stage-ue.da.live` or `*.ue.da.live`. Do not modify `ue/scripts/ue-utils.js` or `ue/scripts/ue.js` without understanding the instrumentation contracts.
+
+**Component model authoring**: The source of truth for UE component definitions is the per-block JSON files in `ue/models/blocks/` (e.g. `accordion.json`, `hero.json`). The root-level `component-definition.json`, `component-definitions.json`, `component-models.json`, and `component-filters.json` are **generated** — run `npm run build:json` after editing any `ue/models/blocks/*.json` file to regenerate them.
+
+### DA (Document Authoring) Preview integration
+
+`scripts.js` includes a `loadDa()` IIFE: when the page URL contains `?dapreview`, it dynamically imports `https://da.live/scripts/dapreview.js` and calls `daPreview(loadPage)`. This enables live preview from the DA authoring environment. Do not remove this block.
 
 ## Testing & Quality Assurance
 
@@ -208,7 +221,7 @@ With this information, you can construct URLs for the preview environment (same 
 - Consider that everything you do is client-side code served on the public web
 - Follow Adobe security guidelines
 - Regularly update dependencies
-- Use the .hlxignore file to prevent files from being served (same format as .gitingnore)
+- Use the .hlxignore file to prevent files from being served (same format as .gitignore)
 
 ## Contributing
 
