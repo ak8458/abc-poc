@@ -405,15 +405,12 @@
   overflow: hidden;
 }
 
-/* ── Careers theme: culture-cards section ── */
 .section:has(.columns.three-columns),
-/* stylelint-disable-next-line no-descending-specificity -- culture-cards :has() selector never matches testimonial section */
 .section:has(+ .section:has(.columns.three-columns)) {
   padding: var(--section-padding);
   margin: 0;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- testimonial and culture-cards selectors never match the same section element */
 .section.cards-container + .section:has(.columns.testimonial) {
   background: linear-gradient(
     to bottom,
@@ -422,7 +419,6 @@
   );
 }
 
-/* Reset browser default blockquote styles */
 .columns.testimonial blockquote {
   margin: 0;
   padding: 0;
@@ -577,14 +573,14 @@
   margin-bottom: var(--spacing-xs);
 }
 
-.cards.cards.with-icon > ul {
+.cards.with-icon > ul {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   max-width: var(--how-hire-cards-max-width);
 }
 
-.cards.cards.with-icon > ul > li {
+.cards.with-icon > ul > li {
   border: var(--border-width) solid var(--color-border);
   border-bottom: var(--border-width-accent) solid var(--card-accent-color);
   border-radius: var(--radius-lg);
@@ -592,7 +588,7 @@
   padding: 0;
 }
 
-.cards.cards.with-icon .cards-card-body {
+.cards.with-icon .cards-card-body {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -600,7 +596,8 @@
   padding-right: calc(var(--spacing-md) + var(--icon-card-icon-size) + var(--spacing-sm));
 }
 
-.cards.cards.with-icon .cards-card-body h3 {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon h3 never matches 3-cols h3 */
+.cards.with-icon .cards-card-body h3 {
   font-family: var(--body-font-family);
   font-size: var(--how-hire-step-title-size);
   font-weight: var(--font-weight-medium);
@@ -612,8 +609,8 @@
   margin: 0 0 var(--spacing-xs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- how-hire p never matches careers cards p */
-.cards.cards.with-icon .cards-card-body p {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon p never matches 3-cols p:first-child */
+.cards.with-icon .cards-card-body p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-xs);
@@ -647,7 +644,8 @@
 }
 
 /* Icon: absolutely positioned top-right */
-.cards.cards.with-icon .cards-card-body > p:last-child {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon p:last-child never matches 3-cols p:first-child */
+.cards.with-icon .cards-card-body > p:last-child {
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
@@ -655,14 +653,13 @@
   width: var(--icon-card-icon-size);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- how-hire .icon never matches 3-cols p:first-child .icon */
-.cards.cards.with-icon .cards-card-body .icon {
+.cards.with-icon .cards-card-body .icon {
   display: flex;
   width: var(--icon-card-icon-size);
   height: var(--icon-card-icon-size);
 }
 
-.cards.cards.with-icon .cards-card-body blockquote {
+.cards.with-icon .cards-card-body blockquote {
   margin: 0 0 var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--light-color);
@@ -673,14 +670,14 @@
   font-style: normal;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- how-hire blockquote p:first-child never matches testimonial blockquote p */
-.cards.cards.with-icon .cards-card-body blockquote p:first-child {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon blockquote p never matches 3-cols p:first-child */
+.cards.with-icon .cards-card-body blockquote p:first-child {
   font-weight: var(--font-weight-bold);
   color: var(--text-color);
   margin: 0 0 var(--spacing-xxs);
 }
 
-.cards.cards.with-icon .cards-card-body blockquote p:first-child::before {
+.cards.with-icon .cards-card-body blockquote p:first-child::before {
   content: '';
   display: inline-block;
   width: var(--how-hire-lightbulb-width);
@@ -693,7 +690,8 @@
   margin-right: var(--spacing-xxs);
 }
 
-.cards.cards.with-icon .cards-card-body blockquote p:last-child {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon blockquote p:last-child never matches 3-cols p:first-child */
+.cards.with-icon .cards-card-body blockquote p:last-child {
   margin: 0;
   padding-left: var(--how-hire-blockquote-left);
 }
@@ -790,7 +788,7 @@
   font-weight: var(--font-weight-bold);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- p:last-child never matches award-winning p:first-child */
+/* stylelint-disable-next-line no-descending-specificity -- two-columns-card p:last-child never matches 3-cols p:first-child */
 .columns.two-columns-card > div > div p:last-child {
   margin-top: auto;
   padding-top: var(--spacing-sm);
@@ -808,7 +806,6 @@
   }
 }
 
-/* ── Careers theme: bottom-photo section ── */
 .section.bottom-photo {
   padding: var(--section-padding);
   margin: 0;
@@ -837,14 +834,12 @@
   }
 }
 
-/* ── Careers theme: your-wellbeing section ── */
 .section.your-wellbeing {
   background-color: var(--brand-grey);
   padding: var(--spacing-xl) 0;
   margin: 0;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- your-wellbeing div never matches testimonial div:not(.columns-img-col) */
 .section.your-wellbeing .columns > div > div {
   text-align: left;
   max-width: none;
@@ -862,7 +857,8 @@
   font-weight: var(--font-weight-bold);
 }
 
-.cards.cards.with-icon .cards-card-body p a {
+/* stylelint-disable-next-line no-descending-specificity -- cards.with-icon p a never appears inside .columns-cards */
+.cards.with-icon .cards-card-body p a {
   font-weight: var(--font-weight-bold);
 }
 
@@ -892,7 +888,6 @@
   }
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- three-columns icon never matches cards.with-icon .icon */
 .columns.three-columns > div > div > p:first-child .icon {
   width: 96px;
   height: 96px;
