@@ -66,6 +66,7 @@
   --border-width: 1px;
   --border-width-thick: 2px;
   --border-width-accent: 4px;
+  --border-width-quote: 8px;
 
   /* shadows */
   --shadow-card: 2px 2px 4px 0 rgb(0 0 0 / 25%);
@@ -80,6 +81,27 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* hero */
+  --hero-picture-height: 300px;
+  --hero-min-height-sm: 400px;
+  --hero-min-height-md: 500px;
+  --hero-min-height-lg: 600px;
+  --hero-image-width: 50%;
+  --hero-content-width: 50%;
+  --hero-content-indent: var(--spacing-lg);
+  --hero-h1-size: var(--heading-font-size-xl);
+  --hero-h1-size-sm: var(--heading-font-size-xxl);
+  --hero-h1-size-md: var(--heading-font-size-xxl);
+  --hero-h1-size-lg: var(--heading-font-size-xxl);
+  --hero-h1-weight: var(--font-weight-bold);
+  --hero-h1-line-height: var(--line-height-heading);
+  --hero-h1-margin-bottom: 0;
+  --hero-h1-padding-end: 0;
+  --hero-p-margin-bottom: 0;
+  --hero-p-last-margin-top: 0;
+  --hero-btn-padding: var(--spacing-xs) var(--spacing-md);
+  --hero-gradient: none;
 }
 
 /* fallback fonts */

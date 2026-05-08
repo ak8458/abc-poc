@@ -25,7 +25,7 @@ This site has diverged from the boilerplate baseline in these ways:
 
 ### Themes system (`styles/themes/`)
 
-Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` loads the matching CSS file. One themes exist: `careers.css`. Theme CSS overrides `:root` CSS custom properties and can target `body.{theme}` for block-level overrides (e.g. `body.careers .hero`).
+Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` loads the matching CSS file. One theme exists: `careers.css`. Theme CSS overrides `:root` CSS custom properties and can target `body.{theme}` for block-level overrides (e.g. `body.careers .hero`).
 
 ### Button decoration (`scripts.js:decorateButtons`)
 
@@ -39,7 +39,7 @@ Plain links are never auto-buttonized.
 
 ### Hero block (`blocks/hero/`)
 
-Auto-blocked via `buildHeroBlock()` in `scripts.js` when a `<picture>` precedes an `<h1>`. The block separates the picture (full-bleed background, `position: absolute`) from text content (`.hero-content`). The `careers` theme overrides this with a split-screen layout (image right 58.4%, text left 41.6% with a gradient bleed).
+Auto-blocked via `buildHeroBlock()` in `scripts.js` when a `<picture>` precedes an `<h1>`. The block separates the picture (full-bleed background, `position: absolute`) from text content (`.hero-content`). The `careers` theme overrides this with a split-screen layout (image right 58.4%, text left 39.5% with a gradient bleed).
 
 ### Columns block (`blocks/columns/`)
 

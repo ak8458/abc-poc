@@ -3,18 +3,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
-  gap: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
 }
 
 .cards > ul > li {
-  border: var(--border-width) solid var(--color-border);
   background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: var(--spacing-xs);
 }
 
 .cards .cards-card-image {
@@ -27,24 +21,12 @@
   object-fit: cover;
 }
 
-/* ── Careers theme ── */
-body.careers .cards > ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-body.careers .cards > ul > li {
-  border: none;
-  padding: 0 0 var(--spacing-xs);
-}
-
-body.careers .cards .cards-card-body {
+.cards .cards-card-body {
   margin: 0;
   padding: 0;
 }
 
-body.careers .cards .cards-card-body h3 {
+.cards .cards-card-body h3 {
   color: var(--text-color);
   font-size: var(--card-h3-size);
   font-weight: var(--font-weight-medium);
@@ -54,57 +36,106 @@ body.careers .cards .cards-card-body h3 {
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
-body.careers .cards .cards-card-body p {
+.cards .cards-card-body p {
   color: var(--color-muted);
-  font-size: var(--card-p-size);
+  font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-paragraph);
   margin: 0;
   padding: var(--spacing-sm) 0;
 }
 
-body.careers .cards .cards-card-body ul {
+.cards .cards-card-body ul {
   list-style: disc;
-  padding: var(--spacing-sm) 0 var(--spacing-sm) 20px;
+  padding: var(--spacing-sm) 0 var(--spacing-sm) var(--card-list-indent);
   margin: 0;
   color: var(--text-color);
-  font-size: var(--body-font-size-s, 16px);
+  font-size: var(--body-font-size-s);
   line-height: var(--line-height-list);
+  columns: 2;
+  column-gap: var(--card-list-col-gap);
 }
 
-body.careers .cards .cards-card-body ul li {
-  margin-bottom: 4px;
+.cards .cards-card-body ul li {
+  margin-bottom: var(--card-list-item-gap);
   border: none;
   background: none;
   padding: 0;
 }
 
-body.careers .cards .cards-card-body ul li a {
+.cards .cards-card-body ul li a {
   font-weight: var(--font-weight-bold);
 }
 
+.section:has(.cards.no-images) {
+  background-color: var(--blue-12);
+  padding: var(--section-padding);
+  margin: 0;
+}
+
+.section:has(.cards.no-images) .default-content-wrapper h2 {
+  color: var(--dark-color);
+  font-size: var(--people-vision-h2-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.section:has(.cards.no-images) .default-content-wrapper p {
+  font-size: var(--body-font-size-m);
+  line-height: var(--line-height-body);
+  margin: 0 0 var(--spacing-md);
+  max-width: var(--people-vision-p-max-width);
+}
+
+.section:has(.cards.no-images) .cards > ul {
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.section:has(.cards.no-images) .cards > ul > li {
+  background-color: var(--background-color);
+  border-radius: var(--people-vision-card-radius);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-card);
+}
+
+.section:has(.cards.no-images) .cards .cards-card-body h3 {
+  font-size: var(--card-h3-size-lg);
+  font-weight: var(--font-weight-medium);
+  border-bottom: none;
+  padding: 0 0 var(--spacing-xs);
+}
+
+.section:has(.cards.no-images) .cards .cards-card-body p {
+  font-size: var(--body-font-size-m);
+  padding: 0;
+  color: var(--text-color);
+  max-width: var(--content-max-width);
+}
+
 @media (width >= 900px) {
-  body.careers .cards > ul > li {
+  .cards > ul > li {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 0 var(--card-grid-gap);
     padding: 0 0 var(--spacing-md);
   }
 
-  body.careers .cards > ul > li > .cards-card-body:first-child {
+  .cards > ul > li > .cards-card-body:first-child {
     grid-column: 1 / -1;
   }
 
-  body.careers .cards .cards-card-body h3 {
+  .cards .cards-card-body h3 {
     font-size: var(--card-h3-size-lg);
   }
 
-  body.careers .cards .cards-card-body p {
-    font-size: var(--card-p-size-lg);
+  .section:has(.cards.no-images) .default-content-wrapper h2 {
+    font-size: var(--people-vision-h2-size-lg);
   }
 
-  body.careers .cards .cards-card-body ul {
-    columns: 2;
-    column-gap: var(--card-list-col-gap);
+  .section:has(.cards.no-images) .cards > ul > li {
+    display: block;
+    padding: var(--spacing-md);
   }
 }

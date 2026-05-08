@@ -23,15 +23,6 @@ header nav {
   color: var(--dark-color);
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-}
-
 @media (width >= 900px) {
   header .nav-wrapper {
     position: relative;
@@ -43,11 +34,6 @@ header nav[aria-expanded='true'] {
     gap: 0 var(--spacing-md);
     max-width: 1264px;
     padding: 0 var(--spacing-md);
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
   }
 }
 
@@ -176,7 +162,6 @@ header nav .nav-sections {
 header nav[aria-expanded='true'] .nav-sections {
   display: block;
   visibility: visible;
-  align-self: start;
 }
 
 header nav .nav-sections ul {
@@ -202,10 +187,6 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     visibility: visible;
     white-space: nowrap;
-  }
-
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
   }
 
   header nav .nav-sections .nav-drop {
@@ -285,7 +266,7 @@ header nav .nav-tools {
 
 /* ── Careers theme: two-band header ── */
 @media (width >= 900px) {
-  body.careers header .nav-wrapper {
+  header .nav-wrapper {
     background: linear-gradient(
       to bottom,
       var(--link-color) var(--careers-topbar-height),
@@ -295,7 +276,7 @@ header nav .nav-tools {
     box-shadow: var(--shadow-nav);
   }
 
-  body.careers header nav {
+  header nav {
     display: grid;
     grid-template:
       'tools tools' var(--careers-topbar-height)
@@ -305,23 +286,23 @@ header nav .nav-tools {
     gap: 0;
   }
 
-  body.careers header nav .nav-brand {
+  header nav .nav-brand {
     grid-area: brand;
     align-self: center;
   }
 
-  body.careers header nav .nav-sections {
+  header nav .nav-sections {
     grid-area: sections;
     place-self: center end;
   }
 
-  body.careers header nav .nav-tools {
+  header nav .nav-tools {
     grid-area: tools;
     place-self: center end;
     width: var(--header-tools-width);
   }
 
-  body.careers header nav .nav-tools a:any-link {
+  header nav .nav-tools a:any-link {
     display: inline-flex;
     align-items: center;
     height: var(--careers-topbar-height);
@@ -333,7 +314,7 @@ header nav .nav-tools {
     transition: background-color var(--transition-speed);
   }
 
-  body.careers header nav .nav-tools a:any-link::before {
+  header nav .nav-tools a:any-link::before {
     content: '';
     display: block;
     width: var(--header-tools-icon-width);
@@ -345,18 +326,18 @@ header nav .nav-tools {
     flex-shrink: 0;
   }
 
-  body.careers header nav .nav-tools a:hover {
+  header nav .nav-tools a:hover {
     background-color: var(--header-tools-hover-bg);
     color: var(--background-color);
     text-decoration: none;
   }
 
-  body.careers header nav .nav-sections a:any-link {
+  header nav .nav-sections a:any-link {
     color: var(--link-color);
     font-weight: var(--font-weight-bold);
   }
 
-  body.careers header nav .nav-sections a:hover {
+  header nav .nav-sections a:hover {
     color: var(--brand-dark);
   }
 }
