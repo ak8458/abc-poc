@@ -21,6 +21,8 @@ The repository provides the basic structure, blocks, and configuration needed to
 - Install dependencies: `npm install`
   - Install the AEM CLI globally by running `npm install -g @adobe/aem-cli` then `aem up` is equivalent to the command above
   - The dev server runs at `http://localhost:3000` with auto-reload. Open it in playwright, puppeteer, or a browser. If none are available, ask the human to open it and give feedback.
+- Start dev server: `npx -y @adobe/aem-cli up --no-open --forward-browser-logs`
+  - To serve local test HTML: `npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts`
 - Run linting before committing: `npm run lint`
 - Auto-Fix linting issues: `npm run lint:fix`
 
@@ -32,11 +34,16 @@ The repository provides the basic structure, blocks, and configuration needed to
         ├── {blockname}.js      # Block's JavaScript
 ├── styles/          # Global styles and CSS
     ├── styles.css          # Minimal global styling and layout for your website required for LCP
-    └── fonts.css           # Font definitions
+    ├── lazy-styles.css     # Non-critical styles loaded after LCP
+    ├── fonts.css           # Font definitions
+    └── themes/             # Theme override CSS files (e.g. careers.css)
 ├── scripts/         # JavaScript libraries and utilities
     ├── aem.js           # Core AEM Library for Edge Delivery page decoration logic (NEVER MODIFY THIS FILE)
     ├── scripts.js       # Global JavaScript utilities, main entry point for page decoration
     └── delayed.js       # Delayed functionality such as martech loading
+├── ue/              # Universal Editor support (scripts and component models)
+├── data/            # Static JSON data files served by the content backend
+├── cf-templates/    # Content Fragment HTML templates
 ├── fonts/           # Web fonts
 ├── icons/           # SVG icons
 ├── head.html        # Global HTML head content
@@ -47,7 +54,6 @@ The repository provides the basic structure, blocks, and configuration needed to
 
 ### JavaScript
 
-    └── fonts.css           # Font definitions
 - Always include `.js` file extensions in imports
 - Use Unix line endings (LF)
 
@@ -59,6 +65,8 @@ The repository provides the basic structure, blocks, and configuration needed to
   - Declare styles mobile first, use `min-width` media queries at 600px/900px/1200px for tablet and desktop
 - Ensure all selectors are scoped to the block.
   - Bad: `.item-list`
+  - Good: `.columns .item-list`
+- Never use `.blockname-container` or `.blockname-wrapper` selectors — these suffixes are reserved by AEM section decoration
 
 ## Key Concepts
 
@@ -106,6 +114,58 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 - Eager - load only what is required to get to LCP. This generally includes decorating the overall page content to create sections, blocks, buttons, etc. and loading the first section of the page.
 - Lazy - load all other page content, including the header and footer.
 - Delayed - load things that can be safely loaded later here and incur a performance penalty when loaded earlier
+
+## Project-Specific Architecture
+
+### Themes system (`styles/themes/`)
+
+Pages opt into a theme via page metadata (`theme: careers`). `scripts.js:loadTheme()` reads this metadata and loads the matching CSS file from `styles/themes/`. Theme CSS overrides `:root` CSS custom properties at the `body` level:
+
+```css
+/* styles/themes/careers.css */
+body {
+  --text-color: #002638;
+  /* ... */
+}
+```
+
+To add a new theme, create `styles/themes/{theme-name}.css` and reference it in the page's metadata table.
+
+### Button decoration (`scripts.js:decorateButtons`)
+
+This project uses a **custom** `decorateButtons` — not the boilerplate version. Links are only promoted to buttons when wrapped in `**strong**` or `*em*` formatting:
+
+- `**bold link**` → `.button.primary` (filled, dark background)
+- `*italic link*` → `.button.secondary` (outlined)
+- `***bold+italic link***` → `.button.accent` (high-impact CTA, brand blue)
+
+**Plain links are never auto-buttonized.** The parent `<p>` receives `.button-wrapper`.
+
+### Auto-blocking patterns (`scripts.js:buildAutoBlocks`)
+
+Four patterns are detected automatically — no explicit block authoring required:
+
+1. **Hero** (`buildHeroBlock`): A `<picture>` preceding an `<h1>` in the first section triggers creation of a `hero` block. Skipped if either element is already inside `.hero`.
+
+2. **Accordion** (`buildAccordionBlock`): A section whose first child is `<h2>` and all remaining children are `<p>` elements in an even number ≥ 4 becomes an `accordion` block. Pairs of `<p>` elements form question/answer rows.
+
+3. **Icon-columns** (`buildIconColumnsBlocks`): Nine consecutive elements matching three groups of `[icon-<p>, <h3>, <p>]` are auto-wrapped into a `.columns` block with one row and three columns.
+
+4. **Fragments**: Links whose `href` contains `/fragments/` are replaced inline with the fragment's content via `blocks/fragment/fragment.js:loadFragment`. No explicit Fragment block is needed.
+
+### Columns block — card pattern detection (`blocks/columns/columns.js`)
+
+When every column in every row starts with an image `<p>` (`picture` inside a `<p>`) and has additional content, the block automatically adds `.columns-cards` and restructures each column into:
+
+- `.columns-card-image` — the leading `<p>` containing the `<picture>`
+- `.columns-card-body` — all middle elements
+- `.columns-card-action` — the final element, only if it contains a link
+
+No author opt-in required; detection is purely structural.
+
+### Universal Editor (UE) support
+
+The `ue/` directory contains component models (`ue/models/`) and a runtime script (`ue/scripts/ue.js`). The UE script is loaded automatically in `scripts.js` when the hostname matches `*.stage-ue.da.live` or `*.ue.da.live`. Do not modify `ue/scripts/ue-utils.js` or `ue/scripts/ue.js` without understanding the instrumentation contracts.
 
 ## Testing & Quality Assurance
 

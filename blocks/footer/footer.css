@@ -209,13 +209,13 @@ footer .footer > div {
 
 /* ── Careers theme ── */
 @media (width >= 900px) {
-  body.careers .footer-land-ack h2 {
+  .footer-land-ack h2 {
     margin: 0;
   }
 }
 
 @media (width >= 1200px) {
-  body.careers .footer-privacy {
+  .footer-privacy {
     flex-direction: row;
   }
 }
