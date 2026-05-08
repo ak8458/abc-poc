@@ -148,7 +148,7 @@ body {
   --shadow-button-hover: 4px 4px 8px 0 rgb(0 0 0 / 50%);
 }
 
-body.careers main > .section:first-of-type {
+main > .section:first-of-type {
   margin-top: 50px;
   margin-bottom: 0;
 }

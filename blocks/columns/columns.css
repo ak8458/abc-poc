@@ -122,13 +122,13 @@
 }
 
 /* ── Careers theme: section backgrounds ── */
-body.careers .section.grey {
+.section.grey {
   background-color: var(--footer-bg-color);
   padding: var(--section-padding);
   margin: 0;
 }
 
-body.careers .section.lightblue {
+.section.lightblue {
   background-color: var(--blue-12);
   padding: var(--section-padding);
   margin: 0;
@@ -138,20 +138,20 @@ body.careers .section.lightblue {
 
 /* 1-col container — specificity (0,4,3) */
 
-body.careers .columns.columns-1-cols > div > div {
+.columns.columns-1-cols > div > div {
   text-align: center;
   max-width: var(--content-max-width);
   margin: 0 auto var(--single-column-bottom-gap);
 }
 
 /* Testimonial section container - specificity (0,3,2) */
-body.careers .section:has(.columns.testimonial) > div {
+.section:has(.columns.testimonial) > div {
   max-width: var(--max-width-content);
   padding: 0;
 }
 
 /* Careers theme: join-team section - must precede lower specificity selectors */
-body.careers .section:has(.columns.join-team) > div {
+.section:has(.columns.join-team) > div {
   max-width: var(--max-width-content);
   height: 100%;
   margin: 0 auto;
@@ -159,18 +159,18 @@ body.careers .section:has(.columns.join-team) > div {
 }
 
 /* 3-col icon cards - specificity (0,3,3); must precede higher specificity selectors */
-body.careers .columns.columns-3-cols:not(.columns-cards) > div {
+.columns.columns-3-cols:not(.columns-cards) > div {
   align-items: stretch;
   gap: var(--spacing-md);
 }
 
 /* 3-col icon cards margin - specificity (0,3,1); must precede higher specificity selectors */
-body.careers .columns.columns-3-cols:not(.columns-cards) > div + div {
+.columns.columns-3-cols:not(.columns-cards) > div + div {
   margin-top: var(--icon-card-row-gap);
 }
 
 /* Higher specificity than above - moved here to fix descending specificity */
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
+.columns.columns-3-cols:not(.columns-cards) > div > div {
   background-color: var(--background-color);
   border: var(--border-width) solid var(--color-border);
   border-bottom: var(--border-width-accent) solid var(--card-accent-color);
@@ -180,38 +180,39 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div {
 }
 
 /* Mobile: pad the text column */
-body.careers .columns.testimonial > div > div:not(.columns-img-col) {
+.columns.testimonial > div > div:not(.columns-img-col) {
   padding: var(--spacing-sm);
 }
 
 /* Mobile: pad the text column - join-team */
-body.careers .columns.join-team > div > div:not(.columns-img-col) {
+.columns.join-team > div > div:not(.columns-img-col) {
   padding: var(--spacing-xl) var(--spacing-xxs);
 }
 
 /* 1-col container with bottom border — specificity (0,4,3) */
-body.careers .section.columns-container[data-border='bottom'] .columns.columns-1-cols > div > div {
+.columns.one-column-video > div > div {
   border: none;
   border-bottom: var(--border-width-accent) solid var(--link-color);
   padding-bottom: var(--single-column-bottom-gap);
 }
 
-body.careers .columns.join-team p {
+.columns.join-team p {
   color: var(--background-color);
 }
 
 /* join-team p:has(a) — specificity (0,4,0); must come after lower-specificity p rule */
-body.careers .columns.join-team p:has(a) {
+.columns.join-team p:has(a) {
   margin-top: var(--spacing-lg);
 }
 
 /* Testimonial blockquote p - specificity (0,3,3); must precede higher specificity p rules */
-body.careers .columns.testimonial blockquote p {
+.columns.testimonial blockquote p {
   display: inline;
 }
 
 /* 4-col values text — specificity (0,3,4); must precede 3-col and 1-col p+p rules */
-body.careers .columns.columns-4-cols > div > div h3 {
+/* stylelint-disable-next-line no-descending-specificity -- 4-cols h3 never appears inside .columns-cards */
+.columns.columns-4-cols > div > div h3 {
   color: var(--text-color);
   font-family: var(--heading-font-family);
   font-size: var(--icon-card-h3-size);
@@ -220,7 +221,7 @@ body.careers .columns.columns-4-cols > div > div h3 {
   margin: 0 0 var(--spacing-xs);
 }
 
-body.careers .columns.columns-4-cols > div > div p {
+.columns.columns-4-cols > div > div p {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
@@ -230,7 +231,7 @@ body.careers .columns.columns-4-cols > div > div p {
 }
 
 /* 1-col paragraph — specificity (0,3,4) */
-body.careers .columns.columns-1-cols > div > div p {
+.columns.columns-1-cols > div > div p {
   font-size: var(--font-size-lead);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-display);
@@ -238,45 +239,41 @@ body.careers .columns.columns-1-cols > div > div p {
 
 
 /* 1-col adjacent paragraph — specificity (0,3,5) */
-body.careers .columns.columns-1-cols > div > div p + p {
+.columns.columns-1-cols > div > div p + p {
   margin-top: var(--spacing-xs);
 }
 
-body.careers .section.grey .embed {
+.section.grey .embed {
   max-width: var(--content-max-width);
   margin: 0 auto;
 }
 
 @media (width >= 900px) {
-  body.careers .section.grey {
+  .section.grey {
     padding: var(--section-padding-lg);
   }
 
-  body.careers .columns.columns-1-cols > div {
+  .columns.columns-1-cols > div {
     justify-content: center;
   }
 
-  body.careers .columns.columns-4-cols > div {
+  .columns.columns-4-cols > div {
     align-items: stretch;
   }
 
-  body.careers .section.columns-container[data-border='left'] .columns.columns-4-cols > div > div {
+  .columns.four-columns > div > div {
     padding-left: var(--spacing-md);
     border-left: var(--border-width-thick) solid var(--link-color);
   }
 
-  body.careers
-    .section.columns-container[data-border='left']
-    .columns.columns-4-cols
-    > div
-    > div:first-child {
+  .columns.four-columns > div > div:first-child {
     border-left: none;
     padding-left: 0;
   }
 }
 
 /* ── Careers theme: join-team section ── */
-body.careers .section:has(.columns.join-team) {
+.section:has(.columns.join-team) {
   background-color: var(--brand-dark);
   margin: 0;
   overflow: hidden;
@@ -284,23 +281,26 @@ body.careers .section:has(.columns.join-team) {
 }
 
 /* Keep DOM order: text left, image right (base CSS uses order: 0 on img col) */
-body.careers .columns.join-team .columns-img-col {
+.columns.join-team .columns-img-col {
   order: 2;
 }
 
-body.careers .columns.join-team h2 {
+/* stylelint-disable-next-line no-descending-specificity -- join-team h2 never appears inside .columns-cards */
+.columns.join-team h2 {
   margin-top: 0;
   color: var(--background-color);
 }
 
 
 /* 1-col h2 — specificity (0,4,0) */
-body.careers .columns.columns-1-cols > div > div h2 {
+/* stylelint-disable-next-line no-descending-specificity -- columns-1-cols h2 never appears inside .columns-cards */
+.columns.columns-1-cols > div > div h2 {
   margin-top: 0;
 }
 
 /* Filled button for the plain Explore jobs link */
-body.careers .columns.join-team a:any-link {
+/* stylelint-disable-next-line no-descending-specificity -- join-team links never appear inside .columns-cards */
+.columns.join-team a:any-link {
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-xs) var(--spacing-md);
@@ -313,7 +313,8 @@ body.careers .columns.join-team a:any-link {
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-body.careers .columns.join-team a:hover {
+/* stylelint-disable-next-line no-descending-specificity -- join-team :hover never appears inside .columns-cards */
+.columns.join-team a:hover {
   background-color: var(--color-hover-light);
   border-color: var(--color-hover-light);
   color: var(--brand-dark);
@@ -322,18 +323,18 @@ body.careers .columns.join-team a:hover {
 
 @media (width >= 900px) {
   /* Propagate section height so the image column fills it */
-  body.careers .columns.join-team,
-  body.careers .columns.join-team > div {
+  .columns.join-team {
     height: 100%;
   }
 
-  body.careers .columns.join-team > div {
+  .columns.join-team > div {
+    height: 100%;
     align-items: stretch;
     gap: 0;
   }
 
   /* Flex container so picture can be vertically centred */
-  body.careers .columns.join-team .columns-img-col {
+  .columns.join-team .columns-img-col {
     display: flex;
     align-items: center;
     flex: 0 0 var(--join-team-img-col-width);
@@ -341,18 +342,18 @@ body.careers .columns.join-team a:hover {
     padding: var(--spacing-md) 0;
   }
 
-  body.careers .columns.join-team .columns-img-col picture {
+  .columns.join-team .columns-img-col picture {
     width: 100%;
     overflow: hidden;
   }
 
-  body.careers .columns.join-team .columns-img-col img {
+  .columns.join-team .columns-img-col img {
     width: var(--join-team-img-width);
     height: auto;
     display: block;
   }
 
-  body.careers .columns.join-team > div > div:not(.columns-img-col) {
+  .columns.join-team > div > div:not(.columns-img-col) {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -364,27 +365,20 @@ body.careers .columns.join-team a:hover {
 
 /* Higher specificity than above — must follow 1-col and 4-col rules */
 
-body.careers .columns-wrapper + .columns-wrapper > .columns {
+.columns-wrapper + .columns-wrapper > .columns {
   margin-top: var(--icon-card-row-gap);
 }
 
-body.careers .section.our-teams .default-content-wrapper p {
+.section.our-teams .default-content-wrapper p {
   max-width: var(--content-max-width);
 }
 
-body.careers .section:has(.cards.no-images) .default-content-wrapper p {
-  font-size: var(--body-font-size-m);
-  line-height: var(--line-height-body);
-  margin: 0 0 var(--spacing-md);
-  max-width: var(--people-vision-p-max-width);
-}
-
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
+.columns.columns-3-cols:not(.columns-cards) > div > div > p:first-child {
   margin-top: 0;
   margin-bottom: var(--icon-card-row-gap);
 }
 
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
+.columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
   font-family: var(--body-font-family);
   font-size: var(--icon-card-h3-size);
   font-weight: var(--font-weight-medium);
@@ -393,7 +387,7 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > h3 {
   color: var(--brand-dark);
 }
 
-body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:first-child) {
+.columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:first-child) {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
@@ -404,27 +398,27 @@ body.careers .columns.columns-3-cols:not(.columns-cards) > div > div > p:not(:fi
 }
 
 /* ── Careers theme: testimonial section ── */
-body.careers .section:has(.columns.testimonial) {
+.section:has(.columns.testimonial) {
   background: linear-gradient(to top, var(--blue-12) var(--testimonial-gradient-stop), transparent var(--testimonial-gradient-stop));
   margin: 0;
   overflow: hidden;
 }
 
 /* ── Careers theme: culture-cards section ── */
-body.careers .section:has(.columns.three-columns),
+.section:has(.columns.three-columns),
 /* stylelint-disable-next-line no-descending-specificity -- culture-cards :has() selector never matches testimonial section */
-body.careers .section:has(+ .section:has(.columns.three-columns)) {
+.section:has(+ .section:has(.columns.three-columns)) {
   padding: var(--section-padding);
   margin: 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- testimonial and culture-cards selectors never match the same section element */
-body.careers .section.cards-container + .section:has(.columns.testimonial) {
+.section.cards-container + .section:has(.columns.testimonial) {
   background: linear-gradient(to bottom, var(--blue-12) var(--testimonial-gradient-stop-alt), transparent var(--testimonial-gradient-stop-alt));
 }
 
 /* Reset browser default blockquote styles */
-body.careers .columns.testimonial blockquote {
+.columns.testimonial blockquote {
   margin: 0;
   padding: 0;
   font-style: italic;
@@ -435,7 +429,7 @@ body.careers .columns.testimonial blockquote {
 
 /* Attribution */
 /* stylelint-disable-next-line no-descending-specificity -- testimonial attribution p never matches 3-cols p:first-child */
-body.careers .columns.testimonial > div > div:not(.columns-img-col) > p {
+.columns.testimonial > div > div:not(.columns-img-col) > p {
   margin: var(--spacing-xs) 0 0;
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
@@ -444,24 +438,24 @@ body.careers .columns.testimonial > div > div:not(.columns-img-col) > p {
 }
 
 @media (width >= 900px) {
-  body.careers .columns.testimonial > div {
+  .columns.testimonial > div {
     align-items: stretch;
     gap: 0;
   }
 
-  body.careers .columns.testimonial .columns-img-col {
+  .columns.testimonial .columns-img-col {
     flex: 0 0 var(--testimonial-img-col-width);
     overflow: hidden;
   }
 
-  body.careers .columns.testimonial .columns-img-col img {
+  .columns.testimonial .columns-img-col img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center top;
   }
 
-  body.careers .columns.testimonial > div > div:not(.columns-img-col) {
+  .columns.testimonial > div > div:not(.columns-img-col) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -471,13 +465,13 @@ body.careers .columns.testimonial > div > div:not(.columns-img-col) > p {
 
 /* ── Careers theme: award-winning section ── */
 /* stylelint-disable-next-line no-descending-specificity -- award-winning section never matches testimonial section */
-body.careers .section:has(.columns.four-columns-flex) {
+.section:has(.columns.four-columns-flex) {
   background-color: var(--blue-12);
   padding: var(--section-padding);
   margin: 0;
 }
 
-body.careers .columns.four-columns-flex > div > div:first-child h2 {
+.columns.four-columns-flex > div > div:first-child h2 {
   color: var(--dark-color);
   font-size: var(--heading-font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -485,22 +479,12 @@ body.careers .columns.four-columns-flex > div > div:first-child h2 {
   margin: 0 0 var(--spacing-xs);
 }
 
-/* ── Careers theme: people-vision section ── */
-/* stylelint-disable-next-line no-descending-specificity -- people-vision section never matches testimonial section */
-body.careers .section:has(.cards.no-images) {
-  background-color: var(--blue-12);
+.section:has(.cards.with-icon) {
   padding: var(--section-padding);
   margin: 0;
 }
 
-/* ── Careers theme: how-hire section ── */
-body.careers .section.how-hire {
-  padding: var(--section-padding);
-  margin: 0;
-}
-
-/* stylelint-disable-next-line no-descending-specificity -- how-hire h2 never matches award-winning or columns-1-cols h2 */
-body.careers .section.how-hire .default-content-wrapper h2 {
+.section:has(.cards.with-icon) .default-content-wrapper h2 {
   font-family: var(--heading-font-family);
   font-size: var(--how-hire-heading-size);
   font-weight: var(--font-weight-bold);
@@ -509,14 +493,14 @@ body.careers .section.how-hire .default-content-wrapper h2 {
   margin-bottom: var(--spacing-xs);
 }
 
-body.careers .section.how-hire .cards > ul {
+.cards.cards.with-icon > ul {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   max-width: var(--how-hire-cards-max-width);
 }
 
-body.careers .section.how-hire .cards > ul > li {
+.cards.cards.with-icon > ul > li {
   border: var(--border-width) solid var(--color-border);
   border-bottom: var(--border-width-accent) solid var(--card-accent-color);
   border-radius: var(--radius-lg);
@@ -524,7 +508,7 @@ body.careers .section.how-hire .cards > ul > li {
   padding: 0;
 }
 
-body.careers .section.how-hire .cards-card-body {
+.cards.cards.with-icon .cards-card-body {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -533,7 +517,7 @@ body.careers .section.how-hire .cards-card-body {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- how-hire h3 never matches 3-cols, 4-cols, or our-teams h3 */
-body.careers .section.how-hire .cards .cards-card-body h3 {
+.cards.cards.with-icon .cards-card-body h3 {
   font-family: var(--body-font-family);
   font-size: var(--how-hire-step-title-size);
   font-weight: var(--font-weight-medium);
@@ -546,7 +530,7 @@ body.careers .section.how-hire .cards .cards-card-body h3 {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- how-hire p never matches careers cards p */
-body.careers .section.how-hire .cards .cards-card-body p {
+.cards.cards.with-icon .cards-card-body p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-xs);
@@ -554,7 +538,8 @@ body.careers .section.how-hire .cards .cards-card-body p {
 }
 
 /* Award-winning links - must precede higher specificity selectors */
-body.careers .columns.four-columns-flex a:any-link {
+/* stylelint-disable-next-line no-descending-specificity -- four-columns-flex links never appear inside .columns-cards */
+.columns.four-columns-flex a:any-link {
   display: inline-flex;
   align-items: center;
   padding: var(--award-winning-btn-padding);
@@ -568,7 +553,8 @@ body.careers .columns.four-columns-flex a:any-link {
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-body.careers .columns.four-columns-flex a:hover {
+/* stylelint-disable-next-line no-descending-specificity -- four-columns-flex :hover never appears inside .columns-cards */
+.columns.four-columns-flex a:hover {
   background-color: var(--color-hover-light);
   border-color: var(--color-hover-light);
   color: var(--dark-color);
@@ -576,8 +562,7 @@ body.careers .columns.four-columns-flex a:hover {
 }
 
 /* Icon: absolutely positioned top-right */
-/* stylelint-disable-next-line no-descending-specificity -- how-hire p:last-child never matches support-your-career p:last-child */
-body.careers .section.how-hire .cards .cards-card-body > p:last-child {
+.cards.cards.with-icon .cards-card-body > p:last-child {
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
@@ -586,13 +571,13 @@ body.careers .section.how-hire .cards .cards-card-body > p:last-child {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- how-hire .icon never matches 3-cols p:first-child .icon */
-body.careers .section.how-hire .cards-card-body .icon {
+.cards.cards.with-icon .cards-card-body .icon {
   display: flex;
   width: var(--icon-card-icon-size);
   height: var(--icon-card-icon-size);
 }
 
-body.careers .section.how-hire .cards-card-body blockquote {
+.cards.cards.with-icon .cards-card-body blockquote {
   margin: 0 0 var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--light-color);
@@ -604,13 +589,13 @@ body.careers .section.how-hire .cards-card-body blockquote {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- how-hire blockquote p:first-child never matches testimonial blockquote p */
-body.careers .section.how-hire .cards-card-body blockquote p:first-child {
+.cards.cards.with-icon .cards-card-body blockquote p:first-child {
   font-weight: var(--font-weight-bold);
   color: var(--text-color);
   margin: 0 0 var(--spacing-xxs);
 }
 
-body.careers .section.how-hire .cards-card-body blockquote p:first-child::before {
+.cards.cards.with-icon .cards-card-body blockquote p:first-child::before {
   content: '';
   display: inline-block;
   width: var(--how-hire-lightbulb-width);
@@ -623,21 +608,20 @@ body.careers .section.how-hire .cards-card-body blockquote p:first-child::before
   margin-right: var(--spacing-xxs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- how-hire blockquote p:last-child never matches support-your-career p:last-child */
-body.careers .section.how-hire .cards-card-body blockquote p:last-child {
+.cards.cards.with-icon .cards-card-body blockquote p:last-child {
   margin: 0;
   padding-left: var(--how-hire-blockquote-left);
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- award-winning :first-child p never matches 3-cols p:first-child */
-body.careers .columns.four-columns-flex > div > div:first-child p {
+.columns.four-columns-flex > div > div:first-child p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   margin: 0 0 var(--spacing-lg);
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- award-winning div+div p:first-child never matches 3-cols p:first-child */
-body.careers .columns.four-columns-flex > div > div + div p:first-child {
+.columns.four-columns-flex > div > div + div p:first-child {
   font-family: var(--body-font-family);
   font-size: var(--award-winning-subtitle);
   font-weight: var(--font-weight-bold);
@@ -646,7 +630,7 @@ body.careers .columns.four-columns-flex > div > div + div p:first-child {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- award-winning div+div p:last-child never matches 3-cols p:first-child */
-body.careers .columns.four-columns-flex > div > div + div p:last-child {
+.columns.four-columns-flex > div > div + div p:last-child {
   color: var(--dark-color);
   font-family: var(--heading-font-family);
   font-size: var(--award-winning-description);
@@ -656,42 +640,39 @@ body.careers .columns.four-columns-flex > div > div + div p:last-child {
 }
 
 @media (width >= 900px) {
-  body.careers .columns.four-columns-flex > div {
+  .columns.four-columns-flex > div {
     align-items: stretch;
   }
 
-  body.careers .columns.four-columns-flex > div > div:first-child {
+  .columns.four-columns-flex > div > div:first-child {
     flex: 0 0 var(--award-winning-col1-width);
   }
 
-  body.careers .columns.four-columns-flex > div > div:first-child h2 {
+  .columns.four-columns-flex > div > div:first-child h2 {
     width: var(--award-winning-col1-h2-width);
   }
 
   /* stylelint-disable-next-line no-descending-specificity -- div+div never matches :first-child */
-  body.careers .columns.four-columns-flex > div > div + div {
+  .columns.four-columns-flex > div > div + div {
     flex: 0 0 var(--award-winning-col-width);
     padding-left: var(--spacing-md);
     text-align: center;
   }
 
   /* stylelint-disable-next-line no-descending-specificity -- div+div+div never matches :first-child */
-  body.careers .columns.four-columns-flex > div > div + div + div {
+  .columns.four-columns-flex > div > div + div + div {
     border-left: var(--border-width-thick) solid var(--link-color);
   }
 }
 
-/* ── Careers theme: support-your-career section ── */
-/* stylelint-disable-next-line no-descending-specificity -- support-your-career intro p never matches 3-cols p:first-child */
-body.careers .section.support-your-career .default-content-wrapper p {
+.section:has(.columns.two-columns-card) .default-content-wrapper p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   max-width: var(--support-career-p-max-width);
   margin: 0 0 var(--spacing-xs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- support-your-career div never matches testimonial div:not(.columns-img-col) */
-body.careers .section.support-your-career .columns > div > div {
+.columns.two-columns-card > div > div {
   display: flex;
   flex-direction: column;
   border: var(--border-width) solid var(--color-border);
@@ -701,8 +682,7 @@ body.careers .section.support-your-career .columns > div > div {
   padding: var(--spacing-sm);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- support-your-career h3 never matches people-vision cards-card-body h3 */
-body.careers .section.support-your-career .columns > div > div h3 {
+.columns.two-columns-card > div > div h3 {
   color: var(--dark-color);
   font-size: var(--card-h3-size);
   font-weight: var(--font-weight-medium);
@@ -710,95 +690,92 @@ body.careers .section.support-your-career .columns > div > div h3 {
   margin: 0 0 var(--spacing-xs);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- support-your-career card p never matches 3-cols p:first-child */
-body.careers .section.support-your-career .columns > div > div p {
+.columns.two-columns-card > div > div p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
   margin: 0;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- support-your-career p a never matches how-hire p a */
-body.careers .section.support-your-career .columns > div > div p a {
+.columns.two-columns-card > div > div p a {
   font-weight: var(--font-weight-bold);
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- p:last-child never matches award-winning p:first-child */
-body.careers .section.support-your-career .columns > div > div p:last-child {
+.columns.two-columns-card > div > div p:last-child {
   margin-top: auto;
   padding-top: var(--spacing-sm);
 }
 
 @media (width >= 900px) {
-  body.careers .section.support-your-career .columns-2-cols > div {
+  .columns.two-columns-card > div {
     align-items: stretch;
     gap: var(--spacing-md);
   }
 
-  body.careers .section.support-your-career .columns > div > div h3 {
+  .columns.two-columns-card > div > div h3 {
     font-family: var(--body-font-family);
     font-size: var(--heading-font-size-l);
   }
 }
 
 /* ── Careers theme: bottom-photo section ── */
-body.careers .section.bottom-photo {
+.section.bottom-photo {
   padding: var(--section-padding);
   margin: 0;
 }
 
 @media (width >= 900px) {
-  body.careers .section.bottom-photo .columns-img-col {
+  .section.bottom-photo .columns-img-col {
     flex: 0 0 var(--bottom-photo-img-col-width);
   }
 
-  body.careers .section.bottom-photo .columns > div {
+  .section.bottom-photo .columns > div {
     gap: var(--spacing-lg);
     padding: 0 var(--bottom-photo-inner-padding);
   }
 
-  body.careers .section.bottom-photo .columns > div > div {
+  .section.bottom-photo .columns > div > div {
     padding-right: var(--bottom-photo-col-offset);
   }
 
-  body.careers .section.bottom-photo .columns > div > div h2 {
+  .section.bottom-photo .columns > div > div h2 {
     margin-top: 0;
   }
 
-  body.careers .section.bottom-photo .columns > div > div a {
+  .section.bottom-photo .columns > div > div a {
     font-weight: var(--font-weight-bold);
   }
 }
 
 /* ── Careers theme: your-wellbeing section ── */
-body.careers .section.your-wellbeing {
+.section.your-wellbeing {
   background-color: var(--brand-grey);
   padding: var(--spacing-xl) 0;
   margin: 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- your-wellbeing div never matches testimonial div:not(.columns-img-col) */
-body.careers .section.your-wellbeing .columns > div > div {
+.section.your-wellbeing .columns > div > div {
   text-align: left;
   max-width: none;
   margin: 0;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- your-wellbeing p never matches award-winning or support-your-career p:first-child/last-child */
-body.careers .section.your-wellbeing .columns > div > div p {
+.section.your-wellbeing .columns > div > div p {
   font-size: var(--body-font-size-m);
   line-height: var(--line-height-paragraph);
 }
 
-body.careers .section.your-wellbeing .columns > div > div p a {
+.section.your-wellbeing .columns > div > div p a {
   font-weight: var(--font-weight-bold);
 }
 
-body.careers .section.how-hire .cards .cards-card-body p a {
+.cards.cards.with-icon .cards-card-body p a {
   font-weight: var(--font-weight-bold);
 }
 
 @media (width >= 900px) {
-  body.careers .section.your-wellbeing {
+  .section.your-wellbeing {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -808,7 +785,7 @@ body.careers .section.how-hire .cards .cards-card-body p a {
     box-sizing: border-box;
   }
 
-  body.careers .section.your-wellbeing > div {
+  .section.your-wellbeing > div {
     max-width: none;
     margin: 0;
     padding: 0;
@@ -817,13 +794,13 @@ body.careers .section.how-hire .cards .cards-card-body p a {
 }
 
 /* ── Careers theme: our-teams section ── */
-body.careers .section.our-teams {
+.section.our-teams {
   padding: var(--section-padding);
   margin: 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- our-teams heading h3 never matches 3-cols h3 */
-body.careers .section.our-teams .default-content-wrapper h3 {
+.section.our-teams .default-content-wrapper h3 {
   font-family: var(--our-teams-heading-font);
   font-size: var(--our-teams-heading-size);
   font-weight: var(--our-teams-heading-weight);
@@ -832,17 +809,15 @@ body.careers .section.our-teams .default-content-wrapper h3 {
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- our-teams div+div never matches testimonial div:not(.columns-img-col) */
-body.careers .section.our-teams .columns > div + div {
+.section.our-teams .columns > div + div {
   margin-top: var(--icon-card-row-gap);
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- our-teams :empty never matches columns-container data-border div */
-body.careers .section.our-teams .columns > div > div:empty {
+.section.our-teams .columns > div > div:empty {
   display: none;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- our-teams card never matches testimonial div:not(.columns-img-col) or support-your-career div */
-body.careers .section.our-teams .columns > div > div {
+.section.our-teams .columns > div > div {
   display: grid;
   grid-template-columns: var(--icon-card-icon-size) 1fr;
   gap: 0 var(--spacing-sm);
@@ -855,31 +830,31 @@ body.careers .section.our-teams .columns > div > div {
 }
 
 /* Icon container (h3 in row 1, p in rows 2–5) */
-body.careers .section.our-teams .columns > div > div > :first-child {
+.section.our-teams .columns > div > div > :first-child {
   grid-row: 1 / 3;
   margin: 0;
 }
 
-body.careers .section.our-teams .columns > div > div .icon {
+.section.our-teams .columns > div > div .icon {
   display: block;
   width: var(--icon-card-icon-size);
   height: var(--icon-card-icon-size);
 }
 
-body.careers .columns.three-columns > div > div > p:first-child .icon {
+.columns.three-columns > div > div > p:first-child .icon {
   width: 96px;
   height: 96px;
 }
 
-body.careers .section.our-teams .icon img,
-body.careers .section.how-hire .icon img {
+.section.our-teams .icon img,
+.section.how-hire .icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
 /* stylelint-disable-next-line no-descending-specificity -- our-teams title h3 never matches 3-cols h3 or 4-cols h3 */
-body.careers .section.our-teams .columns > div > div > h3:not(:first-child) {
+.section.our-teams .columns > div > div > h3:not(:first-child) {
   font-family: var(--our-teams-heading-font);
   font-size: var(--our-teams-card-title-size);
   font-weight: var(--our-teams-card-title-weight);
@@ -889,8 +864,7 @@ body.careers .section.our-teams .columns > div > div > h3:not(:first-child) {
   align-self: end;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- our-teams desc p never matches award-winning or support-your-career p */
-body.careers .section.our-teams .columns > div > div > p:not(:first-child) {
+.section.our-teams .columns > div > div > p:not(:first-child) {
   font-size: var(--our-teams-card-desc-size);
   line-height: var(--line-height-paragraph);
   margin: 0;
@@ -898,7 +872,7 @@ body.careers .section.our-teams .columns > div > div > p:not(:first-child) {
 }
 
 @media (width >= 900px) {
-  body.careers .section.our-teams .columns > div {
+  .section.our-teams .columns > div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);

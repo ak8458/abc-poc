@@ -67,12 +67,25 @@
   font-weight: var(--font-weight-bold);
 }
 
+.section:has(.cards.no-images) {
+    background-color: var(--blue-12);
+    padding: var(--section-padding);
+    margin: 0;
+}
+
 .section:has(.cards.no-images) .default-content-wrapper h2 {
     color: var(--dark-color);
     font-size: var(--people-vision-h2-size);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-heading);
     margin: 0 0 var(--spacing-xs);
+}
+
+.section:has(.cards.no-images) .default-content-wrapper p {
+    font-size: var(--body-font-size-m);
+    line-height: var(--line-height-body);
+    margin: 0 0 var(--spacing-md);
+    max-width: var(--people-vision-p-max-width);
 }
 
 .section:has(.cards.no-images) .cards > ul {
